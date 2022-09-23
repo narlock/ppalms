@@ -1,11 +1,11 @@
 ### CodingMasters Roster
 
-| Member Name  | x500 |
-| ------------- | ------------- |
-| [Anthony Narlock](https://github.com/narlock)  | narlo041  |
-| [Stephanie Ye](https://github.com/Ye000080)  | ye000080  |
-| [Jaden Rodriguez](https://github.com/yaboiskinnyp) | rodr0571 |
-| [Shen Lua](https://github.com/cshenlua) | lua00005 |
+| Member Name  | x500 | GitHub |
+| ------------- | ------------- | ------------- |
+| Anthony Narlock | narlo041  | [narlock](https://github.com/narlock) |
+| Stephanie Ye | ye000080  | [Ye000080](https://github.com/Ye000080) | 
+| Jaden Rodriguez | rodr0571 | [YaBoiSkinnyP](https://github.com/yaboiskinnyp) |
+| Shen Lua | lua00005 | [cshenlua](https://github.com/cshenlua) 
 
 ## Project Description
 

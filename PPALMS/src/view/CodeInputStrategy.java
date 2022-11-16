@@ -19,8 +19,7 @@ public class CodeInputStrategy extends ViewStrategy {
 	private File inputFile;
 	
 	public CodeInputStrategy() {
-		setViewPanel();
-		setControllerActions();
+		super();
 	}
 	
 	@Override
@@ -34,27 +33,10 @@ public class CodeInputStrategy extends ViewStrategy {
 	@Override
 	public void setControllerActions() {
 		fileChooser = new JFileChooser();
-		codeInputButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int returnValue = fileChooser.showOpenDialog(getParent());
-				if(returnValue == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile() != null) {
-					inputFile = fileChooser.getSelectedFile();
-					// Call validate source code from this file
-					// Then Call update input file event to update source code to controller.
-				} else {
-					showErrorDialog("No Source Code Selected");
-				}
-			}
-		});
-	}
-
-	@Override
-	public void showErrorDialog(String message) {
-		JOptionPane.showMessageDialog(this, message, "Error Message",
-		        JOptionPane.ERROR_MESSAGE);
+		
 	}
 
 	public JLabel getCodeInputLabel() { return this.codeInputLabel; }
 	public JButton getCodeInputButton() { return this.codeInputButton; }
+	public JFileChooser getFileChooser() { return this.fileChooser; }
 }

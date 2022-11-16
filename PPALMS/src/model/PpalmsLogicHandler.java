@@ -11,7 +11,11 @@ public class PpalmsLogicHandler {
 	}
 	
 	public boolean validateCodeInput(PpalmsProblem problem) {
-		//TODO
+		if(problem.getSourceCode() != null) {
+			System.out.println(problem.getSourceCode());
+			return true;
+		}
+		
 		return false;
 	}
 	

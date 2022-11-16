@@ -13,10 +13,15 @@ public class LMSInputStrategy extends ViewStrategy {
 	private JComboBox<String> problemTypeComboBox;
 	private JButton confirmLmsTargetButton;
 	
+	public LMSInputStrategy() {
+		super();
+	}
+	
 	@Override
 	public void setViewPanel() {
 		// TODO Auto-generated method stub
-		
+		lmsTargetLabel = new JLabel("Hello World");
+		this.add(lmsTargetLabel);
 	}
 
 	@Override

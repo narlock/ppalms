@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
@@ -11,12 +12,10 @@ import model.PpalmsProblem;
 public class PpalmsInputHandler {
 	private PpalmsProblem problem;
 	private PpalmsLogicHandler problemHandler;
-	private boolean readyToProceed;
 	
 	public PpalmsInputHandler() {
 		this.problem = new PpalmsProblem();
 		this.problemHandler = new PpalmsLogicHandler();
-		this.readyToProceed = false;
 	}
 	
 	public boolean processInput(JComponent component, String event) {
@@ -25,21 +24,16 @@ public class PpalmsInputHandler {
 			case "sourceCodeExtension":
 				//This means that component is the text field being sent.
 				problem.setSourceCode(((JTextField) component).getText());
-				if(problemHandler.validateCodeInput(problem)) { 
-					readyToProceed = true; 
+				if(problemHandler.validateCodeInput(problem)) {  
 					return true;
 				}
+				break;
+			case "sourceCode":
+				//This event will be called after it has been validated.
+				problem.setSourceCode(((JTextField) component).getText());
 				break;
 		}
 			
 		return false;
-	}
-
-	public boolean isReadyToProceed() {
-		return readyToProceed;
-	}
-
-	public void setReadyToProceed(boolean readyToProceed) {
-		this.readyToProceed = readyToProceed;
 	}
 }

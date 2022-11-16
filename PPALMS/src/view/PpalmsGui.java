@@ -57,12 +57,7 @@ public class PpalmsGui extends JFrame {
 							try {
 								String content = Files.readString(filePath);
 								controller.processInput(new JTextField(content), "sourceCode");
-								if(controller.isReadyToProceed()) {
-									updateViewStrategy(new LMSInputStrategy());
-									controller.setReadyToProceed(false);
-								} else {
-									viewStrategy.showErrorDialog("An unexpected error occurred.");
-								}
+								updateViewStrategy(new LMSInputStrategy());
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
 							}

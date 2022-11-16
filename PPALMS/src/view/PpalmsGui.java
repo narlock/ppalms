@@ -12,8 +12,13 @@ public class PpalmsGui extends JFrame {
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setTitle("PPALMS v0.0.1");
+		
+		// The default view strategy on launch will be CodeInputStrategy
+		this.viewStrategy = new CodeInputStrategy();
+		this.add(viewStrategy);
+		
 		this.setVisible(true);
 	}
 	

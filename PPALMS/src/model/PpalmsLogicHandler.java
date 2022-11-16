@@ -11,11 +11,23 @@ public class PpalmsLogicHandler {
 	}
 	
 	public boolean validateCodeInput(PpalmsProblem problem) {
-		if(problem.getSourceCode() != null) {
-			System.out.println(problem.getSourceCode());
-			return true;
+		if(problem.getSourceCode() == null) {
+			return false;
 		}
+		System.out.println("[PpalmsLogicHandler/validateCodeInput] source = " + problem.getSourceCode());
 		
+		String[] validExtensions = {"java", "py", "cpp", "c"};
+		String extension = "";
+
+		int i = problem.getSourceCode().lastIndexOf('.');
+		if (i > 0) { extension = problem.getSourceCode().substring(i+1); }
+		System.out.println("[PpalmsLogicHandler/validateCodeInput] extension = " + extension);
+		
+		for(String ext : validExtensions) {
+			if(extension.equals(ext)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	

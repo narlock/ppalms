@@ -22,10 +22,13 @@ public class PpalmsInputHandler {
 	public boolean processInput(JComponent component, String event) {
 		//TODO
 		switch (event) {
-			case "sourceCode":
+			case "sourceCodeExtension":
 				//This means that component is the text field being sent.
 				problem.setSourceCode(((JTextField) component).getText());
-				if(problemHandler.validateCodeInput(problem)) { readyToProceed = true; }
+				if(problemHandler.validateCodeInput(problem)) { 
+					readyToProceed = true; 
+					return true;
+				}
 				break;
 		}
 			

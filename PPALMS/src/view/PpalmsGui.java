@@ -49,7 +49,8 @@ public class PpalmsGui extends JFrame {
 					int returnValue = fileChooser.showOpenDialog(null);
 					if(returnValue == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile() != null) {
 						inputFile = fileChooser.getSelectedFile();
-						if(!validInputFileExtension(inputFile)) {
+						System.out.println(inputFile.getAbsolutePath());
+						if(!controller.processInput(new JTextField(inputFile.getAbsolutePath()), "sourceCodeExtension")) {
 							viewStrategy.showErrorDialog("Invalid File Extension");
 						} else {
 							Path filePath = Path.of(inputFile.getAbsolutePath());
@@ -60,7 +61,7 @@ public class PpalmsGui extends JFrame {
 									updateViewStrategy(new LMSInputStrategy());
 									controller.setReadyToProceed(false);
 								} else {
-									viewStrategy.showErrorDialog("Invalid source code.");
+									viewStrategy.showErrorDialog("An unexpected error occurred.");
 								}
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
@@ -71,20 +72,7 @@ public class PpalmsGui extends JFrame {
 					}
 				}
 
-				private boolean validInputFileExtension(File inputFile) {
-					String[] validExtensions = {".java", ".py", ".cpp", ".c"};
-					String extension = "";
-
-					int i = inputFile.getAbsolutePath().lastIndexOf('.');
-					if (i > 0) { extension = inputFile.getAbsolutePath().substring(i+1); }
-					
-					for(String ext : validExtensions) {
-						if(extension.equals(ext)) {
-							return true;
-						}
-					}
-					return false;
-				}
+				
 			});
 			
 		} else if(this.viewStrategy instanceof LMSInputStrategy) {

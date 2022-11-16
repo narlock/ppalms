@@ -49,22 +49,41 @@ public class PpalmsGui extends JFrame {
 					int returnValue = fileChooser.showOpenDialog(null);
 					if(returnValue == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile() != null) {
 						inputFile = fileChooser.getSelectedFile();
-						Path filePath = Path.of(inputFile.getAbsolutePath());
-						try {
-							String content = Files.readString(filePath);
-							controller.processInput(new JTextField(content), "sourceCode");
-							if(controller.isReadyToProceed()) {
-								updateViewStrategy(new LMSInputStrategy());
-								controller.setReadyToProceed(false);
-							} else {
-								viewStrategy.showErrorDialog("Invalid source code.");
+						if(!validInputFileExtension(inputFile)) {
+							viewStrategy.showErrorDialog("Invalid File Extension");
+						} else {
+							Path filePath = Path.of(inputFile.getAbsolutePath());
+							try {
+								String content = Files.readString(filePath);
+								controller.processInput(new JTextField(content), "sourceCode");
+								if(controller.isReadyToProceed()) {
+									updateViewStrategy(new LMSInputStrategy());
+									controller.setReadyToProceed(false);
+								} else {
+									viewStrategy.showErrorDialog("Invalid source code.");
+								}
+							} catch (IOException e1) {
+								viewStrategy.showErrorDialog("An IOException was thrown.");
 							}
-						} catch (IOException e1) {
-							viewStrategy.showErrorDialog("An IOException was thrown.");
 						}
 					} else {
 						viewStrategy.showErrorDialog("No Source Code Selected");
 					}
+				}
+
+				private boolean validInputFileExtension(File inputFile) {
+					String[] validExtensions = {".java", ".py", ".cpp", ".c"};
+					String extension = "";
+
+					int i = inputFile.getAbsolutePath().lastIndexOf('.');
+					if (i > 0) { extension = inputFile.getAbsolutePath().substring(i+1); }
+					
+					for(String ext : validExtensions) {
+						if(extension.equals(ext)) {
+							return true;
+						}
+					}
+					return false;
 				}
 			});
 			

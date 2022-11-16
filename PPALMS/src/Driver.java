@@ -2,6 +2,6 @@ import view.PpalmsGui;
 
 public class Driver {
 	public static void main(String[] args) {
-		new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 	}
 }

@@ -55,4 +55,6 @@ public class CodeInputStrategy extends ViewStrategy {
 		        JOptionPane.ERROR_MESSAGE);
 	}
 
+	public JLabel getCodeInputLabel() { return this.codeInputLabel; }
+	public JButton getCodeInputButton() { return this.codeInputButton; }
 }

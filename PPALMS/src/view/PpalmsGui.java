@@ -36,7 +36,6 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	public void setCommunicationActions() {
-		//TODO
 		if(this.viewStrategy instanceof CodeInputStrategy) {
 			System.out.println("true");
 			JButton codeInputButton = ((CodeInputStrategy) viewStrategy).getCodeInputButton();
@@ -66,8 +65,6 @@ public class PpalmsGui extends JFrame {
 						viewStrategy.showErrorDialog("No Source Code Selected");
 					}
 				}
-
-				
 			});
 			
 		} else if(this.viewStrategy instanceof LMSInputStrategy) {
@@ -82,6 +79,7 @@ public class PpalmsGui extends JFrame {
 		this.setSize(499,500);
 		this.remove(viewStrategy);
 		viewStrategy = newStrategy;
+		setCommunicationActions();
 		this.add(viewStrategy);
 		this.repaint();
 		this.setSize(500,500);

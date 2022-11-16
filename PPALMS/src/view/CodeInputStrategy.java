@@ -24,19 +24,19 @@ public class CodeInputStrategy extends ViewStrategy {
 	
 	@Override
 	public void setViewPanel() {
+		fileChooser = new JFileChooser();
 		codeInputLabel = new JLabel("Input Source Code");
 		codeInputButton = new JButton("Select File");
 		this.add(codeInputLabel);
 		this.add(codeInputButton);
 	}
 
-	@Override
-	public void setControllerActions() {
-		fileChooser = new JFileChooser();
-		
-	}
-
 	public JLabel getCodeInputLabel() { return this.codeInputLabel; }
 	public JButton getCodeInputButton() { return this.codeInputButton; }
 	public JFileChooser getFileChooser() { return this.fileChooser; }
+
+	@Override
+	public void setControllerActions() {
+		// TODO Auto-generated method stub
+	}
 }

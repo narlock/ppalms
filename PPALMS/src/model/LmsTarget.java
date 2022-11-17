@@ -1,5 +1,5 @@
 package model;
 
 public enum LmsTarget {
-	CANVAS, D2L, ABSORB, MATRIX, TALENT; 
+	Canvas, D2L, Absorb, Matrix, Talent; 
 }

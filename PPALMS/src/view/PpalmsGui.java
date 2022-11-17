@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import controller.PpalmsInputHandler;
 
 public class PpalmsGui extends JFrame {
+	
 	private ViewStrategy viewStrategy;
 	private PpalmsInputHandler controller;
 	
@@ -36,14 +38,13 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	public void setCommunicationActions() {
-		if(this.viewStrategy instanceof CodeInputStrategy) {
-			System.out.println("true");
+		if (this.viewStrategy instanceof CodeInputStrategy) 
+		{
 			JButton codeInputButton = ((CodeInputStrategy) viewStrategy).getCodeInputButton();
 			codeInputButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					File inputFile;
-					
 					JFileChooser fileChooser = ((CodeInputStrategy) viewStrategy).getFileChooser();
 					int returnValue = fileChooser.showOpenDialog(null);
 					if(returnValue == JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile() != null) {
@@ -67,15 +68,48 @@ public class PpalmsGui extends JFrame {
 				}
 			});
 			
-		} else if(this.viewStrategy instanceof LMSInputStrategy) {
+		} 
+		else if (this.viewStrategy instanceof LMSInputStrategy) 
+		{
+			JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) viewStrategy).getLmsTargetComboBox();
+			JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) viewStrategy).getProblemTypeComboBox();
+			JButton confirmLmsTargetButton = ((LMSInputStrategy) viewStrategy).getConfirmLmsTargetButton();
+			lmsTargetComboBox.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(!controller.processInput(lmsTargetComboBox, "lmsTarget")) {
+						problemTypeComboBox.setEnabled(false);
+						confirmLmsTargetButton.setEnabled(false);
+					} else {
+						problemTypeComboBox.setEnabled(true);
+					}
+				}
+			});
+			problemTypeComboBox.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(!controller.processInput(problemTypeComboBox, "problemType")) {
+						confirmLmsTargetButton.setEnabled(false);
+					} else {
+						confirmLmsTargetButton.setEnabled(true);
+					}
+				}
+			});
+			confirmLmsTargetButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					updateViewStrategy(new ProblemInputStrategy());
+				}
+			});
 			
-		} else if(this.viewStrategy instanceof ProblemInputStrategy) {
+		} 
+		else if(this.viewStrategy instanceof ProblemInputStrategy) 
+		{
 			
 		}
 	}
 	
 	public void updateViewStrategy(ViewStrategy newStrategy) {
-		System.out.println("here");
 		this.setSize(499,500);
 		this.remove(viewStrategy);
 		viewStrategy = newStrategy;

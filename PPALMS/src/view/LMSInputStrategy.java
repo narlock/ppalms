@@ -19,21 +19,36 @@ public class LMSInputStrategy extends ViewStrategy {
 	
 	@Override
 	public void setViewPanel() {
-		// TODO Auto-generated method stub
-		lmsTargetLabel = new JLabel("Hello World");
+		lmsTargetLabel = new JLabel("Select LMS");
+		lmsTargetComboBox = new JComboBox<String>();
+			lmsTargetComboBox.addItem("Expand");
+			lmsTargetComboBox.addItem("Canvas");
+			lmsTargetComboBox.addItem("D2L");
+			lmsTargetComboBox.addItem("Absorb");
+			lmsTargetComboBox.addItem("Matrix");
+			lmsTargetComboBox.addItem("Talent");
+		problemTypeLabel = new JLabel("Select Problem Type");
+		problemTypeComboBox = new JComboBox<String>();
+			problemTypeComboBox.addItem("Expand");
+			problemTypeComboBox.addItem("Ordering");
+		confirmLmsTargetButton = new JButton("Confirm");
 		this.add(lmsTargetLabel);
+		this.add(lmsTargetComboBox);
+		this.add(problemTypeLabel);
+		this.add(problemTypeComboBox);
+		this.add(confirmLmsTargetButton);
 	}
 
 	@Override
 	public void setControllerActions() {
-		// TODO Auto-generated method stub
-		
+		problemTypeComboBox.setEnabled(false);
+		confirmLmsTargetButton.setEnabled(false);
 	}
-
-	@Override
-	public void showErrorDialog(String message) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	public JLabel getLmsTargetLabel() { return lmsTargetLabel; }
+	public JComboBox<String> getLmsTargetComboBox() { return lmsTargetComboBox; }
+	public JLabel getProblemTypeLabel() { return problemTypeLabel; }
+	public JComboBox<String> getProblemTypeComboBox() { return problemTypeComboBox; }
+	public JButton getConfirmLmsTargetButton() { return confirmLmsTargetButton; }
 
 }

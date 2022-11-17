@@ -1,13 +1,13 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
 
+import model.LmsTarget;
 import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
+import model.ProblemType;
 
 public class PpalmsInputHandler {
 	private PpalmsProblem problem;
@@ -19,7 +19,6 @@ public class PpalmsInputHandler {
 	}
 	
 	public boolean processInput(JComponent component, String event) {
-		//TODO
 		switch (event) {
 			case "sourceCodeExtension":
 				//This means that component is the text field being sent.
@@ -32,6 +31,22 @@ public class PpalmsInputHandler {
 				//This event will be called after it has been validated.
 				problem.setSourceCode(((JTextField) component).getText());
 				break;
+			case "lmsTarget":
+				String targetLms = (String) ((JComboBox<String>) component).getSelectedItem();
+				try {
+					problem.setLmsTarget(LmsTarget.valueOf(targetLms));
+				} catch (IllegalArgumentException e) {
+					return false;
+				}
+				return true;
+			case "problemType":
+				String problemType = (String) ((JComboBox<String>) component).getSelectedItem();
+				try {
+					problem.setProblemType(ProblemType.valueOf(problemType));
+				} catch (IllegalArgumentException e) {
+					return false;
+				}
+				return true;
 		}
 			
 		return false;

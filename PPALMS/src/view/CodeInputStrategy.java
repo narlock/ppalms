@@ -1,9 +1,12 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -24,11 +27,16 @@ public class CodeInputStrategy extends ViewStrategy {
 	
 	@Override
 	public void setViewPanel() {
+		JPanel verticalPanel = new JPanel();
+		verticalPanel.setLayout(new BoxLayout(verticalPanel, BoxLayout.Y_AXIS));
 		fileChooser = new JFileChooser();
 		codeInputLabel = new JLabel("Input Source Code");
 		codeInputButton = new JButton("Select File");
-		this.add(codeInputLabel);
-		this.add(codeInputButton);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(codeInputLabel);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(codeInputButton);
+		this.add(verticalPanel);
 	}
 
 	public JLabel getCodeInputLabel() { return this.codeInputLabel; }

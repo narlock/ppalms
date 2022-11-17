@@ -1,5 +1,9 @@
 package view;
 
+import java.awt.Dimension;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,6 +23,8 @@ public class LMSInputStrategy extends ViewStrategy {
 	
 	@Override
 	public void setViewPanel() {
+		JPanel verticalPanel = new JPanel();
+			verticalPanel.setLayout(new BoxLayout(verticalPanel, BoxLayout.Y_AXIS));
 		lmsTargetLabel = new JLabel("Select LMS");
 		lmsTargetComboBox = new JComboBox<String>();
 			lmsTargetComboBox.addItem("Expand");
@@ -32,11 +38,17 @@ public class LMSInputStrategy extends ViewStrategy {
 			problemTypeComboBox.addItem("Expand");
 			problemTypeComboBox.addItem("Ordering");
 		confirmLmsTargetButton = new JButton("Confirm");
-		this.add(lmsTargetLabel);
-		this.add(lmsTargetComboBox);
-		this.add(problemTypeLabel);
-		this.add(problemTypeComboBox);
-		this.add(confirmLmsTargetButton);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(lmsTargetLabel);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		verticalPanel.add(lmsTargetComboBox);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(problemTypeLabel);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+		verticalPanel.add(problemTypeComboBox);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(confirmLmsTargetButton);
+		this.add(verticalPanel);
 	}
 
 	@Override

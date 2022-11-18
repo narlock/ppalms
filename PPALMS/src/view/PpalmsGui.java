@@ -28,7 +28,8 @@ public class PpalmsGui extends JFrame {
 		this.setTitle("PPALMS v0.0.1");
 		
 		// The default view strategy on launch will be CodeInputStrategy
-		this.viewStrategy = new CodeInputStrategy();
+//		this.viewStrategy = new CodeInputStrategy();
+		this.viewStrategy = new ProblemInputStrategy();
 		this.add(viewStrategy);
 		
 		this.controller = new PpalmsInputHandler();

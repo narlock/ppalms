@@ -37,6 +37,14 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
+	public ViewStrategy getViewStrategy() {
+		return this.viewStrategy;
+	}
+	
+	public PpalmsInputHandler getController() {
+		return this.controller;
+	}
+	
 	public void setCommunicationActions() {
 		if (this.viewStrategy instanceof CodeInputStrategy) 
 		{

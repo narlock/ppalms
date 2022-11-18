@@ -2,6 +2,8 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controller.PpalmsInputHandler;
@@ -106,7 +109,42 @@ public class PpalmsGui extends JFrame {
 		} 
 		else if(this.viewStrategy instanceof ProblemInputStrategy) 
 		{
-			
+			JTextField titleInputTextField = ((ProblemInputStrategy) viewStrategy).getTitleInputTextField();
+			JTextArea descriptionInputTextField = ((ProblemInputStrategy) viewStrategy).getDescriptionInputTextField();
+			JButton exportProblem = ((ProblemInputStrategy) viewStrategy).getExportProblem();
+			titleInputTextField.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent e) { } //Could add something to change color
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					// TODO When we leave the text field, call the update event
+					
+				}
+				
+			});
+			descriptionInputTextField.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent e) {} //Could add something to change color
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					// TODO When we leave the text field, call the update event
+					
+				}
+				
+			});
+			exportProblem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 		}
 	}
 	

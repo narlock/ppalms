@@ -47,6 +47,12 @@ public class PpalmsInputHandler {
 					return false;
 				}
 				return true;
+			case "problemTitle":
+				break;
+			case "problemDescription":
+				break;
+			case "exportProblem":
+				break;
 		}
 			
 		return false;

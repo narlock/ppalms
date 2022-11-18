@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 public class PpalmsProblem {
+
 	private String sourceCode;
 	private ProblemType problemType;
 	private LmsTarget lmsTarget;
@@ -50,5 +51,11 @@ public class PpalmsProblem {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Override
+	public String toString() {
+		return "PpalmsProblem [sourceCode=" + sourceCode + ", problemType=" + problemType + ", lmsTarget=" + lmsTarget
+				+ ", annotations=" + annotations + ", title=" + title + ", description=" + description + "]";
 	}
 }

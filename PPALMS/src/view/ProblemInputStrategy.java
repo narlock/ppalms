@@ -50,7 +50,7 @@ public class ProblemInputStrategy extends ViewStrategy {
 
 	@Override
 	public void setControllerActions() {
-		exportProblem.setEnabled(false);
+		exportProblem.setEnabled(true); //TODO May need to be set to false depending on problem type.
 	}
 
 	public JTextField getTitleInputTextField() { return titleInputTextField; }

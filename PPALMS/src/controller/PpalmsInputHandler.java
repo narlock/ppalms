@@ -64,8 +64,9 @@ public class PpalmsInputHandler {
 				}
 				break;
 			case "exportProblem":
-				//TODO Trigger export problem
-				System.out.println("Exporting Problem!");
+				if(problemHandler.exportPpalmsProblem(problem)) {
+					return true;
+				}
 				break;
 		}
 			

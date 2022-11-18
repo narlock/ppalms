@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PpalmsLogicHandler {
@@ -32,22 +33,33 @@ public class PpalmsLogicHandler {
 	}
 	
 	public boolean validateTitleDescInput(PpalmsProblem problem) {
-		//TODO
-		return false;
+		String title = problem.getTitle();
+		if(title != null)
+			return true;
+		else return false;
 	}
 	
 	public boolean validateAnnotations(PpalmsProblem problem) {
-		//TODO
-		return false;
+		String description = problem.getDescription();
+		if(description != null)
+			return true;
+		else return false;
 	}
 	
 	public List<PpalmsProblem> createPermutations(PpalmsProblem problem) {
-		//TODO
-		return null;
+		//TODO Generate permutations and return List of problems
+		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
+		System.out.println("Creating Permutations for " + problem.toString());
+		return permutedProblems;
 	}
 	
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
 		//TODO - will call createPermutations
-		return false;
+		List<PpalmsProblem> permutedProblems = createPermutations(problem);
+		//TODO - Create the JSON and save file location
+		//If the user saves a file, then return true
+		//Else, return false.
+		System.out.println("Exporting PpalmsProblem!");
+		return true;
 	}
 }

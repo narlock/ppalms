@@ -2,7 +2,9 @@ package controller;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import model.LmsTarget;
 import model.PpalmsLogicHandler;
@@ -48,10 +50,22 @@ public class PpalmsInputHandler {
 				}
 				return true;
 			case "problemTitle":
+				String problemTitle = ((JTextField) component).getText();
+				problem.setTitle(problemTitle);
+				if(problemHandler.validateTitleDescInput(problem)) {
+					return true;
+				}
 				break;
 			case "problemDescription":
+				String problemDescription = ((JTextArea) component).getText();
+				problem.setDescription(problemDescription);
+				if(problemHandler.validateTitleDescInput(problem)) {
+					return true;
+				}
 				break;
 			case "exportProblem":
+				//TODO Trigger export problem
+				System.out.println("Exporting Problem!");
 				break;
 		}
 			

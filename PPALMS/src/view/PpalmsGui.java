@@ -120,7 +120,11 @@ public class PpalmsGui extends JFrame {
 				@Override
 				public void focusLost(FocusEvent e) {
 					// TODO When we leave the text field, call the update event
-					
+					if(controller.processInput(titleInputTextField, "problemTitle")) {
+						
+					} else {
+						viewStrategy.showErrorDialog("An unexpected error occured when validating problem title.");
+					}
 				}
 				
 			});
@@ -132,7 +136,11 @@ public class PpalmsGui extends JFrame {
 				@Override
 				public void focusLost(FocusEvent e) {
 					// TODO When we leave the text field, call the update event
-					
+					if(controller.processInput(descriptionInputTextField, "problemDescription")) {
+						
+					} else {
+						viewStrategy.showErrorDialog("An unexpected error occured when validating problem desc.");
+					}
 				}
 				
 			});
@@ -140,8 +148,7 @@ public class PpalmsGui extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					
+					controller.processInput(null, "exportProblem");
 				}
 				
 			});

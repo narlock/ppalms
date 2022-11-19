@@ -158,8 +158,8 @@ public class PpalmsGui extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					controller.processInput(null, "exportProblem");
-					System.exit(1);
+					if(controller.processInput(null, "exportProblem"))
+						System.exit(1);
 				}
 				
 			});
@@ -196,13 +196,11 @@ public class PpalmsGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(index);
-				if(button.getForeground().equals(Color.GREEN)) {
-					
+				if(!button.getForeground().equals(Color.GREEN)) {
+					button.setForeground(Color.GREEN);
+					controller.processInput(index, "addAnnotation");
+					exportProblem.setEnabled(true);
 				}
-				// TODO Add the problem to the annotations list
-				button.setForeground(Color.GREEN);
-				controller.processInput(index, "addAnnotation");
-				exportProblem.setEnabled(true);
 			}
 			
 		});

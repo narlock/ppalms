@@ -1,20 +1,31 @@
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import org.junit.platform.commons.util.StringUtils;
 
 import controller.PpalmsInputHandler;
 
@@ -32,6 +43,7 @@ public class PpalmsGui extends JFrame {
 		
 		// The default view strategy on launch will be CodeInputStrategy
 		this.viewStrategy = new CodeInputStrategy();
+//		this.viewStrategy = new ProblemInputStrategy();
 		this.add(viewStrategy);
 		
 		this.controller = new PpalmsInputHandler();
@@ -56,10 +68,9 @@ public class PpalmsGui extends JFrame {
 						if(!controller.processInput(new JTextField(inputFile.getAbsolutePath()), "sourceCodeExtension")) {
 							viewStrategy.showErrorDialog("Invalid File Extension");
 						} else {
-							Path filePath = Path.of(inputFile.getAbsolutePath());
 							try {
-								String content = Files.readString(filePath);
-								controller.processInput(new JTextField(content), "sourceCode");
+								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
+								controller.processInput(yourFileLines);
 								updateViewStrategy(new LMSInputStrategy());
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
@@ -151,6 +162,14 @@ public class PpalmsGui extends JFrame {
 				}
 				
 			});
+			
+			
+			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
+			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
+			for(int i = 0; i < alines.size(); i++) {
+				annotationPanel.add(createAnnotationLineButton(i, alines.get(i)));
+			}
+			refocusFrame();
 		}
 	}
 	
@@ -164,4 +183,26 @@ public class PpalmsGui extends JFrame {
 		this.setSize(500,500);
 	}
 	
+	private void refocusFrame() {
+		this.setSize(499, 500);
+		this.setSize(500, 500);
+	}
+	
+	private JButton createAnnotationLineButton(int index, String line) {
+		JButton button = new JButton(line);
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(index);
+				if(button.getForeground().equals(Color.GREEN)) {
+					
+				}
+				// TODO Add the problem to the annotations list
+				button.setForeground(Color.GREEN);
+			}
+			
+		});
+		return button;
+	}
 }

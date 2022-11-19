@@ -5,6 +5,7 @@ import java.util.List;
 public class PpalmsProblem {
 
 	private String sourceCode;
+	private List<String> sourceCodeLines;
 	private ProblemType problemType;
 	private LmsTarget lmsTarget;
 	private List<String> annotations;
@@ -55,7 +56,13 @@ public class PpalmsProblem {
 	
 	@Override
 	public String toString() {
-		return "PpalmsProblem [sourceCode=" + sourceCode + ", problemType=" + problemType + ", lmsTarget=" + lmsTarget
+		return "PpalmsProblem [sourceCode Exists=" + sourceCode + ", problemType=" + problemType + ", lmsTarget=" + lmsTarget
 				+ ", annotations=" + annotations + ", title=" + title + ", description=" + description + "]";
+	}
+	public List<String> getSourceCodeLines() {
+		return sourceCodeLines;
+	}
+	public void setSourceCodeLines(List<String> sourceCodeLines) {
+		this.sourceCodeLines = sourceCodeLines;
 	}
 }

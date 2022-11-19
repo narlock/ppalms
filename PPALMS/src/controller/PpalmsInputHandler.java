@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
@@ -72,4 +74,12 @@ public class PpalmsInputHandler {
 			
 		return false;
 	}
+	
+	//Source Code Lines
+	public boolean processInput(List<String> lines) {
+		problem.setSourceCodeLines(lines);
+		return true;
+	}
+	
+	public PpalmsProblem getPpalmsProblem() { return problem; }
 }

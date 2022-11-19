@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PpalmsProblem {
+
 	private String sourceCode;
+	private List<String> sourceCodeLines;
 	private ProblemType problemType;
 	private LmsTarget lmsTarget;
-	private List<String> annotations;
+	private List<Integer> annotations;
 	private String title;
 	private String description;
 	
@@ -31,10 +34,11 @@ public class PpalmsProblem {
 		this.lmsTarget = lmsTarget;
 	}
 	
-	public List<String> getAnnotations() {
+	public List<Integer> getAnnotations() {
+		if(annotations == null) { annotations = new ArrayList<Integer>(); }
 		return annotations;
 	}
-	public void setAnnotations(List<String> annotations) {
+	public void setAnnotations(List<Integer> annotations) {
 		this.annotations = annotations;
 	}
 	
@@ -50,5 +54,17 @@ public class PpalmsProblem {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Override
+	public String toString() {
+		return "PpalmsProblem [sourceCode Exists=" + sourceCode + ", problemType=" + problemType + ", lmsTarget=" + lmsTarget
+				+ ", annotations=" + annotations + ", title=" + title + ", description=" + description + "]";
+	}
+	public List<String> getSourceCodeLines() {
+		return sourceCodeLines;
+	}
+	public void setSourceCodeLines(List<String> sourceCodeLines) {
+		this.sourceCodeLines = sourceCodeLines;
 	}
 }

@@ -1,8 +1,12 @@
 package controller;
 
+import java.util.List;
+
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import model.LmsTarget;
 import model.PpalmsLogicHandler;
@@ -47,8 +51,45 @@ public class PpalmsInputHandler {
 					return false;
 				}
 				return true;
+			case "problemTitle":
+				String problemTitle = ((JTextField) component).getText();
+				problem.setTitle(problemTitle);
+				if(problemHandler.validateTitleDescInput(problem)) {
+					return true;
+				}
+				break;
+			case "problemDescription":
+				String problemDescription = ((JTextArea) component).getText();
+				problem.setDescription(problemDescription);
+				if(problemHandler.validateTitleDescInput(problem)) {
+					return true;
+				}
+				break;
+			case "exportProblem":
+				if(problemHandler.exportPpalmsProblem(problem)) {
+					return true;
+				}
+				break;
 		}
 			
 		return false;
 	}
+	
+	//Source Code Lines
+	public boolean processInput(List<String> lines) {
+		problem.setSourceCodeLines(lines);
+		return true;
+	}
+	
+	//Add annotation
+	public boolean processInput(int index, String event) {
+		switch (event) {
+		case "addAnnotation":
+			problem.getAnnotations().add(index);
+			return true;
+		}
+		return false;
+	}
+	
+	public PpalmsProblem getPpalmsProblem() { return problem; }
 }

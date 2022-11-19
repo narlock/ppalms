@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PpalmsLogicHandler {
@@ -40,10 +41,23 @@ public class PpalmsLogicHandler {
 	}
 	
 	public boolean validateAnnotations(PpalmsProblem problem) {
-		String description = problem.getDescription();
-		if(description != null)
-			return true;
-		else return false;
+		/*
+		 * Grabs the annotations from the annotations list of integers
+		 * will modify the sourceCode list of strings to only include
+		 * the integers that are in the list of annotations.
+		 * These will be the selected lines of code the user wishes
+		 * to keep in their parson's problem.
+		 */
+		Collections.sort(problem.getAnnotations());
+		List<String> chosenCodeLines = new ArrayList<String>();
+		for(int index : problem.getAnnotations()) {
+			chosenCodeLines.add(problem.getSourceCodeLines().get(index));
+		}
+		for(String line : chosenCodeLines) {
+			System.out.println(line);
+		}
+		problem.setSourceCodeLines(chosenCodeLines);
+		return true;
 	}
 	
 	public List<PpalmsProblem> createPermutations(PpalmsProblem problem) {
@@ -54,6 +68,7 @@ public class PpalmsLogicHandler {
 	}
 	
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
+		validateAnnotations(problem);
 		//TODO - will call createPermutations
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
 		//TODO - Create the JSON and save file location

@@ -81,5 +81,15 @@ public class PpalmsInputHandler {
 		return true;
 	}
 	
+	//Add annotation
+	public boolean processInput(int index, String event) {
+		switch (event) {
+		case "addAnnotation":
+			problem.getAnnotations().add(index);
+			return true;
+		}
+		return false;
+	}
+	
 	public PpalmsProblem getPpalmsProblem() { return problem; }
 }

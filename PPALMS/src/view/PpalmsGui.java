@@ -159,6 +159,7 @@ public class PpalmsGui extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					controller.processInput(null, "exportProblem");
+					System.exit(1);
 				}
 				
 			});
@@ -167,7 +168,7 @@ public class PpalmsGui extends JFrame {
 			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
 			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
 			for(int i = 0; i < alines.size(); i++) {
-				annotationPanel.add(createAnnotationLineButton(i, alines.get(i)));
+				annotationPanel.add(createAnnotationLineButton(exportProblem, i, alines.get(i)));
 			}
 			refocusFrame();
 		}
@@ -188,7 +189,7 @@ public class PpalmsGui extends JFrame {
 		this.setSize(500, 500);
 	}
 	
-	private JButton createAnnotationLineButton(int index, String line) {
+	private JButton createAnnotationLineButton(JButton exportProblem, int index, String line) {
 		JButton button = new JButton(line);
 		button.addActionListener(new ActionListener() {
 
@@ -200,6 +201,8 @@ public class PpalmsGui extends JFrame {
 				}
 				// TODO Add the problem to the annotations list
 				button.setForeground(Color.GREEN);
+				controller.processInput(index, "addAnnotation");
+				exportProblem.setEnabled(true);
 			}
 			
 		});

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PpalmsProblem {
@@ -8,7 +9,7 @@ public class PpalmsProblem {
 	private List<String> sourceCodeLines;
 	private ProblemType problemType;
 	private LmsTarget lmsTarget;
-	private List<String> annotations;
+	private List<Integer> annotations;
 	private String title;
 	private String description;
 	
@@ -33,10 +34,11 @@ public class PpalmsProblem {
 		this.lmsTarget = lmsTarget;
 	}
 	
-	public List<String> getAnnotations() {
+	public List<Integer> getAnnotations() {
+		if(annotations == null) { annotations = new ArrayList<Integer>(); }
 		return annotations;
 	}
-	public void setAnnotations(List<String> annotations) {
+	public void setAnnotations(List<Integer> annotations) {
 		this.annotations = annotations;
 	}
 	

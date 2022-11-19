@@ -6,7 +6,6 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.text.JTextComponent;
 
 import model.LmsTarget;
 import model.PpalmsLogicHandler;

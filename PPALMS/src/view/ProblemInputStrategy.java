@@ -38,7 +38,8 @@ public class ProblemInputStrategy extends ViewStrategy {
 		titleInputLabel = new JLabel("Problem Title");
 		titleInputTextField = new JTextField(10);
 		descriptionInputLabel = new JLabel("Problem Description");
-		descriptionInputTextField = new JTextArea(5, 20);
+		descriptionInputTextField = new JTextArea(5, 10);
+		JScrollPane descriptionScrollPane = new JScrollPane(descriptionInputTextField);
 		annotationsLabel = new JLabel("Annotations");
 		annotationPanel = new JPanel();
 		annotationPanel.setLayout(new BoxLayout(annotationPanel, BoxLayout.Y_AXIS));
@@ -59,7 +60,7 @@ public class ProblemInputStrategy extends ViewStrategy {
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		verticalPanel.add(descriptionInputLabel);
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-		verticalPanel.add(descriptionInputTextField);
+		verticalPanel.add(descriptionScrollPane);
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		verticalPanel.add(annotationsLabel);
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));

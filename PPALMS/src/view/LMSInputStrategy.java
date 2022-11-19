@@ -9,17 +9,47 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * LMSInputStrategy is the view "state" in which
+ * the PPALMS application will allow the user to input
+ * the target LMS and the type of Parson's problem
+ * to create.
+ * 
+ * @author narlock
+ *
+ */
 public class LMSInputStrategy extends ViewStrategy {
 
+	/**
+	 * The label component indicating the target LMS.
+	 */
 	private JLabel lmsTargetLabel;
-	private JComboBox<String> lmsTargetComboBox;
-	private JLabel problemTypeLabel;
-	private JComboBox<String> problemTypeComboBox;
-	private JButton confirmLmsTargetButton;
 	
-	public LMSInputStrategy() {
-		super();
-	}
+	/**
+	 * The combo box (if the term "combo box" is unfamiliar,
+	 * think of it as a "drop down menu") component that
+	 * the user can input to select their target LMS.
+	 */
+	private JComboBox<String> lmsTargetComboBox;
+	
+	/**
+	 * The label component indicating the problem
+	 * type.
+	 */
+	private JLabel problemTypeLabel;
+	
+	/**
+	 * The combo box (if the term "combo box" is unfamiliar,
+	 * think of it as a "drop down menu") component that
+	 * the user can input to select their target LMS.
+	 */
+	private JComboBox<String> problemTypeComboBox;
+	
+	/**
+	 * The button component that the user can click
+	 * to confirm their selections.
+	 */
+	private JButton confirmLmsTargetButton;
 	
 	@Override
 	public void setViewPanel() {

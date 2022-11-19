@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.Box;
@@ -10,20 +8,36 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * CodeInputStrategy is the view "state" in which
+ * the PPALMS application will allow the user to
+ * input their source code file for problem
+ * creation.
+ * 
+ * @author narlock
+ *
+ */
 public class CodeInputStrategy extends ViewStrategy {
 
+	/**
+	 * The label component indicating code input.
+	 */
 	private JLabel codeInputLabel;
+	
+	/**
+	 * The button component that the user can
+	 * click with their mouse to input open
+	 * file chooser dialog.
+	 */
 	private JButton codeInputButton;
+	
+	/**
+	 * The file chooser component that allows
+	 * the user to input a file.
+	 */
 	private JFileChooser fileChooser;
-	
-	private File inputFile;
-	
-	public CodeInputStrategy() {
-		super();
-	}
 	
 	@Override
 	public void setViewPanel() {
@@ -44,7 +58,5 @@ public class CodeInputStrategy extends ViewStrategy {
 	public JFileChooser getFileChooser() { return this.fileChooser; }
 
 	@Override
-	public void setControllerActions() {
-		// TODO Auto-generated method stub
-	}
+	public void setControllerActions() {}
 }

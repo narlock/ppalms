@@ -5,17 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,15 +19,44 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import org.junit.platform.commons.util.StringUtils;
-
 import controller.PpalmsInputHandler;
 
+/**
+ * The PPALMS Graphical User Interface.
+ * This is the interface in which the user will
+ * interact with a keyboard, mouse, and display.
+ * 
+ * The user will interact with this GUI to
+ * interact with the application to create
+ * their Parson's problem.
+ * 
+ * The PpalmsGui serves as the view to the user
+ * and allows the user to give inputs that
+ * serve as the controller in the MVC
+ * design pattern.
+ * 
+ * @author narlock
+ *
+ */
 public class PpalmsGui extends JFrame {
 	
+	/**
+	 * See {@link ViewStrategy} for definition.
+	 */
 	private ViewStrategy viewStrategy;
+	
+	/**
+	 * See {@link PpalmsInputHandler} for definition.
+	 */
 	private PpalmsInputHandler controller;
 	
+	/**
+	 * The PpalmsGui constructor defines the Java
+	 * JFrame in which creates the window that
+	 * the user will interact with.
+	 * 
+	 * Defines the member attributes.
+	 */
 	public PpalmsGui() {
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,7 +66,6 @@ public class PpalmsGui extends JFrame {
 		
 		// The default view strategy on launch will be CodeInputStrategy
 		this.viewStrategy = new CodeInputStrategy();
-//		this.viewStrategy = new ProblemInputStrategy();
 		this.add(viewStrategy);
 		
 		this.controller = new PpalmsInputHandler();
@@ -52,6 +74,15 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
+	/**
+	 * setCommmunicationActions method defines how the
+	 * view's components like buttons or text fields will be
+	 * a controller event.
+	 * 
+	 * This method works by checking the current "state" of the
+	 * view. Given this state, we can define the actions that
+	 * the user can control given that view.
+	 */
 	public void setCommunicationActions() {
 		if (this.viewStrategy instanceof CodeInputStrategy) 
 		{
@@ -174,6 +205,11 @@ public class PpalmsGui extends JFrame {
 		}
 	}
 	
+	/**
+	 * A helper function that updates the view.
+	 * 
+	 * @param newStrategy
+	 */
 	public void updateViewStrategy(ViewStrategy newStrategy) {
 		this.setSize(499,500);
 		this.remove(viewStrategy);
@@ -184,11 +220,28 @@ public class PpalmsGui extends JFrame {
 		this.setSize(500,500);
 	}
 	
+	/**
+	 * A helper function that refocuses the JFrame.
+	 * The purpose of this is to "refresh" the frame
+	 * that is needed on some updates.
+	 */
 	private void refocusFrame() {
 		this.setSize(499, 500);
 		this.setSize(500, 500);
 	}
 	
+	/**
+	 * A helper function in which creates an annotation line button
+	 * that is used in the LMSInputStrategy. The reason that
+	 * this has been taken out is so that the application can
+	 * reuse this function for each of the lines the user
+	 * inputs.
+	 * 
+	 * @param exportProblem
+	 * @param index
+	 * @param line
+	 * @return JButton for a line in the inputted source code.
+	 */
 	private JButton createAnnotationLineButton(JButton exportProblem, int index, String line) {
 		JButton button = new JButton(line);
 		button.addActionListener(new ActionListener() {

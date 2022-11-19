@@ -13,15 +13,43 @@ import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
 import model.ProblemType;
 
+/**
+ * PpalmsInputHandler serves as the controller of the
+ * PPALMS application. This class handles the inputs
+ * of the user.
+ * 
+ * @author narlock
+ *
+ */
 public class PpalmsInputHandler {
+	
+	/**
+	 * The PpalmsProblem that the user is creating.
+	 * The user's inputs will modify this problem.
+	 */
 	private PpalmsProblem problem;
+	
+	/**
+	 * See {@link PpalmsLogicHandler} for details.
+	 */
 	private PpalmsLogicHandler problemHandler;
 	
+	/**
+	 * The constructor of the PpalmsInputHandler
+	 * instantiates its member attributes.
+	 */
 	public PpalmsInputHandler() {
 		this.problem = new PpalmsProblem();
 		this.problemHandler = new PpalmsLogicHandler();
 	}
 	
+	/**
+	 * Processes a given user input.
+	 * 
+	 * @param component
+	 * @param event
+	 * @return true for successful input, false for unsuccessful input.
+	 */
 	public boolean processInput(JComponent component, String event) {
 		switch (event) {
 			case "sourceCodeExtension":
@@ -75,13 +103,26 @@ public class PpalmsInputHandler {
 		return false;
 	}
 	
-	//Source Code Lines
+	/**
+	 * Processes a given user input specific
+	 * for source code lines.
+	 * 
+	 * @param lines
+	 * @return true for successful input, false for unsuccessful input.
+	 */
 	public boolean processInput(List<String> lines) {
 		problem.setSourceCodeLines(lines);
 		return true;
 	}
 	
-	//Add annotation
+	/**
+	 * Processes a given user input specific
+	 * for adding an annotation.
+	 * 
+	 * @param index
+	 * @param event
+	 * @return true for successful input, false for unsuccessful input.
+	 */
 	public boolean processInput(int index, String event) {
 		switch (event) {
 		case "addAnnotation":

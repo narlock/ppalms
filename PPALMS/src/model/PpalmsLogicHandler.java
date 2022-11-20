@@ -30,7 +30,7 @@ public class PpalmsLogicHandler {
 		if(problem.getSourceCode() == null) {
 			return false;
 		}
-		String[] validExtensions = {"java", "py", "cpp", "c"};
+		String[] validExtensions = {"java", "py", "cpp", "c", "cc"};
 		String extension = "";
 		
 		int i = problem.getSourceCode().lastIndexOf('.');

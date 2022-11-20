@@ -53,8 +53,23 @@ public class PpalmsLogicHandler {
 	 * @param problem
 	 * @return true if correct input, false for invalid input.
 	 */
-	public boolean validateTitleDescInput(PpalmsProblem problem) {
+	public boolean validateTitleInput(PpalmsProblem problem) {
 		String title = problem.getTitle();
+		if(title != null)
+			return true;
+		else return false;
+	}
+	
+	/**
+	 * Checks that the title and description objects are defined.
+	 * Since these fields are not required by the user, this
+	 * validation is sufficient.
+	 * 
+	 * @param problem
+	 * @return true if correct input, false for invalid input.
+	 */
+	public boolean validateDescInput(PpalmsProblem problem) {
+		String title = problem.getDescription();
 		if(title != null)
 			return true;
 		else return false;

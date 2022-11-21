@@ -32,6 +32,19 @@ Now that you have verified that you have an installation of Java (version 8 or h
 
 ![Java Running](./readmeAssets/javaRunning.png)
 
+#### Troubleshooting Application Issues
+If the user can not figure out how to run a Java application, here are some common issues that inexperienced users may find useful for troubleshooting run issues.
+
+##### macOS
+- Due to the nature of Apple's macOS, there are some permissions that are not satisfied by default Java. A common issue that user's may run in on macOS operating system is that their selected code file is located in a folder that the PPALMS application does not have access. The user can solve this issue by following one of the following options:
+1. Move the code file to the user's home directory.
+2. Run the jar file in the terminal
+    - To run the PPALMS application in the terminal, you will need to open your terminal and locate your terminal in the directory where `PPALMS.jar` exists in your file system. You can check if `PPALMS.jar` is in your file system using the `ls` command.
+    - When you have correctly navigated to the correct directory, you can run the application using `java -jar PPALMS.jar`. This will launch the application and give access to all folders on the user's disk.
+
+##### Linux
+- Due to the nature of most Linux operating systems, the user will need to give executable access to `PPALMS.jar` in order to execute the application. Simply right-click the `PPALMS.jar` file and navigate to properties and check the box that allows the file to be executed. The user will now be able to execute the application.
+
 ### Using the PPALMS Application
 To begin using the application, the user can click on the "Select File" on the user interface. This will send a signal from the controller to open the file chooser dialog menu. From here, the user can select their source code file to upload. Please note, the input file must be a supported programming file type. As of version 0.1 of the PPALMS application, the file extensions `.java`, `.py`, `.c`, `.cpp`, and `.cc` are supported. The following image shows the user selecting a file. Please note that if you are running a version of macOS, there is a possibility you have not granted your Java environment to your file system. The user is assumed to have granted permissions of the Java Runtime Environment to their operating system as that is out of the scope of this application and may vary depending on the user's operating system.
 

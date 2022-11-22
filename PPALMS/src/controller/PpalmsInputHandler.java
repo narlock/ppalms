@@ -81,14 +81,14 @@ public class PpalmsInputHandler {
 			case "problemTitle":
 				String problemTitle = ((JTextField) component).getText();
 				problem.setTitle(problemTitle);
-				if(problemHandler.validateTitleDescInput(problem)) {
+				if(problemHandler.validateTitleInput(problem)) {
 					return true;
 				}
 				break;
 			case "problemDescription":
 				String problemDescription = ((JTextArea) component).getText();
 				problem.setDescription(problemDescription);
-				if(problemHandler.validateTitleDescInput(problem)) {
+				if(problemHandler.validateDescInput(problem)) {
 					return true;
 				}
 				break;

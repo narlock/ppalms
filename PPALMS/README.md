@@ -3,6 +3,8 @@
 
 This is the first version of the PPALMS application. This document provides information related to instructing users to run the program and how the program is built and executed.
 
+The PPALMS application utilizes the json-simple JAR file provided by the [Google Code Archive](https://code.google.com/archive/p/json-simple/downloads).
+
 ## Group Roster and Contributions
 
 | Member Name  | x500 | GitHub | Contribution | 

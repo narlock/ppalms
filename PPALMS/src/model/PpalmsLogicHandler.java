@@ -139,7 +139,7 @@ public class PpalmsLogicHandler {
 	 * @param problem
 	 */
 	public void setAnnotations(PpalmsProblem problem) {
-//		Collections.sort(problem.getAnnotations()); why did narlock put this here lol doesnt this mess it up
+		Collections.sort(problem.getAnnotations());
 		List<String> chosenCodeLines = new ArrayList<String>();
 		for(int index : problem.getAnnotations()) {
 			chosenCodeLines.add(problem.getSourceCodeLines().get(index));
@@ -160,19 +160,27 @@ public class PpalmsLogicHandler {
 	 */
 	public List<PpalmsProblem> createPermutations(PpalmsProblem problem) {
 		//TODO Generate permutations and return List of problems
+		setAnnotations(problem);
 		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
 		System.out.println("Creating Permutations for " + problem.toString());
 		int n = problem.getAnnotations().size();
 		ArrayList<ArrayList<Integer>> permutations = new PermutationMaker().getPermutations(n);
 		for (ArrayList<Integer> permutation: permutations) {
 			PpalmsProblem reorderedProblem = new PpalmsProblem();
-			reorderedProblem.setAnnotations(permutation);
+			List<String> oldSourceCodeLines = problem.getSourceCodeLines();
+			ArrayList<String> reorderedSourceCodeLines = new ArrayList<>();
+			for (Integer position : permutation) {
+				reorderedSourceCodeLines.add(oldSourceCodeLines.get(position));
+			}
+			reorderedProblem.setSourceCodeLines(reorderedSourceCodeLines);
 			// copy rest of attributes
 			reorderedProblem.setSourceCode(problem.getSourceCode());
 			reorderedProblem.setProblemType(problem.getProblemType());
 			reorderedProblem.setLmsTarget(problem.getLmsTarget());
 			reorderedProblem.setTitle(problem.getTitle());
 			reorderedProblem.setDescription(problem.getDescription());
+			
+			permutedProblems.add(reorderedProblem);
 		}
 			
 		return permutedProblems;
@@ -186,10 +194,12 @@ public class PpalmsLogicHandler {
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
 		//TODO - will call createPermutations
+		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
+		System.out.println(permutedProblems.size());
 		ArrayList<List<String>> annotations = new ArrayList<>();
 		for (PpalmsProblem permutedProblem: permutedProblems) {
-			setAnnotations(permutedProblem);
+			System.out.println(permutedProblem.getSourceCodeLines());
 			annotations.add(permutedProblem.getSourceCodeLines());
 		}
 		//TODO - Create the JSON and save file location
@@ -198,7 +208,8 @@ public class PpalmsLogicHandler {
 		obj.put("description", problem.getDescription());
 		obj.put("lms", problem.getLmsTarget().toString());
 		obj.put("type", problem.getProblemType());
-		obj.put("annotations", annotations);
+		obj.put("correct", problem.getSourceCodeLines());
+		obj.put("permutations", annotations);
 		
 		
 		StringWriter out = new StringWriter();

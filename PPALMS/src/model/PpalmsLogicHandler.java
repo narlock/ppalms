@@ -1,8 +1,17 @@
 package model;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.json.simple.JSONObject;
+
+import java.io.File; 
+import java.io.FileWriter; 
+import java.io.IOException;
+import java.io.StringWriter; 
+
 
 /**
  * PpalmsLogicHandler serves to manipulate the
@@ -15,6 +24,51 @@ import java.util.List;
  *
  */
 public class PpalmsLogicHandler {
+	
+	/**
+	 * PermutationMaker is a private inner class responsible for generating permutations.
+	 * It will generate a limited number of ordering of n elements.
+	 * 
+	 * @author Jaden
+	 *
+	 */
+	private class PermutationMaker {
+		private int limit = 30; // specified in docs
+		private Integer[] nums;
+		private ArrayList<ArrayList<Integer>> permutations;
+		
+		private void swap(int i, int j) {
+			int temp = nums[i];
+			nums[i] = nums[j];
+			nums[j] = temp;
+		}
+		
+		private void permutation(Integer[] nums, int start) {
+		      if (start == nums.length) {
+		    	  permutations.add(new ArrayList<Integer>(Arrays.asList(nums)));
+		    	  return;
+		      }
+		      for (int swapIdx = start; swapIdx < nums.length; swapIdx++) {
+		    	if (permutations.size() == limit)
+		    		break;
+		        swap(start, swapIdx);
+		        permutation(nums, start+1);
+		        swap(start, swapIdx);
+		      }
+		      
+		}
+		
+		public ArrayList<ArrayList<Integer>> getPermutations(int n){
+			nums = new Integer[n];
+		    for (int i = 0; i < n; i++) 
+		    	nums[i] = i;
+		    permutations = new ArrayList<>();
+		    permutation(nums, 0);
+		    return permutations;
+		}
+		
+		
+	}
 	
 	/**
 	 * Validates the source code input. The source code must
@@ -106,8 +160,29 @@ public class PpalmsLogicHandler {
 	 */
 	public List<PpalmsProblem> createPermutations(PpalmsProblem problem) {
 		//TODO Generate permutations and return List of problems
+		setAnnotations(problem);
 		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
 		System.out.println("Creating Permutations for " + problem.toString());
+		int n = problem.getAnnotations().size();
+		ArrayList<ArrayList<Integer>> permutations = new PermutationMaker().getPermutations(n);
+		for (ArrayList<Integer> permutation: permutations) {
+			PpalmsProblem reorderedProblem = new PpalmsProblem();
+			List<String> oldSourceCodeLines = problem.getSourceCodeLines();
+			ArrayList<String> reorderedSourceCodeLines = new ArrayList<>();
+			for (Integer position : permutation) {
+				reorderedSourceCodeLines.add(oldSourceCodeLines.get(position));
+			}
+			reorderedProblem.setSourceCodeLines(reorderedSourceCodeLines);
+			// copy rest of attributes
+			reorderedProblem.setSourceCode(problem.getSourceCode());
+			reorderedProblem.setProblemType(problem.getProblemType());
+			reorderedProblem.setLmsTarget(problem.getLmsTarget());
+			reorderedProblem.setTitle(problem.getTitle());
+			reorderedProblem.setDescription(problem.getDescription());
+			
+			permutedProblems.add(reorderedProblem);
+		}
+			
 		return permutedProblems;
 	}
 	
@@ -118,13 +193,69 @@ public class PpalmsLogicHandler {
 	 * @return true for successful export, false for unsuccessful export.
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
-		setAnnotations(problem);
 		//TODO - will call createPermutations
+		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
+		System.out.println(permutedProblems.size());
+		ArrayList<List<String>> annotations = new ArrayList<>();
+		for (PpalmsProblem permutedProblem: permutedProblems) {
+			System.out.println(permutedProblem.getSourceCodeLines());
+			annotations.add(permutedProblem.getSourceCodeLines());
+		}
 		//TODO - Create the JSON and save file location
-		//If the user saves a file, then return true
-		//Else, return false.
+		JSONObject obj = new JSONObject();
+		obj.put("title", problem.getTitle());
+		obj.put("description", problem.getDescription());
+		obj.put("lms", problem.getLmsTarget().toString());
+		obj.put("type", problem.getProblemType());
+		obj.put("correct", problem.getSourceCodeLines());
+		obj.put("permutations", annotations);
+		
+		
+		StringWriter out = new StringWriter();
+	    try {
+			obj.writeJSONString(out);
+		}
+	    catch (IOException e1) {
+			System.out.println("Error occured converting JSON to String.");
+			e1.printStackTrace();
+	        return false;
+
+		}
+	    String jsonText = out.toString();
+		
 		System.out.println("Exporting PpalmsProblem!");
+		
+		String filename = "problem.json";
+		File file;
+		// create file
+		try {
+		      file = new File(filename);
+		      if (!file.createNewFile()) {
+		        System.out.println("File already exists.");
+		        return false;
+		      }
+		} 
+		catch (IOException e) {
+		      System.out.println("An error occurred creating the file.");
+		      e.printStackTrace();
+		      return false;
+		}
+		// write JSON
+		try {
+		      FileWriter writer = new FileWriter(filename);
+		      writer.write(jsonText);
+		      writer.close();
+		    }
+		catch (IOException e) {
+		      System.out.println("An error occurred writing to the file.");
+		      e.printStackTrace();
+		      return false;
+		}
+		
+		//If the user saves a file, then return true
+		
+		
 		return true;
 	}
 }

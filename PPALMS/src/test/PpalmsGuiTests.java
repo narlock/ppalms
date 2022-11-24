@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -26,13 +28,16 @@ class PpalmsGuiTests {
 	  assertEquals(true, p.getViewStrategy() instanceof LMSInputStrategy);
 	}
 	
+//	// example_source.py
 //	@Test
 //	void testFileInputSuccessful() {
 //		PpalmsGui p = new PpalmsGui();
 //		JButton btn = ((CodeInputStrategy) p.getViewStrategy()).getCodeInputButton();
 //		btn.doClick(); // simulate btn click
-//		
-//		
+//		File inputFile = new File("src/test/example_source.py");
+//		JFileChooser fileChooser = ((CodeInputStrategy) p.getViewStrategy()).getFileChooser();
+//		int returnValue = 0;
+//		assertEquals(0, JFileChooser.APPROVE_OPTION);
 //	}
 	
 	@Test 

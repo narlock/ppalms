@@ -110,7 +110,7 @@ class PpalmsGuiTests {
 	}
 	
 	@Test
-	void testProblemTypeNotSelected() {
+	void testProblemTypeNotSelected() { // no problem type selected
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
@@ -121,7 +121,7 @@ class PpalmsGuiTests {
 	}
 	
 	@Test
-	void testProblemTypeSelected() {
+	void testProblemTypeSelected() { // ordering Problem type
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
@@ -132,16 +132,22 @@ class PpalmsGuiTests {
 	}
 	
 	@Test
-	void test() {
+	void testViewStrategyUpdatedAfterConfirmLmsTargetButton() {
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
+		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
 		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
+		lmsTargetComboBox.setSelectedIndex(1);
 		problemTypeComboBox.setSelectedIndex(1);
-		confirmLmsTargetButton.doClick();
+		confirmLmsTargetButton.doClick(); // once both lmsTargetComboBox & ProblemTypeComboBox have been selected, we simulate a click on the confirm button
 		assertEquals(true, p.getViewStrategy() instanceof ProblemInputStrategy);
 	}
+	
+	// When ViewStrategy is ProblemInputStrategy
+
+	
 	
 	
 }

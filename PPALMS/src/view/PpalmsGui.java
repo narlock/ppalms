@@ -1,25 +1,62 @@
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controller.PpalmsInputHandler;
 
+/**
+ * The PPALMS Graphical User Interface.
+ * This is the interface in which the user will
+ * interact with a keyboard, mouse, and display.
+ * 
+ * The user will interact with this GUI to
+ * interact with the application to create
+ * their Parson's problem.
+ * 
+ * The PpalmsGui serves as the view to the user
+ * and allows the user to give inputs that
+ * serve as the controller in the MVC
+ * design pattern.
+ * 
+ * @author narlock
+ *
+ */
 public class PpalmsGui extends JFrame {
 	
+	/**
+	 * See {@link ViewStrategy} for definition.
+	 */
 	private ViewStrategy viewStrategy;
+	
+	/**
+	 * See {@link PpalmsInputHandler} for definition.
+	 */
 	private PpalmsInputHandler controller;
 	
+	/**
+	 * The PpalmsGui constructor defines the Java
+	 * JFrame in which creates the window that
+	 * the user will interact with.
+	 * 
+	 * Defines the member attributes.
+	 */
 	public PpalmsGui() {
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,14 +74,24 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
+	/**
+	 * Getter for ViewStrategy attribute of PpalmsGUI
+	 * 
+	 * @return ViewStrategy instance attribute of PpalmsGUI
+	 */
 	public ViewStrategy getViewStrategy() {
-		return this.viewStrategy;
+		return viewStrategy;
 	}
 	
-	public PpalmsInputHandler getController() {
-		return this.controller;
-	}
-	
+	/**
+	 * setCommmunicationActions method defines how the
+	 * view's components like buttons or text fields will be
+	 * a controller event.
+	 * 
+	 * This method works by checking the current "state" of the
+	 * view. Given this state, we can define the actions that
+	 * the user can control given that view.
+	 */
 	public void setCommunicationActions() {
 		if (this.viewStrategy instanceof CodeInputStrategy) 
 		{
@@ -61,10 +108,9 @@ public class PpalmsGui extends JFrame {
 						if(!controller.processInput(new JTextField(inputFile.getAbsolutePath()), "sourceCodeExtension")) {
 							viewStrategy.showErrorDialog("Invalid File Extension");
 						} else {
-							Path filePath = Path.of(inputFile.getAbsolutePath());
 							try {
-								String content = Files.readString(filePath);
-								controller.processInput(new JTextField(content), "sourceCode");
+								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
+								controller.processInput(yourFileLines);
 								updateViewStrategy(new LMSInputStrategy());
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
@@ -113,10 +159,66 @@ public class PpalmsGui extends JFrame {
 		} 
 		else if(this.viewStrategy instanceof ProblemInputStrategy) 
 		{
+			JTextField titleInputTextField = ((ProblemInputStrategy) viewStrategy).getTitleInputTextField();
+			JTextArea descriptionInputTextField = ((ProblemInputStrategy) viewStrategy).getDescriptionInputTextField();
+			JButton exportProblem = ((ProblemInputStrategy) viewStrategy).getExportProblem();
+			titleInputTextField.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent e) { } //Could add something to change color
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					// TODO When we leave the text field, call the update event
+					if(controller.processInput(titleInputTextField, "problemTitle")) {
+						
+					} else {
+						viewStrategy.showErrorDialog("An unexpected error occured when validating problem title.");
+					}
+				}
+				
+			});
+			descriptionInputTextField.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent e) {} //Could add something to change color
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					// TODO When we leave the text field, call the update event
+					if(controller.processInput(descriptionInputTextField, "problemDescription")) {
+						
+					} else {
+						viewStrategy.showErrorDialog("An unexpected error occured when validating problem desc.");
+					}
+				}
+				
+			});
+			exportProblem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(controller.processInput(null, "exportProblem"))
+						System.exit(1);
+				}
+				
+			});
 			
+			
+			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
+			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
+			for(int i = 0; i < alines.size(); i++) {
+				annotationPanel.add(createAnnotationLineButton(exportProblem, i, alines.get(i)));
+			}
+			refocusFrame();
 		}
 	}
 	
+	/**
+	 * A helper function that updates the view.
+	 * 
+	 * @param newStrategy
+	 */
 	public void updateViewStrategy(ViewStrategy newStrategy) {
 		this.setSize(499,500);
 		this.remove(viewStrategy);
@@ -127,4 +229,43 @@ public class PpalmsGui extends JFrame {
 		this.setSize(500,500);
 	}
 	
+	/**
+	 * A helper function that refocuses the JFrame.
+	 * The purpose of this is to "refresh" the frame
+	 * that is needed on some updates.
+	 */
+	private void refocusFrame() {
+		this.setSize(499, 500);
+		this.setSize(500, 500);
+	}
+	
+	/**
+	 * A helper function in which creates an annotation line button
+	 * that is used in the LMSInputStrategy. The reason that
+	 * this has been taken out is so that the application can
+	 * reuse this function for each of the lines the user
+	 * inputs.
+	 * 
+	 * @param exportProblem
+	 * @param index
+	 * @param line
+	 * @return JButton for a line in the inputted source code.
+	 */
+	private JButton createAnnotationLineButton(JButton exportProblem, int index, String line) {
+		JButton button = new JButton(line);
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(index);
+				if(!button.getForeground().equals(Color.GREEN)) {
+					button.setForeground(Color.GREEN);
+					controller.processInput(index, "addAnnotation");
+					exportProblem.setEnabled(true);
+				}
+			}
+			
+		});
+		return button;
+	}
 }

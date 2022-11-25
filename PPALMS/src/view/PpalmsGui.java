@@ -74,6 +74,10 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
+	public ViewStrategy getViewStrategy() {
+		return viewStrategy;
+	}
+	
 	/**
 	 * setCommmunicationActions method defines how the
 	 * view's components like buttons or text fields will be
@@ -194,8 +198,7 @@ public class PpalmsGui extends JFrame {
 				}
 				
 			});
-			
-			
+      
 			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
 			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
 			for(int i = 0; i < alines.size(); i++) {

@@ -35,7 +35,7 @@ class LMSInputStrategyTests {
 		l.setControllerActions();
 		assertFalse(l.getProblemTypeComboBox().isEnabled());
 		assertFalse(l.getConfirmLmsTargetButton().isEnabled());
-	}
+  }
 	
 	@Test
 	void testLmsTargetLabelExists() {
@@ -50,6 +50,4 @@ class LMSInputStrategyTests {
 		l.setViewPanel();
 		assertNotNull(l.getProblemTypeLabel());
 	}
-
-
 }

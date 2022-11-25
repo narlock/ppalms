@@ -74,11 +74,6 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
-	/**
-	 * Getter for ViewStrategy attribute of PpalmsGUI
-	 * 
-	 * @return ViewStrategy instance attribute of PpalmsGUI
-	 */
 	public ViewStrategy getViewStrategy() {
 		return viewStrategy;
 	}
@@ -203,8 +198,7 @@ public class PpalmsGui extends JFrame {
 				}
 				
 			});
-			
-			
+      
 			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
 			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
 			for(int i = 0; i < alines.size(); i++) {

@@ -42,6 +42,14 @@ public class PpalmsInputHandler {
 		this.problemHandler = new PpalmsLogicHandler();
 	}
 	
+	public PpalmsProblem getProblem() {
+		return problem;
+	}
+	
+	public PpalmsLogicHandler getProblemHandler() {
+		return problemHandler;
+	}
+	
 	/**
 	 * Processes a given user input.
 	 * 

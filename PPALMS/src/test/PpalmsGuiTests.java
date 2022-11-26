@@ -7,9 +7,12 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.junit.jupiter.api.Test;
 
+import controller.PpalmsInputHandler;
 import model.LmsTarget;
 import view.LMSInputStrategy;
 import view.CodeInputStrategy;
@@ -28,17 +31,16 @@ class PpalmsGuiTests {
 	  assertEquals(true, p.getViewStrategy() instanceof LMSInputStrategy);
 	}
 	
-//	// example_source.py
-//	@Test
-//	void testFileInputSuccessful() {
-//		PpalmsGui p = new PpalmsGui();
-//		JButton btn = ((CodeInputStrategy) p.getViewStrategy()).getCodeInputButton();
-//		btn.doClick(); // simulate btn click
-//		File inputFile = new File("src/test/example_source.py");
-//		JFileChooser fileChooser = ((CodeInputStrategy) p.getViewStrategy()).getFileChooser();
-//		int returnValue = 0;
-//		assertEquals(0, JFileChooser.APPROVE_OPTION);
-//	}
+	// example_source.py
+	@Test
+	void testFileInputSuccessful() {
+
+	}
+	
+	@Test
+	void testNoFileSelected() {
+		
+	}
 	
 	@Test 
 	void testTargetLMSNoneSelected(){
@@ -49,7 +51,6 @@ class PpalmsGuiTests {
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
 		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
 		lmsTargetComboBox.setSelectedIndex(0); // Invalid Argument
-		System.out.println(LmsTarget.Canvas.ordinal());
 		assertEquals(false, problemTypeComboBox.isEnabled()); // not enabled
 		assertEquals(false, confirmLmsTargetButton.isEnabled()); // not enabled
 	}
@@ -133,21 +134,10 @@ class PpalmsGuiTests {
 	
 	@Test
 	void testViewStrategyUpdatedAfterConfirmLmsTargetButton() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		lmsTargetComboBox.setSelectedIndex(1);
-		problemTypeComboBox.setSelectedIndex(1);
-		confirmLmsTargetButton.doClick(); // once both lmsTargetComboBox & ProblemTypeComboBox have been selected, we simulate a click on the confirm button
-		assertEquals(true, p.getViewStrategy() instanceof ProblemInputStrategy);
+		
 	}
 	
-	// When ViewStrategy is ProblemInputStrategy
 
-	
 	
 	
 }

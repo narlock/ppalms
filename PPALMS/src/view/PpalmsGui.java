@@ -78,6 +78,10 @@ public class PpalmsGui extends JFrame {
 		return viewStrategy;
 	}
 	
+	public PpalmsInputHandler getPpalmsInputHandler() {
+		return controller;
+	}
+	
 	/**
 	 * setCommmunicationActions method defines how the
 	 * view's components like buttons or text fields will be
@@ -105,6 +109,12 @@ public class PpalmsGui extends JFrame {
 						} else {
 							try {
 								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
+								if(yourFileLines.size() > 50) {
+									viewStrategy.showErrorDialog("Invalid src file : cannot have more than 50 lines");
+								}
+								else if(yourFileLines.size() == 0) {
+									viewStrategy.showErrorDialog("Invalid src file : empty file");
+								}
 								controller.processInput(yourFileLines);
 								updateViewStrategy(new LMSInputStrategy());
 							} catch (IOException e1) {

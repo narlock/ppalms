@@ -139,5 +139,10 @@ public class PpalmsInputHandler {
 		return false;
 	}
 	
+	/**
+	 * Getter method for PpalmsProblem. 
+	 * 
+	 * @return problem
+	 */
 	public PpalmsProblem getPpalmsProblem() { return problem; }
 }

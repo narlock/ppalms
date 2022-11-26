@@ -103,14 +103,41 @@ public class ProblemInputStrategy extends ViewStrategy {
 		this.add(exportProblem, BorderLayout.SOUTH);
 		this.add(verticalPanel);
 	}
+	
 
+	/**
+	 * Setter for default controller actions.
+	 */
 	@Override
 	public void setControllerActions() {
 		exportProblem.setEnabled(false);
 	}
 
+	/**
+	 * Getter method for problem title input text field.
+	 * 
+	 * @return titleInputTextField
+	 */
 	public JTextField getTitleInputTextField() { return titleInputTextField; }
+	
+	/**
+	 * Getter method for problem description input text field. 
+	 * 
+	 * @return descriptionInputTextField
+	 */
 	public JTextArea getDescriptionInputTextField() { return descriptionInputTextField; }
+	
+	/**
+	 * Getter method for exported Problem.
+	 * 
+	 * @return exportProblem
+	 */
 	public JButton getExportProblem() { return exportProblem; }
+	
+	/**
+	 * Getter method for problem annotation panel.
+	 * 
+	 * @return annotationPanel
+	 */
 	public JPanel getAnnotationPanel() { return annotationPanel; }
 }

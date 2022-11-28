@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * is one of the classes specified. It's purpose
  * is reflected in that document.
  * 
- * @author narlock
+ * @author Anthony Narlock
  *
  */
 public class LMSInputStrategy extends ViewStrategy {

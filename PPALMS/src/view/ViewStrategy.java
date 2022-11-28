@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * is one of the classes specified. It's purpose
  * is reflected in that document.
  * 
- * @author narlock
+ * @author Anthony Narlock
  *
  */
 public abstract class ViewStrategy extends JPanel {

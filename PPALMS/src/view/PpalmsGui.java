@@ -35,7 +35,11 @@ import controller.PpalmsInputHandler;
  * serve as the controller in the MVC
  * design pattern.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsGui
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class PpalmsGui extends JFrame {

@@ -9,7 +9,7 @@ package model;
  * which is stated in the PPALMS design document
  * and highlights its purpose respectively.
  * 
- * @author narlock
+ * @author Anthony Narlock
  *
  */
 public enum ProblemType {

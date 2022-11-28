@@ -24,7 +24,8 @@ import java.io.StringWriter;
  * is one of the classes specified. It's purpose
  * is reflected in that document.
  * 
- * @author narlock
+ * @author Anthony Narlock
+ * @author Jaden Rodriguez
  *
  */
 public class PpalmsLogicHandler {
@@ -32,9 +33,6 @@ public class PpalmsLogicHandler {
 	/**
 	 * PermutationMaker is a private inner class responsible for generating permutations.
 	 * It will generate a limited number of ordering of n elements.
-	 * 
-	 * @author Jaden
-	 *
 	 */
 	private class PermutationMaker {
 		private int limit = 30; // specified in docs

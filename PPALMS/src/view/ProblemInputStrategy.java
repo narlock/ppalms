@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  * is one of the classes specified. It's purpose
  * is reflected in that document.
  * 
- * @author narlock
+ * @author Anthony Narlock
  *
  */
 public class ProblemInputStrategy extends ViewStrategy {

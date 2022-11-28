@@ -52,8 +52,8 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputInvalidInput() {
-		PpalmsGui p = new PpalmsGui();
-		assertFalse(p.getPpalmsInputHandler().processInput(null, "test"));
+		PpalmsGui gui = new PpalmsGui();
+		assertFalse(gui.getPpalmsInputHandler().processInput(null, "test"));
 	}
 
 	/**
@@ -66,21 +66,21 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputSourceCodeExtensionSuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		//Tests with Python code extension
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension"));
 		
 		//Tests with Java code extension
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.java"), "sourceCodeExtension"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField("test.java"), "sourceCodeExtension"));
 		
 		//Tests with C++ "cpp" code extension
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.cpp"), "sourceCodeExtension"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField("test.cpp"), "sourceCodeExtension"));
 		
 		//Tests with C++ "cc" code extension
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.cc"), "sourceCodeExtension"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField("test.cc"), "sourceCodeExtension"));
 	
 		//Tests with C code extension
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.c"), "sourceCodeExtension"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField("test.c"), "sourceCodeExtension"));
 	}
 	
 	/**
@@ -93,18 +93,18 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputSourceCodeExtensionUnsuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		//Tests with .txt extension
-		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.txt"), "sourceCodeExtension"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(new JTextField("test.txt"), "sourceCodeExtension"));
 		
 		//Tests with .png extension
-		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.png"), "sourceCodeExtension"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(new JTextField("test.png"), "sourceCodeExtension"));
 		
 		//Tests with .mp4 extension
-		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.mp4"), "sourceCodeExtension"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(new JTextField("test.mp4"), "sourceCodeExtension"));
 				
 		//Tests with .ml extension
-		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.ml"), "sourceCodeExtension"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(new JTextField("test.ml"), "sourceCodeExtension"));
 				
 	}
 
@@ -118,10 +118,10 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputSourceCodeInputUnsuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		JTextField sourceCode = new JTextField();
 		sourceCode.setText(null);
-		assertFalse(p.getPpalmsInputHandler().processInput(sourceCode, "sourceCode"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(sourceCode, "sourceCode"));
 	}
 
 	/**
@@ -133,31 +133,31 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputLmsTargetInputSuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
+		LMSInputStrategy lms = new LMSInputStrategy();
+		gui.updateViewStrategy(lms);
+		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
 		
 		//Tests with Canvas LMS
 		lmsTargetComboBox.setSelectedIndex(1); 
-		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 		
 		//Tests with D2L LMS
 		lmsTargetComboBox.setSelectedIndex(2); 
-		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 		
 		//Tests with Absorb LMS
 		lmsTargetComboBox.setSelectedIndex(3); 
-		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 		
 		//Tests with Matrix LMS
 		lmsTargetComboBox.setSelectedIndex(4); 
-		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 		
 		//Tests with Talent LMS
 		lmsTargetComboBox.setSelectedIndex(5); 
-		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 	}
 
 	/**
@@ -170,13 +170,13 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputLmsTargetInputUnsuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
+		LMSInputStrategy lms = new LMSInputStrategy();
+		gui.updateViewStrategy(lms);
+		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
 		lmsTargetComboBox.setSelectedIndex(0); // Invalid Argument
-		assertFalse(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 	}
 
 	/**
@@ -188,15 +188,14 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputProblemTypeInputSuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
+		PpalmsGui gui = new PpalmsGui();
+		LMSInputStrategy lms = new LMSInputStrategy();
+		gui.updateViewStrategy(lms);
+		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
 		
 		//Tests with Ordering Problem Type
 		problemTypeComboBox.setSelectedIndex(1); 
-		assertTrue(p.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType"));
 	}
 
 	/**
@@ -209,13 +208,12 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputProblemTypeInputUnsuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
+		PpalmsGui gui = new PpalmsGui();
+		LMSInputStrategy lms = new LMSInputStrategy();
+		gui.updateViewStrategy(lms);
+		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
 		problemTypeComboBox.setSelectedIndex(0); // Invalid Argument
-		assertFalse(p.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType"));
+		assertFalse(gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType"));
 	}
 
 	/**
@@ -230,12 +228,12 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputProblemTtileInputSuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test title"), "problemTitle"));
+		PpalmsGui gui = new PpalmsGui();
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField("test title"), "problemTitle"));
 		
 		//No title is given. This will be the text area's
 		//input if no title is given.
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField(""), "problemTitle"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextField(""), "problemTitle"));
 	}
 	
 	/**
@@ -251,40 +249,49 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputProblemDescriptionInputSuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextArea("test description: This is a PPALMS Problem"), "problemDescription"));
+		PpalmsGui gui = new PpalmsGui();
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextArea("test description: This is a PPALMS Problem"), "problemDescription"));
 		
 		//No description is given. This will be the text area's
 		//input if no title is given.
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextArea(""), "problemDescription"));
+		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextArea(""), "problemDescription"));
 	}
 
-//	/**
-//	 * testProcessInputExportProblemInputSuccessful
-//	 * 
-//	 * @brief This tests if export problem is processed
-//	 * 
-//	 * @author Stephanie Ye
-//	 */
-//	@Test
-//	void testProcessInputExportProblemInputSuccessful() {
-//		PpalmsGui p = new PpalmsGui();
-//		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-//		PpalmsProblem problem = new PpalmsProblem();
-//		problem.setTitle("Test Title");
-//		problem.setDescription("Test Description");
-//		
-//		problem.setSourceCode("test.py");
-//		List<String> sourceCodeLines = new ArrayList<String>();
-//			sourceCodeLines.add("def main:");
-//			sourceCodeLines.add("# Comment before print");
-//			sourceCodeLines.add("print('Hello World')");
-//		problem.setSourceCodeLines(sourceCodeLines);
-//		
-//		problem.setLmsTarget(LmsTarget.Canvas);
-//		problem.setProblemType(ProblemType.Ordering);
-//		assertTrue(p.getPpalmsInputHandler().processInput(null, "exportProblem"));
-//	}
+	/**
+	 * testProcessInputExportProblemInputSuccessful
+	 * 
+	 * @brief This tests if export problem is processed
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testProcessInputExportProblemInputSuccessful() {
+		PpalmsGui gui = new PpalmsGui();
+		
+		//Creating a valid PPALMS Problem
+		PpalmsProblem problem = new PpalmsProblem();
+		gui.getPpalmsInputHandler().processInput(new JTextField("Test Title"), "problemTitle");
+		gui.getPpalmsInputHandler().processInput(new JTextArea("Test Description"), "problemDescription");
+		
+		gui.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension");
+		List<String> sourceCodeLines = new ArrayList<String>();
+			sourceCodeLines.add("def main:");
+			sourceCodeLines.add("# Comment before print");
+			sourceCodeLines.add("print('Hello World')");
+		gui.getPpalmsInputHandler().processInput(sourceCodeLines);
+		
+		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
+		LMSInputStrategy lms = new LMSInputStrategy();
+		gui.updateViewStrategy(lms);
+		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
+		lmsTargetComboBox.setSelectedIndex(1); 
+		gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget");
+		
+		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
+		problemTypeComboBox.setSelectedIndex(1); 
+		gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType");
+		assertTrue(gui.getPpalmsInputHandler().processInput(null, "exportProblem"));
+	}
 
 	/**
 	 * testProcessInputSourceCodeLinesInputSuccessful
@@ -295,9 +302,9 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputSourceCodeLinesInputSuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		List<String> lines = Arrays.asList("void function()", "function(variable)", "x=null");
-		assertTrue(p.getPpalmsInputHandler().processInput(lines));
+		assertTrue(gui.getPpalmsInputHandler().processInput(lines));
 	}
 	
 	/**
@@ -310,18 +317,18 @@ public class PpalmsInputHandlerTests {
 	 */
 	@Test
 	void testProcessInputSourceCodeLinesInputUnsuccessful() {
-		PpalmsGui p = new PpalmsGui();
+		PpalmsGui gui = new PpalmsGui();
 		
 		//Test where source code is empty
 		List<String> emptyCode = Collections.emptyList();
-		assertFalse(p.getPpalmsInputHandler().processInput(emptyCode));
+		assertFalse(gui.getPpalmsInputHandler().processInput(emptyCode));
 		
 		//Test where source code is more than 50 lines
 		List<String> lines = new ArrayList<>();
 		for (int i = 0; i <51; i++) {
 			lines.add("test");
 		}
-		assertFalse(p.getPpalmsInputHandler().processInput(lines));
+		assertFalse(gui.getPpalmsInputHandler().processInput(lines));
 	}
 
 //	/**
@@ -333,8 +340,8 @@ public class PpalmsInputHandlerTests {
 //	 */
 //	@Test
 //	void testProcessInputAddAnnotationSuccessful() {
-//		PpalmsGui p = new PpalmsGui();
-//		assertTrue(p.getPpalmsInputHandler().processInput(0, "addAnnotation"));
+//		PpalmsGui gui = new PpalmsGui();
+//		assertTrue(gui.getPpalmsInputHandler().processInput(0, "addAnnotation"));
 //	}
 //
 //	/**
@@ -346,7 +353,7 @@ public class PpalmsInputHandlerTests {
 //	 */
 //	@Test
 //	void testProcessInputAddAnnotationUnsuccessful() {
-//		PpalmsGui p = new PpalmsGui();
-//		assertFalse(p.getPpalmsInputHandler().processInput(0, "test"));
+//		PpalmsGui gui = new PpalmsGui();
+//		assertFalse(gui.getPpalmsInputHandler().processInput(0, "test"));
 //	}
 }

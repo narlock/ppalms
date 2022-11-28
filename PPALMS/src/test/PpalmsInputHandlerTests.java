@@ -282,11 +282,11 @@ public class PpalmsInputHandlerTests {
 		gui.getPpalmsInputHandler().processInput(sourceCodeLines);
 		
 		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
-		lmsTargetComboBox.setSelectedIndex(1); 
+		lmsTargetComboBox.setSelectedIndex(1); // Set to Canvas LMS
 		gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget");
 		
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
-		problemTypeComboBox.setSelectedIndex(1); 
+		problemTypeComboBox.setSelectedIndex(1); // Set to Ordering Problem Type
 		gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType");
 		
 		gui.getPpalmsInputHandler().processInput(new JTextField("Test Title"), "problemTitle");

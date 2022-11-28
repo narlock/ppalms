@@ -324,29 +324,29 @@ public class PpalmsInputHandlerTests {
 		assertFalse(p.getPpalmsInputHandler().processInput(lines));
 	}
 
-	/**
-	 * testProcessInputAddAnnotationSuccessful
-	 * 
-	 * @brief This tests if user input annotations are processed
-	 * 
-	 * @author Stephanie Ye
-	 */
-	@Test
-	void testProcessInputAddAnnotationSuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		assertTrue(p.getPpalmsInputHandler().processInput(0, "addAnnotation"));
-	}
-
-	/**
-	 * testProcessInputAddAnnotationUnsuccessful
-	 * 
-	 * @brief This tests if user input annotations are not processed
-	 * 
-	 * @author Stephanie Ye
-	 */
-	@Test
-	void testProcessInputAddAnnotationUnsuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		assertFalse(p.getPpalmsInputHandler().processInput(0, "test"));
-	}
+//	/**
+//	 * testProcessInputAddAnnotationSuccessful
+//	 * 
+//	 * @brief This tests if valid user input annotations are processed
+//	 * 
+//	 * @author Stephanie Ye
+//	 */
+//	@Test
+//	void testProcessInputAddAnnotationSuccessful() {
+//		PpalmsGui p = new PpalmsGui();
+//		assertTrue(p.getPpalmsInputHandler().processInput(0, "addAnnotation"));
+//	}
+//
+//	/**
+//	 * testProcessInputAddAnnotationUnsuccessful
+//	 * 
+//	 * @brief This tests if invalid user input annotations are not processed
+//	 * 
+//	 * @author Stephanie Ye
+//	 */
+//	@Test
+//	void testProcessInputAddAnnotationUnsuccessful() {
+//		PpalmsGui p = new PpalmsGui();
+//		assertFalse(p.getPpalmsInputHandler().processInput(0, "test"));
+//	}
 }

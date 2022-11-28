@@ -125,7 +125,7 @@ public class PpalmsInputHandlerTests {
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
 		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		lmsTargetComboBox.setSelectedItem(LmsTarget.Canvas); // Canvas- Valid argument
+		lmsTargetComboBox.setSelectedIndex(1); // Canvas- Valid argument
 		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 	}
 
@@ -162,7 +162,7 @@ public class PpalmsInputHandlerTests {
 		p.updateViewStrategy(l);
 		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		problemTypeComboBox.setSelectedItem(ProblemType.Ordering); // Ordering- Valid argument
+		problemTypeComboBox.setSelectedIndex(1); // Ordering- Valid argument
 		assertTrue(p.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType"));
 	}
 

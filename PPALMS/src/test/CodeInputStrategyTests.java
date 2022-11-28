@@ -18,7 +18,7 @@ import view.PpalmsGui;
  * utilizing the JUnit testing framework
  * in this class.
  * 
- * @author narlock
+ * @author Anthony Narlock
  *
  */
 class CodeInputStrategyTests {

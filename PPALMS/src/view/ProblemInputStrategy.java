@@ -113,8 +113,11 @@ public class ProblemInputStrategy extends ViewStrategy {
 		exportProblem.setEnabled(false);
 	}
 
+	public JLabel getTitleInputLabel() { return titleInputLabel; }
 	public JTextField getTitleInputTextField() { return titleInputTextField; }
+	public JLabel getDescriptionInputLabel() { return descriptionInputLabel; }
 	public JTextArea getDescriptionInputTextField() { return descriptionInputTextField; }
 	public JButton getExportProblem() { return exportProblem; }
+	public JLabel getAnnotationsLabel() { return annotationsLabel; }
 	public JPanel getAnnotationPanel() { return annotationPanel; }
 }

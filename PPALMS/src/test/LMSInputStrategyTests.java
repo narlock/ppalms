@@ -22,7 +22,7 @@ class LMSInputStrategyTests {
 	}
 	
 	@Test
-	void testAllProblemTypesExistInLMSTargetComboBox() {
+	void testAllProblemTypesExistInProblemTypeComboBox() {
 		LMSInputStrategy l = new LMSInputStrategy();
 		l.setViewPanel();
 		assertEquals("Expand", (l.getProblemTypeComboBox()).getItemAt(0));

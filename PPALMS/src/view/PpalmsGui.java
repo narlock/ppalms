@@ -109,12 +109,6 @@ public class PpalmsGui extends JFrame {
 						} else {
 							try {
 								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
-								if(yourFileLines.size() > 50) {
-									viewStrategy.showErrorDialog("Invalid src file : cannot have more than 50 lines");
-								}
-								else if(yourFileLines.size() == 0) {
-									viewStrategy.showErrorDialog("Invalid src file : empty file");
-								}
 								controller.processInput(yourFileLines);
 								updateViewStrategy(new LMSInputStrategy());
 							} catch (IOException e1) {

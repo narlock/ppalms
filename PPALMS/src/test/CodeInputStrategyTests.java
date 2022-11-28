@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import view.CodeInputStrategy;
-import view.PpalmsGui;
 
 /**
  * CodeInputStrategyTests
@@ -28,7 +27,7 @@ class CodeInputStrategyTests {
 	 * This test will ensure that the components 
 	 * of the CodeInputStrategy is not null.
 	 * 
-	 * @author narlock
+	 * @author Anthony Narlock
 	 * 
 	 */
 	@Test
@@ -44,7 +43,7 @@ class CodeInputStrategyTests {
 	 * will ensure that the component attributes
 	 * are visually set correctly.
 	 * 
-	 * @author narlock
+	 * @author Anthony Narlock
 	 * 
 	 */
 	@Test

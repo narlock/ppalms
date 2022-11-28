@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -108,17 +109,19 @@ public class PpalmsInputHandlerTests {
 	}
 
 	/**
-	 * testProcessInputSourceCodeInputSuccessful
+	 * testProcessInputSourceCodeInputUnsuccessful
 	 * 
-	 * @brief This tests if source code has been inputed to the application and is
+	 * @brief This tests if no source code has been inputed to the application and therefore nothing is
 	 *        processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testProcessInputSourceCodeInputSuccessful() {
+	void testProcessInputSourceCodeInputUnsuccessful() {
 		PpalmsGui p = new PpalmsGui();
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("example_source.py"), "sourceCode"));
+		JTextField sourceCode = new JTextField();
+		sourceCode.setText(null);
+		assertFalse(p.getPpalmsInputHandler().processInput(sourceCode, "sourceCode"));
 	}
 
 	/**
@@ -135,7 +138,25 @@ public class PpalmsInputHandlerTests {
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
 		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		lmsTargetComboBox.setSelectedIndex(1); // Canvas- Valid argument
+		
+		//Tests with Canvas LMS
+		lmsTargetComboBox.setSelectedIndex(1); 
+		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		
+		//Tests with D2L LMS
+		lmsTargetComboBox.setSelectedIndex(2); 
+		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		
+		//Tests with Absorb LMS
+		lmsTargetComboBox.setSelectedIndex(3); 
+		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		
+		//Tests with Matrix LMS
+		lmsTargetComboBox.setSelectedIndex(4); 
+		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
+		
+		//Tests with Talent LMS
+		lmsTargetComboBox.setSelectedIndex(5); 
 		assertTrue(p.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget"));
 	}
 
@@ -172,7 +193,9 @@ public class PpalmsInputHandlerTests {
 		p.updateViewStrategy(l);
 		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		problemTypeComboBox.setSelectedIndex(1); // Ordering- Valid argument
+		
+		//Tests with Ordering Problem Type
+		problemTypeComboBox.setSelectedIndex(1); 
 		assertTrue(p.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType"));
 	}
 
@@ -198,20 +221,31 @@ public class PpalmsInputHandlerTests {
 	/**
 	 * testProcessInputProblemTtileInputSuccessful
 	 * 
-	 * @brief This tests if a Problem Title is inputed and processed
-	 * 
+	 * @brief This tests if a problem title is inputed and processed.
+	 * In the processInput case for problemTitle, it will always return
+	 * true because even when passing in a JTextField that is null, when it 
+	 * does JComponenet.getText(), it processes it as an empty string "" 
+	 * which is valid
 	 * @author Stephanie Ye
 	 */
 	@Test
 	void testProcessInputProblemTtileInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test title"), "problemTitle"));
+		
+		//No title is given. This will be the text area's
+		//input if no title is given.
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField(""), "problemTitle"));
 	}
-
+	
 	/**
 	 * testProcessInputProblemDescriptionInputSuccessful
 	 * 
-	 * @brief This tests if a Problem Description is inputed and processed
+	 * @brief This tests if a problem description is inputed and processed.
+	 * In the processInput case for problemDescription, it will always return
+	 * true because even when passing in a JTextArea that is null, when it 
+	 * does JComponenet.getText(), it processes it as an empty string "" 
+	 * which is valid
 	 * 
 	 * @author Stephanie Ye
 	 */
@@ -219,47 +253,75 @@ public class PpalmsInputHandlerTests {
 	void testProcessInputProblemDescriptionInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertTrue(p.getPpalmsInputHandler().processInput(new JTextArea("test description: This is a PPALMS Problem"), "problemDescription"));
+		
+		//No description is given. This will be the text area's
+		//input if no title is given.
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextArea(""), "problemDescription"));
 	}
 
-	/**
-	 * testProcessInputExportProblemInputSuccessful
-	 * 
-	 * @brief This tests if export problem is processed
-	 * 
-	 * @author Stephanie Ye
-	 */
-	@Test
-	void testProcessInputExportProblemInputSuccessful() {
-		PpalmsGui p = new PpalmsGui();
-		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-		PpalmsProblem problem = new PpalmsProblem();
-		problem.setTitle("Test Title");
-		problem.setDescription("Test Description");
-		
-		problem.setSourceCode("test.py");
-		List<String> sourceCodeLines = new ArrayList<String>();
-			sourceCodeLines.add("def main:");
-			sourceCodeLines.add("# Comment before print");
-			sourceCodeLines.add("print('Hello World')");
-		problem.setSourceCodeLines(sourceCodeLines);
-		
-		problem.setLmsTarget(LmsTarget.Canvas);
-		problem.setProblemType(ProblemType.Ordering);
-		assertTrue(p.getPpalmsInputHandler().processInput(null, "exportProblem"));
-	}
+//	/**
+//	 * testProcessInputExportProblemInputSuccessful
+//	 * 
+//	 * @brief This tests if export problem is processed
+//	 * 
+//	 * @author Stephanie Ye
+//	 */
+//	@Test
+//	void testProcessInputExportProblemInputSuccessful() {
+//		PpalmsGui p = new PpalmsGui();
+//		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
+//		PpalmsProblem problem = new PpalmsProblem();
+//		problem.setTitle("Test Title");
+//		problem.setDescription("Test Description");
+//		
+//		problem.setSourceCode("test.py");
+//		List<String> sourceCodeLines = new ArrayList<String>();
+//			sourceCodeLines.add("def main:");
+//			sourceCodeLines.add("# Comment before print");
+//			sourceCodeLines.add("print('Hello World')");
+//		problem.setSourceCodeLines(sourceCodeLines);
+//		
+//		problem.setLmsTarget(LmsTarget.Canvas);
+//		problem.setProblemType(ProblemType.Ordering);
+//		assertTrue(p.getPpalmsInputHandler().processInput(null, "exportProblem"));
+//	}
 
 	/**
-	 * testProcessInputSourceCodeLinesInput
+	 * testProcessInputSourceCodeLinesInputSuccessful
 	 * 
 	 * @brief This tests if user input source code lines are processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testProcessInputSourceCodeLinesInput() {
+	void testProcessInputSourceCodeLinesInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		List<String> lines = Arrays.asList("void function()", "function(variable)", "x=null");
 		assertTrue(p.getPpalmsInputHandler().processInput(lines));
+	}
+	
+	/**
+	 * testProcessInputSourceCodeLinesInputUnsuccessful
+	 * 
+	 * @brief This tests if user inputs invalid source code 
+	 * and so it is not processed
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testProcessInputSourceCodeLinesInputUnsuccessful() {
+		PpalmsGui p = new PpalmsGui();
+		
+		//Test where source code is empty
+		List<String> emptyCode = Collections.emptyList();
+		assertFalse(p.getPpalmsInputHandler().processInput(emptyCode));
+		
+		//Test where source code is more than 50 lines
+		List<String> lines = new ArrayList<>();
+		for (int i = 0; i <51; i++) {
+			lines.add("test");
+		}
+		assertFalse(p.getPpalmsInputHandler().processInput(lines));
 	}
 
 	/**

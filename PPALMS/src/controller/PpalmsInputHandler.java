@@ -64,103 +64,94 @@ public class PpalmsInputHandler {
 		return problemHandler;
 	}
 	
-	/**
-	 * Processes a given user input.
-	 * 
-	 * @param component
-	 * @param event
-	 * @return true for successful input, false for unsuccessful input.
-	 */
-	public boolean processInput(JComponent component, String event) {
-		switch (event) {
-			case "sourceCodeExtension":
-				//This means that component is the text field being sent.
-				problem.setSourceCode(((JTextField) component).getText());
-				if(problemHandler.validateCodeInput(problem)) {  
-					return true;
-				}
-				break;
-			case "sourceCode":
-				//This event will be called after it has been validated.
-				problem.setSourceCode(((JTextField) component).getText());
-				return true;
-			case "lmsTarget":
-				String targetLms = (String) ((JComboBox<String>) component).getSelectedItem();
-				try {
-					problem.setLmsTarget(LmsTarget.valueOf(targetLms));
-				} catch (IllegalArgumentException e) {
-					return false;
-				}
-				return true;
-			case "problemType":
-				String problemType = (String) ((JComboBox<String>) component).getSelectedItem();
-				try {
-					problem.setProblemType(ProblemType.valueOf(problemType));
-				} catch (IllegalArgumentException e) {
-					return false;
-				}
-				return true;
-			case "problemTitle":
-				String problemTitle = ((JTextField) component).getText();
-				problem.setTitle(problemTitle);
-				if(problemHandler.validateTitleInput(problem)) {
-					return true;
-				}
-				break;
-			case "problemDescription":
-				String problemDescription = ((JTextArea) component).getText();
-				problem.setDescription(problemDescription);
-				if(problemHandler.validateDescInput(problem)) {
-					return true;
-				}
-				break;
-			case "exportProblem":
-				if(problemHandler.exportPpalmsProblem(problem)) {
-					return true;
-				}
-				break;
-		}
-			
-		return false;
-	}
-	
-	/**
-	 * Processes a given user input specific
-	 * for source code lines.
-	 * 
-	 * @param lines
-	 * @return true for successful input, false for unsuccessful input.
-	 */
-	public boolean processInput(List<String> lines) {
-		int length = lines.size();
-		if(length == 0 || length > 50) { return false; }
-		problem.setSourceCodeLines(lines);
-		return true;
-	}
-	
-	/**
-	 * Processes a given user input specific
-	 * for adding an annotation.
-	 * 
-	 * @param index
-	 * @param event
-	 * @return true for successful input, false for unsuccessful input.
-	 */
-	public boolean processInput(int index, String event) {
-		switch (event) {
-		case "addAnnotation":
-			problem.getAnnotations().add(index);
-			return true;
-		}
-		return false;
-	}
+//	/**
+//	 * Processes a given user input.
+//	 * 
+//	 * @param component
+//	 * @param event
+//	 * @return true for successful input, false for unsuccessful input.
+//	 */
+//	public boolean processInput(JComponent component, String event) {
+//		switch (event) {
+//			case "sourceCodeExtension":
+//				//This means that component is the text field being sent.
+//				problem.setSourceCode(((JTextField) component).getText());
+//				if(problemHandler.validateCodeInput(problem)) {  
+//					return true;
+//				}
+//				break;
+//			case "sourceCode":
+//				//This event will be called after it has been validated.
+//				problem.setSourceCode(((JTextField) component).getText());
+//				break;
+//			case "lmsTarget":
+//				String targetLms = (String) ((JComboBox<String>) component).getSelectedItem();
+//				try {
+//					problem.setLmsTarget(LmsTarget.valueOf(targetLms));
+//				} catch (IllegalArgumentException e) {
+//					return false;
+//				}
+//				return true;
+//			case "problemType":
+//				String problemType = (String) ((JComboBox<String>) component).getSelectedItem();
+//				try {
+//					problem.setProblemType(ProblemType.valueOf(problemType));
+//				} catch (IllegalArgumentException e) {
+//					return false;
+//				}
+//				return true;
+//			case "problemTitle":
+//				String problemTitle = ((JTextField) component).getText();
+//				problem.setTitle(problemTitle);
+//				if(problemHandler.validateTitleInput(problem)) {
+//					return true;
+//				}
+//				break;
+//			case "problemDescription":
+//				String problemDescription = ((JTextArea) component).getText();
+//				problem.setDescription(problemDescription);
+//				if(problemHandler.validateDescInput(problem)) {
+//					return true;
+//				}
+//				break;
+//			case "exportProblem":
+//				if(problemHandler.exportPpalmsProblem(problem)) {
+//					return true;
+//				}
+//				break;
+//		}
+//			
+//		return false;
+//	}
 	
 //	/**
-//	 * Getter method for PpalmsProblem. 
+//	 * Processes a given user input specific
+//	 * for source code lines.
 //	 * 
-//	 * @return problem
+//	 * @param lines
+//	 * @return true for successful input, false for unsuccessful input.
 //	 */
-//	public PpalmsProblem getPpalmsProblem() { 
-//		return problem; 
+//	public boolean processInput(List<String> lines) {
+//		int length = lines.size();
+//		if(length == 0 || length > 50) { return false; }
+//		problem.setSourceCodeLines(lines);
+//		return true;
+//	}
+//	
+//	/**
+//	 * Processes a given user input specific
+//	 * for adding an annotation.
+//	 * 
+//	 * @param index
+//	 * @param event
+//	 * @return true for successful input, false for unsuccessful input.
+//	 */
+//	public boolean processInput(int index, String event) {
+//		switch (event) {
+//		case "addAnnotation":
+//			problem.getAnnotations().add(index);
+//			return true;
+//		}
+//		return false;
 //	}
 }

@@ -144,5 +144,7 @@ public class PpalmsInputHandler {
 	 * 
 	 * @return problem
 	 */
-	public PpalmsProblem getPpalmsProblem() { return problem; }
+	public PpalmsProblem getPpalmsProblem() { 
+		return problem; 
+	}
 }

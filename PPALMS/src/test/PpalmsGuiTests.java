@@ -54,6 +54,15 @@ class PpalmsGuiTests {
 	  assertEquals(true, p.getViewStrategy() instanceof LMSInputStrategy);
 	}
 	
+	@Test
+	void testFileInputSuccessful() {
+		//Functional test, done manually
+	}
+	
+	@Test
+	void testNoFileSelected() {
+		//Functional test, done manually
+	}
 	
 	/**
 	 * testTargetLMSNoneSelected

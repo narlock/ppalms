@@ -31,15 +31,14 @@ class PpalmsGuiTests {
 	  assertEquals(true, p.getViewStrategy() instanceof LMSInputStrategy);
 	}
 	
-	// example_source.py
 	@Test
 	void testFileInputSuccessful() {
-
+		//Functional test, done manually
 	}
 	
 	@Test
 	void testNoFileSelected() {
-		
+		//Functional test, done manually
 	}
 	
 	@Test 

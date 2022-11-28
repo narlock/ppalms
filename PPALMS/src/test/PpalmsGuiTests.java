@@ -64,129 +64,44 @@ class PpalmsGuiTests {
 		//Functional test, done manually
 	}
 	
-	/**
-	 * testTargetLMSNoneSelected
-	 * 
-	 * @brief Tests the intended behavior of the LMSInputStrategy
-	 * view, whereby given that no target LMS is selected, the 
-	 * problemType ComboBox and confirmLmsTarget button would not be
-	 * enabled. 
-	 * 
-	 * @author Shen Lua 
-	 */
-	@Test 
-	void testTargetLMSNoneSelected(){
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
-		lmsTargetComboBox.setSelectedIndex(0); // Invalid Argument
-		assertEquals(false, problemTypeComboBox.isEnabled()); // not enabled
-		assertEquals(false, confirmLmsTargetButton.isEnabled()); // not enabled
-	}
 	
 	/**
-	 * testTargetLMSCanvasSelected
+	 * testSettargetLMSSuccess
 	 * 
-	 * @brief Tests the intended system behavior when the 
-	 * LMS target "Canvas" was selected. 
-	 * 
-	 * @author Shen Lua 
-	 */
-	@Test
-	void testTargetLMSCanvasSelected() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		lmsTargetComboBox.setSelectedIndex(1); // Canvas
-		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
-	}
-	
-	/**
-	 * testTargetLMSD2LSelected
-	 * 
-	 * @brief Tests the intended system behavior when the 
-	 * LMS target "D2L" was selected. 
-	 * 
-	 * @author Shen Lua 
-	 */
-	@Test
-	void testTargetLMSD2LSelected() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		lmsTargetComboBox.setSelectedIndex(2); // D2L
-		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
-	}
-	
-	/**
-	 * testTargetLMSAbsorbSelected
-	 * 
-	 * @brief Tests the intended system behavior when the 
-	 * LMS target "Absorb" was selected. 
-	 * 
-	 * @author Shen Lua 
-	 */
-	@Test
-	void testTargetLMSAbsorbSelected() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		lmsTargetComboBox.setSelectedIndex(3); // Absorb
-		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
-	}
-	
-	/**
-	 * testTargetLMSMatrixSelected
-	 * 
-	 * @brief Tests the intended system behavior when the 
-	 * LMS target "Matrix" was selected. 
-	 * 
-	 * @author Shen Lua 
-	 */
-	@Test
-	void testTargetLMSMatrixSelected() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		lmsTargetComboBox.setSelectedIndex(4); // Matrix
-		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
-	}
-	
-	/**
-	 * testTargetLMSTalentSelected
-	 * 
-	 * @brief Tests the intended system behavior when the 
-	 * LMS target "Talent" was selected. 
+	 * @brief Tests the intended behavior of the
+	 * LMSInputStrategy when no lms target is 
+	 * selected and when a lms target is selected
+	 * from the lmsTargetComboBox. 
 	 * 
 	 * @author Shen Lua
+	 * 
 	 */
 	@Test
-	void testTargetLMSTalentSelected() {
+	void testSetTargetLMSSuccess() {
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
 		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
+		lmsTargetComboBox.setSelectedIndex(0); // Default
+		assertFalse(problemTypeComboBox.isEnabled());
+		lmsTargetComboBox.setSelectedIndex(1); // Canvas
+		assertTrue(problemTypeComboBox.isEnabled());
+		lmsTargetComboBox.setSelectedIndex(2); // D2L
+		assertTrue(problemTypeComboBox.isEnabled());
+		lmsTargetComboBox.setSelectedIndex(3); // Absorb
+		assertTrue(problemTypeComboBox.isEnabled());
+		lmsTargetComboBox.setSelectedIndex(4); // Matrix
+		assertTrue(problemTypeComboBox.isEnabled());
 		lmsTargetComboBox.setSelectedIndex(5); // Talent
-		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
+		assertTrue(problemTypeComboBox.isEnabled());
 	}
 	
 	/**
 	 * testProblemTypeNotSelected
 	 * 
 	 * @brief Tests the intended system behavior when the 
-	 * problem type is not selected. 
+	 * problem type is and not selected. 
 	 * 
 	 * @author Shen Lua 
 	 */
@@ -198,26 +113,9 @@ class PpalmsGuiTests {
 		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
 		problemTypeComboBox.setSelectedIndex(0);
-		assertEquals(false, confirmLmsTargetButton.isEnabled());
-	}
-	
-	/**
-	 * testProblemTypeSelected
-	 * 
-	 * @brief Tests the intended system behavior when 
-	 * a problem type is selected from the combobox
-	 * 
-	 * @author Shen Lua 
-	 */
-	@Test
-	void testProblemTypeSelected() { // ordering Problem type
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		problemTypeComboBox.setSelectedIndex(1);
-		assertEquals(true, confirmLmsTargetButton.isEnabled());
+		assertFalse(confirmLmsTargetButton.isEnabled());
+		problemTypeComboBox.setSelectedIndex(1); // ordering
+		assertTrue(confirmLmsTargetButton.isEnabled());
 	}
 	
 }

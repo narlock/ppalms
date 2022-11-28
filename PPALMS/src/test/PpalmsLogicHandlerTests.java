@@ -344,15 +344,11 @@ class PpalmsLogicHandlerTests {
 		}
 		// check that no duplicate permutations were made
 		assertTrue(allUniquePermutations(permutations));
-	}
-	
-	/**
-	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original problem
-	 * and its permutations, including the empty title and description. Also changes LMS target for coverage.
-	 */
-	@Test
-	void testExportPpalmsProblemNoTitleDescription() {
-		// make sure problem file is not present
+		
+		// verify that JSON output is parsed correctly in the case that
+		// tile/description not specified
+		// Also try different LMS target for coverage
+		problem = createValidPpalmsProblem();
 		try {
             Files.deleteIfExists(
                 Paths.get("problem.json"));
@@ -366,7 +362,6 @@ class PpalmsLogicHandlerTests {
 		problem.setDescription("");
 		assertTrue(handler.exportPpalmsProblem(problem));
 		
-		JSONObject obj;
 		try {
 			obj = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
 		} 
@@ -379,9 +374,9 @@ class PpalmsLogicHandlerTests {
 		assertEquals(obj.get("description"),problem.getDescription());
 		assertEquals(obj.get("lms"),problem.getLmsTarget().toString());
 		assertEquals(obj.get("type"), problem.getProblemType().toString());
-		List<String> original = (List<String>) obj.get("correct");
+		original = (List<String>) obj.get("correct");
 		assertEquals(original,problem.getSourceCodeLines());
-		List<List<String>> permutations = (List<List<String>>) obj.get("permutations");
+		permutations = (List<List<String>>) obj.get("permutations");
 		for (List<String> permutation : permutations) {
 			assertTrue(isPermutation(original, permutation));
 		}

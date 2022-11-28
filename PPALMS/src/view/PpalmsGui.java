@@ -105,8 +105,11 @@ public class PpalmsGui extends JFrame {
 						} else {
 							try {
 								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
-								controller.processInput(yourFileLines);
-								updateViewStrategy(new LMSInputStrategy());
+								if(controller.processInput(yourFileLines)) {
+									updateViewStrategy(new LMSInputStrategy());
+								} else {
+									viewStrategy.showErrorDialog("Invalid source code file.\nThe number of lines in the source code must\nbe between 1 and 50.");
+								}
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
 							}

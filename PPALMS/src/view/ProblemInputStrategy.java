@@ -18,6 +18,10 @@ import javax.swing.JTextField;
  * problem title, problem description, create
  * problem annotations, and export the problem.
  * 
+ * In the PPALMS design document, ProblemInputStrategy
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
  * @author narlock
  *
  */

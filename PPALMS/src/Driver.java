@@ -5,10 +5,12 @@ import view.PpalmsGui;
  * This instantiates a new PPALMS Graphical User Interface
  * which allows the user to begin using the application.
  * 
- * @author narlock
+ * @author Anthony Narlock
  *
  */
 public class Driver {
+	
+	//The main function that will initialize the GUI
 	public static void main(String[] args) {
 		PpalmsGui gui = new PpalmsGui();
 	}

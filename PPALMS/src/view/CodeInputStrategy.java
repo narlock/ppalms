@@ -16,6 +16,10 @@ import javax.swing.JPanel;
  * input their source code file for problem
  * creation.
  * 
+ * In the PPALMS design document, CodeInputStrategy
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
  * @author narlock
  *
  */

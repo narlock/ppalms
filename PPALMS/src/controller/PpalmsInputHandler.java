@@ -17,7 +17,11 @@ import model.ProblemType;
  * PPALMS application. This class handles the inputs
  * of the user.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsInputHandler
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class PpalmsInputHandler {

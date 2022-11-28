@@ -6,6 +6,10 @@ import java.util.List;
 /**
  * The PPLAMS problem object.
  * 
+ * In the PPALMS design document, PpalmsProblem
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
  * @author narlock
  *
  */

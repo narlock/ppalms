@@ -7,6 +7,20 @@ import org.junit.jupiter.api.Test;
 import view.CodeInputStrategy;
 import view.PpalmsGui;
 
+/**
+ * CodeInputStrategyTests
+ * 
+ * This class holds all of the unit tests
+ * for the CodeInputStrategy class.
+ * 
+ * These unit tests are specified in the
+ * PPALMS Testing Document and implemented
+ * utilizing the JUnit testing framework
+ * in this class.
+ * 
+ * @author narlock
+ *
+ */
 class CodeInputStrategyTests {
 
 	/**

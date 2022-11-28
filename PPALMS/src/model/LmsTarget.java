@@ -5,6 +5,10 @@ package model;
  * the target LMS that a user can select using
  * the PPALMS system.
  * 
+ * LmsTarget is used in the PpalmsProblem,
+ * which is stated in the PPALMS design document
+ * and highlights its purpose respectively.
+ * 
  * @author narlock
  *
  */

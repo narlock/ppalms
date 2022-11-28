@@ -20,6 +20,10 @@ import java.io.StringWriter;
  * and also serve as functions for creating
  * the final exported problem.
  * 
+ * In the PPALMS design document, PpalmsLogicHandler
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
  * @author narlock
  *
  */

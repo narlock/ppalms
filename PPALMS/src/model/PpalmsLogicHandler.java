@@ -20,7 +20,12 @@ import java.io.StringWriter;
  * and also serve as functions for creating
  * the final exported problem.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsLogicHandler
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
+ * @author Jaden Rodriguez
  *
  */
 public class PpalmsLogicHandler {
@@ -28,15 +33,13 @@ public class PpalmsLogicHandler {
 	/**
 	 * PermutationMaker is a private inner class responsible for generating permutations.
 	 * It will generate a limited number of ordering of n elements.
-	 * 
-	 * @author Jaden
-	 *
 	 */
 	private class PermutationMaker {
 		private int limit = 30; // specified in docs
 		private Integer[] nums;
 		private ArrayList<ArrayList<Integer>> permutations;
-		
+
+
 		private void swap(int i, int j) {
 			int temp = nums[i];
 			nums[i] = nums[j];
@@ -193,7 +196,7 @@ public class PpalmsLogicHandler {
 	 * @return true for successful export, false for unsuccessful export.
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
-		//TODO - will call createPermutations
+		//Call createPermutations
 		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
 		System.out.println(permutedProblems.size());
@@ -202,12 +205,12 @@ public class PpalmsLogicHandler {
 			System.out.println(permutedProblem.getSourceCodeLines());
 			annotations.add(permutedProblem.getSourceCodeLines());
 		}
-		//TODO - Create the JSON and save file location
+		//Create the JSON and save file location
 		JSONObject obj = new JSONObject();
 		obj.put("title", problem.getTitle());
 		obj.put("description", problem.getDescription());
 		obj.put("lms", problem.getLmsTarget().toString());
-		obj.put("type", problem.getProblemType());
+		obj.put("type", problem.getProblemType().toString());
 		obj.put("correct", problem.getSourceCodeLines());
 		obj.put("permutations", annotations);
 		

@@ -16,6 +16,21 @@ import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
 import model.ProblemType;
 
+/**
+ * PpalmsLogicHandlerTests
+ * 
+ * This class holds all of the unit tests
+ * for the PpalmsLogicHandler class.
+ * 
+ * These unit tests are specified in the
+ * PPALMS Testing Document and implemented
+ * utilizing the JUnit testing framework
+ * in this class.
+ * 
+ * @author Anthony Narlock
+ * @author Jaden Rodriguez
+ *
+ */
 class PpalmsLogicHandlerTests {
 	
 	private PpalmsLogicHandler handler;
@@ -27,6 +42,13 @@ class PpalmsLogicHandlerTests {
 		problem = createValidPpalmsProblem();
 	}
 
+	/**
+	 * Ensure validity of a user’s source code file. 
+	 * This test executes the validateCodeInput method 
+	 * in the PpalmsLogicHandler.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test
 	void testValidateCodeInputSuccess() {
 		//Tests with Python code extension
@@ -55,27 +77,54 @@ class PpalmsLogicHandlerTests {
 		assertEquals("test.cc", problem.getSourceCode());
 	}
 	
+	/**
+	 * Ensure validity of a user’s source code file under the condition 
+	 * of failure to select a source code file. This can happen if the 
+	 * user selects cancel on the file chooser dialog. This test executes 
+	 * the validateCodeInput method in the PpalmsLogicHandler.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test
 	void testValidateCodeInputNoCode() {
 		PpalmsProblem problem = new PpalmsProblem();
 		assertFalse(handler.validateCodeInput(problem));
 	}
 	
+	/**
+	 * Ensure validity of a user’s source code file under the condition 
+	 * of failure to select a source code file. This can happen if the 
+	 * user selects a file that contains an unsupported file extension. 
+	 * This test executes the validateCodeInput method in the PpalmsLogicHandler.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test
 	void testValidateCodeInputInvalidExtension() {
+		//Test with .txt extension
 		problem.setSourceCode("test.txt");
 		assertFalse(handler.validateCodeInput(problem));
 		
+		//Test with .png extension
 		problem.setSourceCode("test.png");
 		assertFalse(handler.validateCodeInput(problem));
 		
+		//Test with .mp4 extension
 		problem.setSourceCode("test.mp4");
 		assertFalse(handler.validateCodeInput(problem));
 		
+		//Test with .ml extension
 		problem.setSourceCode("test.ml");
 		assertFalse(handler.validateCodeInput(problem));
 	}
 	
+	/**
+	 * Ensure that the PPALMS application properly validates title input 
+	 * in regards to the requirements specification. That is, the user can 
+	 * choose to leave the field blank and not indicate a title since it is optional.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test
 	void testValidateTitleInputSuccess() {
 		problem.setTitle("Test");
@@ -87,6 +136,13 @@ class PpalmsLogicHandlerTests {
 		assertTrue(handler.validateTitleInput(problem));
 	}
 	
+	/**
+	 * Ensure that the PPALMS application will return failure under an unexpected 
+	 * condition that does not initialize the title input text field in the 
+	 * ProblemInputStrategy.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test 
 	void testValidateTitleInputFailure() {
 		//Title input will fail only under the condition
@@ -97,6 +153,13 @@ class PpalmsLogicHandlerTests {
 		assertFalse(handler.validateTitleInput(problem));
 	}
 	
+	/**
+	 * Ensure that the PPALMS application properly validates description input in
+	 * regards to the requirements specification. That is, the user can choose to 
+	 * leave the field blank and not indicate a description since it is optional.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test
 	void testValidateDescInputSuccess() {
 		problem.setDescription("Test");
@@ -108,6 +171,13 @@ class PpalmsLogicHandlerTests {
 		assertTrue(handler.validateDescInput(problem));
 	}
 	
+	/**
+	 * Ensure that the PPALMS application will return failure under an unexpected 
+	 * condition that does not initialize the description input text field in the
+	 * ProblemInputStrategy.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test 
 	void testValidateDescInputFailure() {
 		//Description input will fail only under the condition
@@ -118,9 +188,19 @@ class PpalmsLogicHandlerTests {
 		assertFalse(handler.validateDescInput(problem));
 	}
 	
+	/**
+	 * Given an input selection of annotations for an ordering problem. 
+	 * The annotations will come in the form of user-selected lines. 
+	 * Upon selecting each line, the PPALMS application will validate 
+	 * the selected annotations by sorting them. This allows the user 
+	 * to select lines of code in their problem out of order and still 
+	 * receive their expected result.
+	 * 
+	 * @author Anthony Narlock
+	 */
 	@Test
 	void testSetAnnotations() {
-		//Useing the test problem, if we annotate
+		//Using the test problem, if we annotate
 		//the problem, we should expect the source
 		//code lines to be in order.
 		
@@ -190,6 +270,17 @@ class PpalmsLogicHandlerTests {
 		//TODO @Jaden Rodriguez
 	}
 	
+	/**
+	 * This is a private helper function that creates
+	 * a sample PpalmsProblem object that can be used
+	 * during the test cases.
+	 * 
+	 * This helper function promotes code reuse as
+	 * the PpalmsLogicHandler requires the use
+	 * of modifying model attributes.
+	 * 
+	 * @return validated PpalmsProblem object
+	 */
 	private PpalmsProblem createValidPpalmsProblem() {
 		PpalmsProblem problem = new PpalmsProblem();
 		problem.setTitle("Test Title");

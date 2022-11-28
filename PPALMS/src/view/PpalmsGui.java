@@ -35,7 +35,11 @@ import controller.PpalmsInputHandler;
  * serve as the controller in the MVC
  * design pattern.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsGui
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class PpalmsGui extends JFrame {
@@ -109,8 +113,11 @@ public class PpalmsGui extends JFrame {
 						} else {
 							try {
 								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
-								controller.processInput(yourFileLines);
-								updateViewStrategy(new LMSInputStrategy());
+								if(controller.processInput(yourFileLines)) {
+									updateViewStrategy(new LMSInputStrategy());
+								} else {
+									viewStrategy.showErrorDialog("Invalid source code file.\nThe number of lines in the source code must\nbe between 1 and 50.");
+								}
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
 							}
@@ -199,6 +206,10 @@ public class PpalmsGui extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(controller.processInput(null, "exportProblem"))
 						System.exit(1);
+					else {
+						viewStrategy.showErrorDialog("A system error occured which prevented the file from being made.\nMost likely, the file \"problem.json\" already exists, and you should move or delete it.");
+						
+					}
 				}
 				
 			});

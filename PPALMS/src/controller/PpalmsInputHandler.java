@@ -17,7 +17,11 @@ import model.ProblemType;
  * PPALMS application. This class handles the inputs
  * of the user.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsInputHandler
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class PpalmsInputHandler {
@@ -128,6 +132,8 @@ public class PpalmsInputHandler {
 	 * @return true for successful input, false for unsuccessful input.
 	 */
 	public boolean processInput(List<String> lines) {
+		int length = lines.size();
+		if(length == 0 || length > 50) { return false; }
 		problem.setSourceCodeLines(lines);
 		return true;
 	}

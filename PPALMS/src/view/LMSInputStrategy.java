@@ -15,7 +15,11 @@ import javax.swing.JPanel;
  * the target LMS and the type of Parson's problem
  * to create.
  * 
- * @author narlock
+ * In the PPALMS design document, LMSInputStrategy
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class LMSInputStrategy extends ViewStrategy {

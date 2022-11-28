@@ -187,4 +187,17 @@ public class PpalmsProblem {
 		return "PpalmsProblem [sourceCode Exists=" + sourceCode + ", problemType=" + problemType + ", lmsTarget=" + lmsTarget
 				+ ", annotations=" + annotations + ", title=" + title + ", description=" + description + "]";
 	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other == this) {
+            return true;
+        }
+        if (!(other instanceof PpalmsProblem)) {
+            return false;
+        }
+        PpalmsProblem otherProblem = (PpalmsProblem) other;
+	    return sourceCodeLines == otherProblem.getSourceCodeLines();
+	}
+	
 }

@@ -1,13 +1,25 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,11 +45,68 @@ import model.ProblemType;
  */
 class PpalmsLogicHandlerTests {
 	
+	
 	private PpalmsLogicHandler handler;
 	private PpalmsProblem problem;
+	private List<String> dummyLines;
 	
+	/**
+	 * Helper function which initializes handler and problem to useful state before each test
+	 */
 	@BeforeEach
 	void beforeEach() {
+		dummyLines  = Arrays.asList( // used by createValidPpalmsProblem
+				"def main:",
+				"    # Comment before print",
+				"    print('Hello World')",
+				"    x = 0",
+				"    x += 1",
+				"    x *= 4",
+				"    x -= 1",
+				"    x *= 5",
+				"    print(x)",
+				"    x += 1",
+				"    y = 1",
+				"    y = x * 12",
+				"    y -= x - 13",
+				"    y -= x + 14",
+				"    y -= x // 15",
+				"    y -= x / 16",
+				"    y += x * 17",
+				"    y += x * 18",
+				"    y = x / 19",
+				"    y = x * 21",
+				"    y = x - 22",
+				"    y = x * 23",
+				"    y = x * 24",
+				"    y = x * 11",
+				"    y = x - 26",
+				"    y = x * 27",
+				"    y = x * 28",
+				"    y = x * 29",
+				"    y = x * 30",
+				"    y = x * 12",
+				"    y = x * 13",
+				"    y = x * 14",
+				"    y = x * 15",
+				"    y = x * 61",
+				"    y = x * 71",
+				"    y = x * 81",
+				"    y = x * 91",
+				"    y = x * 111",
+				"    y = x * 121",
+				"    y = x * 131",
+				"    y = x * 141",
+				"    y = x * 151",
+				"    y = x * 161",
+				"    y = x * 171",
+				"    y = x * 181",
+				"    y = x * 191",
+				"    y = x * 101",
+				"    y = x * 31",
+				"    y = x * 1",
+				"    y = x * 2"
+				);
 		handler = new PpalmsLogicHandler();
 		problem = createValidPpalmsProblem();
 	}
@@ -135,7 +204,7 @@ class PpalmsLogicHandlerTests {
 		problem.setTitle("");
 		assertTrue(handler.validateTitleInput(problem));
 	}
-	
+  
 	/**
 	 * Ensure that the PPALMS application will return failure under an unexpected 
 	 * condition that does not initialize the title input text field in the 
@@ -187,7 +256,7 @@ class PpalmsLogicHandlerTests {
 		problem.setDescription(null);
 		assertFalse(handler.validateDescInput(problem));
 	}
-	
+  
 	/**
 	 * Given an input selection of annotations for an ordering problem. 
 	 * The annotations will come in the form of user-selected lines. 
@@ -210,14 +279,13 @@ class PpalmsLogicHandlerTests {
 			annotations.add(1);
 			annotations.add(2);
 		problem.setAnnotations(annotations);
+		System.out.println(annotations);
+		System.out.println(problem.toString());
+		System.out.println(problem.getSourceCodeLines());
 		handler.setAnnotations(problem);
-		List<String> correctAnnotationList = new ArrayList<String>();
-			correctAnnotationList.add("def main:");
-			correctAnnotationList.add("# Comment before print");
-			correctAnnotationList.add("print('Hello World')");
-		assertEquals(correctAnnotationList.get(0), problem.getSourceCodeLines().get(0));
-		assertEquals(correctAnnotationList.get(1), problem.getSourceCodeLines().get(1));
-		assertEquals(correctAnnotationList.get(2), problem.getSourceCodeLines().get(2));
+		assertEquals(dummyLines.get(0), problem.getSourceCodeLines().get(0));
+		assertEquals(dummyLines.get(1), problem.getSourceCodeLines().get(1));
+		assertEquals(dummyLines.get(2), problem.getSourceCodeLines().get(2));
 		
 		//The user can annotate in any order. This means we
 		//can add the annotations in the order by which
@@ -230,13 +298,9 @@ class PpalmsLogicHandlerTests {
 			annotations.add(0);
 		problem.setAnnotations(annotations);
 		handler.setAnnotations(problem);
-			correctAnnotationList = new ArrayList<String>();
-			correctAnnotationList.add("def main:");
-			correctAnnotationList.add("# Comment before print");
-			correctAnnotationList.add("print('Hello World')");
-		assertEquals(correctAnnotationList.get(0), problem.getSourceCodeLines().get(0));
-		assertEquals(correctAnnotationList.get(1), problem.getSourceCodeLines().get(1));
-		assertEquals(correctAnnotationList.get(2), problem.getSourceCodeLines().get(2));
+		assertEquals(dummyLines.get(0), problem.getSourceCodeLines().get(0));
+		assertEquals(dummyLines.get(1), problem.getSourceCodeLines().get(1));
+		assertEquals(dummyLines.get(2), problem.getSourceCodeLines().get(2));
 		
 		
 		//The user does not also have to input all of
@@ -246,12 +310,8 @@ class PpalmsLogicHandlerTests {
 			annotations.add(2);
 		problem.setAnnotations(annotations);
 		handler.setAnnotations(problem);
-			correctAnnotationList = new ArrayList<String>();
-			correctAnnotationList.add("def main:");
-			correctAnnotationList.add("# Comment before print");
-			correctAnnotationList.add("print('Hello World')");
-		assertEquals(correctAnnotationList.get(1), problem.getSourceCodeLines().get(0));
-		assertEquals(correctAnnotationList.get(2), problem.getSourceCodeLines().get(1));
+		assertEquals(dummyLines.get(1), problem.getSourceCodeLines().get(0));
+		assertEquals(dummyLines.get(2), problem.getSourceCodeLines().get(1));
 		
 		//Therefore, if we don't include all of the lines,
 		//there will not be an index at position 2.
@@ -260,16 +320,174 @@ class PpalmsLogicHandlerTests {
 	    });
 	}
 	
+	/**
+	 * This tests that  createPermutations generates a list of the correct specifications,
+	 * including size limit, and element content and uniqueness 
+	 * (checks that the list is actually a list of permutations).
+	 * It checks it over the range of allowed input sizes for more coverage.
+	 */
 	@Test
 	void testCreatePermutations() {
 		//TODO @Jaden Rodriguez
+		int limit = 30;
+		int lineLimit = 50;
+		int maxLength = 1; // 0! = 1
+		for (int numLines = 1; numLines <= lineLimit; numLines++) {
+			// update length using factorial (Dynamic programming)
+			maxLength *= numLines; // n! = n * (n-1)!
+			if (maxLength > limit) {
+				maxLength = limit;
+			}
+			problem = createValidPpalmsProblem();
+			ArrayList<Integer> annotations = new ArrayList<>();
+			for (int i = 0; i < numLines; i++) {
+				annotations.add(i);
+			}
+			problem.setAnnotations(annotations);
+			List<PpalmsProblem> permutedProblems = handler.createPermutations(problem);
+			// check the  number of permutations is within bounds
+			int length = permutedProblems.size();
+			assertTrue(0 < length && length <= maxLength);
+			// check each element is a permutation of the original problem
+			List<String> original = problem.getSourceCodeLines();
+			for (PpalmsProblem permutedProblem : permutedProblems) {
+				List<String> candidate = permutedProblem.getSourceCodeLines();
+				assertTrue(isPermutation(original, candidate));
+			}
+			// check that no duplicate permutations were made
+			assertTrue(allUniquePermutations(permutedProblems));
+		}
 	}
-	
+	/**
+	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original problem
+	 * and its permutations (does not check that annotations/source lines are within constraints
+	 * because this method should only called if this is so; these constraints are tested
+	 * in another component)
+	 */
 	@Test
 	void testExportPpalmsProblem() {
-		//TODO @Jaden Rodriguez
+		// make sure problem file is not present
+		try {
+            Files.deleteIfExists(
+                Paths.get("problem.json"));
+        }
+        catch (Exception e) {
+            System.out.println(
+                "No such file/directory exists");
+        }
+		assertTrue(handler.exportPpalmsProblem(problem));
+		
+		JSONObject obj;
+		try {
+			obj = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false); // fail test if JSON can't be parsed
+			return;
+		} 
+		assertEquals(obj.get("title"),problem.getTitle());
+		assertEquals(obj.get("description"),problem.getDescription());
+		assertEquals(obj.get("lms"),problem.getLmsTarget().toString());
+		assertEquals(obj.get("type"), problem.getProblemType().toString());
+		List<String> original = (List<String>) obj.get("correct");
+		System.out.println(original);
+		assertEquals(original,problem.getSourceCodeLines());
+		List<List<String>> permutations = (List<List<String>>) obj.get("permutations");
+		for (List<String> permutation : permutations) {
+			assertTrue(isPermutation(original, permutation));
+		}
+		// check that no duplicate permutations were made
+		assertTrue(allUniquePermutations(permutations));
+		
+		// verify that JSON output is parsed correctly in the case that
+		// tile/description not specified
+		// Also try different LMS target for coverage
+		problem = createValidPpalmsProblem();
+		try {
+            Files.deleteIfExists(
+                Paths.get("problem.json"));
+        }
+        catch (Exception e) {
+            System.out.println(
+                "No such file/directory exists");
+        }
+		problem.setLmsTarget(LmsTarget.D2L);
+		problem.setTitle("");
+		problem.setDescription("");
+		assertTrue(handler.exportPpalmsProblem(problem));
+		
+		try {
+			obj = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false); // fail test if JSON can't be parsed
+			return;
+		} 
+		assertEquals(obj.get("title"),problem.getTitle());
+		assertEquals(obj.get("description"),problem.getDescription());
+		assertEquals(obj.get("lms"),problem.getLmsTarget().toString());
+		assertEquals(obj.get("type"), problem.getProblemType().toString());
+		original = (List<String>) obj.get("correct");
+		assertEquals(original,problem.getSourceCodeLines());
+		permutations = (List<List<String>>) obj.get("permutations");
+		for (List<String> permutation : permutations) {
+			assertTrue(isPermutation(original, permutation));
+		}
+		// check that no duplicate permutations were made
+		assertTrue(allUniquePermutations(permutations));
 	}
 	
+	/**
+	 * This tests that PPALMS problem exportation fails if the destination file already exists
+	 */
+	@Test
+	void testExportPpalmsProblemFail() {
+		// make sure problem file is present
+		try {
+		      File file = new File("problem.json");
+		      file.createNewFile();
+		} 
+		catch (IOException e) {
+		      System.out.println("An error occurred creating the file.");
+		      e.printStackTrace();
+		}
+		assertFalse(handler.exportPpalmsProblem(problem));
+	}
+	/**
+	 * This method helps ensure that a list of permutations was generated
+	 * by confirming that each element is unique
+	 * @param <T> - generic type of list
+	 * @param l - list of permutations
+	 * @return
+	 */
+	private <T> boolean allUniquePermutations(List<T> l) {
+		for (int i = 0; i < l.size(); i++) {
+			for (int j = i + 1; j < l.size(); j++) {
+				if (l.get(i).equals(l.get(j))) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	/**
+	 * This helper method tells whether a candidate String list
+	 * is a permutation of a reference original String list.
+	 * @param reference - original String list to be compared to
+	 * @param candidate - candidate permutation of original String list
+	 * @return
+	 */
+	private boolean isPermutation(List<String> reference, List<String> candidate) {
+		HashMap<String, Integer> referenceCount = new HashMap<>();
+		HashMap<String, Integer> candidateCount = new HashMap<>();
+		for (String line: reference)
+			referenceCount.put(line, referenceCount.getOrDefault(line, 0) + 1);			
+		for (String line: candidate)
+			candidateCount.put(line, candidateCount.getOrDefault(line, 0) + 1);		
+		return candidateCount.equals(referenceCount);
+	}
 	/**
 	 * This is a private helper function that creates
 	 * a sample PpalmsProblem object that can be used
@@ -279,24 +497,19 @@ class PpalmsLogicHandlerTests {
 	 * the PpalmsLogicHandler requires the use
 	 * of modifying model attributes.
 	 * 
-	 * @return validated PpalmsProblem object
+	 * @return validate PpalmsProblem object
 	 */
 	private PpalmsProblem createValidPpalmsProblem() {
 		PpalmsProblem problem = new PpalmsProblem();
 		problem.setTitle("Test Title");
 		problem.setDescription("Test Description");
-		
 		problem.setSourceCode("test.py");
-		List<String> sourceCodeLines = new ArrayList<String>();
-			sourceCodeLines.add("def main:");
-			sourceCodeLines.add("# Comment before print");
-			sourceCodeLines.add("print('Hello World')");
-		problem.setSourceCodeLines(sourceCodeLines);
-		
+		problem.setSourceCodeLines(dummyLines);
+		problem.setAnnotations(Arrays.asList(31, 13, 45));
 		problem.setLmsTarget(LmsTarget.Canvas);
 		problem.setProblemType(ProblemType.Ordering);
-		
 		return problem;
 	}
+	
 
 }

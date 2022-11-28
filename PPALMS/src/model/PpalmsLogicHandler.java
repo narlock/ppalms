@@ -32,23 +32,39 @@ public class PpalmsLogicHandler {
 	
 	/**
 	 * PermutationMaker is a private inner class responsible for generating permutations.
-	 * It will generate a limited number of ordering of n elements.
+	 * It will generate a limited number of unique orderings of n elements.
+	 * 
+	 * @author Jaden
+	 *
 	 */
 	private class PermutationMaker {
 		private int limit = 30; // specified in docs
 		private Integer[] nums;
 		private ArrayList<ArrayList<Integer>> permutations;
 
-
+		/**
+		 * Swaps two elements in the nums list
+		 * @param i - index of first element to be swapped
+		 * @param j - index of second element to be swapped
+		 */
 		private void swap(int i, int j) {
 			int temp = nums[i];
 			nums[i] = nums[j];
 			nums[j] = temp;
 		}
-		
+		/**
+		 * Recursively builds permutations list using backtracking and recursive substructure.
+		 * The nums array is considered from the start index to its end with start initially at 0.
+		 * Each element is swapped into the starting position, and the following subarray
+		 * is permuted recursively as a subproblem.
+		 * @param nums - index list to permute in various orders
+		 * @param start - index to consider as start of subarray
+		 */
 		private void permutation(Integer[] nums, int start) {
 		      if (start == nums.length) {
-		    	  permutations.add(new ArrayList<Integer>(Arrays.asList(nums)));
+		    	  ArrayList<Integer> candidate = new ArrayList<>(Arrays.asList(nums));
+		    	  if (!permutations.contains(candidate))
+		    		  permutations.add(candidate);
 		    	  return;
 		      }
 		      for (int swapIdx = start; swapIdx < nums.length; swapIdx++) {
@@ -60,7 +76,11 @@ public class PpalmsLogicHandler {
 		      }
 		      
 		}
-		
+		/**
+		 *  Builds a list of unique permutations of n indices (0-indexed)
+		 * @param n - number of indices to permute
+		 * @return
+		 */
 		public ArrayList<ArrayList<Integer>> getPermutations(int n){
 			nums = new Integer[n];
 		    for (int i = 0; i < n; i++) 
@@ -147,9 +167,9 @@ public class PpalmsLogicHandler {
 		for(int index : problem.getAnnotations()) {
 			chosenCodeLines.add(problem.getSourceCodeLines().get(index));
 		}
-		for(String line : chosenCodeLines) {
-			System.out.println(line);
-		}
+//		for(String line : chosenCodeLines) {
+//			System.out.println(line);
+//		}
 		problem.setSourceCodeLines(chosenCodeLines);
 	}
 	
@@ -165,7 +185,7 @@ public class PpalmsLogicHandler {
 		//TODO Generate permutations and return List of problems
 		setAnnotations(problem);
 		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
-		System.out.println("Creating Permutations for " + problem.toString());
+//		System.out.println("Creating Permutations for " + problem.toString());
 		int n = problem.getAnnotations().size();
 		ArrayList<ArrayList<Integer>> permutations = new PermutationMaker().getPermutations(n);
 		for (ArrayList<Integer> permutation: permutations) {
@@ -196,7 +216,7 @@ public class PpalmsLogicHandler {
 	 * @return true for successful export, false for unsuccessful export.
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
-		//Call createPermutations
+		// Will call createPermutations
 		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
 		System.out.println(permutedProblems.size());
@@ -205,7 +225,8 @@ public class PpalmsLogicHandler {
 			System.out.println(permutedProblem.getSourceCodeLines());
 			annotations.add(permutedProblem.getSourceCodeLines());
 		}
-		//Create the JSON and save file location
+    
+		// Create the JSON and save file location
 		JSONObject obj = new JSONObject();
 		obj.put("title", problem.getTitle());
 		obj.put("description", problem.getDescription());

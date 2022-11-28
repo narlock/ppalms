@@ -105,7 +105,9 @@ public class PpalmsProblem {
 	 * @return annotations
 	 */
 	public List<Integer> getAnnotations() {
-		if(annotations == null) { annotations = new ArrayList<Integer>(); }
+		if(annotations == null) { 
+			annotations = new ArrayList<Integer>(); 
+		}
 		return annotations;
 	}
 	

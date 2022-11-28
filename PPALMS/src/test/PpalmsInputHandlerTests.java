@@ -257,41 +257,46 @@ public class PpalmsInputHandlerTests {
 		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextArea(""), "problemDescription"));
 	}
 
-	/**
-	 * testProcessInputExportProblemInputSuccessful
-	 * 
-	 * @brief This tests if export problem is processed
-	 * 
-	 * @author Stephanie Ye
-	 */
-	@Test
-	void testProcessInputExportProblemInputSuccessful() {
-		PpalmsGui gui = new PpalmsGui();
-		
-		//Creating a valid PPALMS Problem
-		PpalmsProblem problem = new PpalmsProblem();
-		gui.getPpalmsInputHandler().processInput(new JTextField("Test Title"), "problemTitle");
-		gui.getPpalmsInputHandler().processInput(new JTextArea("Test Description"), "problemDescription");
-		
-		gui.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension");
-		List<String> sourceCodeLines = new ArrayList<String>();
-			sourceCodeLines.add("def main:");
-			sourceCodeLines.add("# Comment before print");
-			sourceCodeLines.add("print('Hello World')");
-		gui.getPpalmsInputHandler().processInput(sourceCodeLines);
-		
-		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-		LMSInputStrategy lms = new LMSInputStrategy();
-		gui.updateViewStrategy(lms);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
-		lmsTargetComboBox.setSelectedIndex(1); 
-		gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget");
-		
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
-		problemTypeComboBox.setSelectedIndex(1); 
-		gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType");
-		assertTrue(gui.getPpalmsInputHandler().processInput(null, "exportProblem"));
-	}
+//	/**
+//	 * testProcessInputExportProblemInputSuccessful
+//	 * 
+//	 * @brief This tests if export problem is processed
+//	 * 
+//	 * @author Stephanie Ye
+//	 */
+//	@Test
+//	void testProcessInputExportProblemInputSuccessful() {
+//		PpalmsGui gui = new PpalmsGui();
+//		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
+//		LMSInputStrategy lms = new LMSInputStrategy();
+//		gui.updateViewStrategy(lms);
+//		
+//		//Creating a valid PPALMS Problem
+//		PpalmsProblem problem = new PpalmsProblem();
+//		
+//		gui.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension");
+//		List<String> sourceCodeLines = new ArrayList<String>();
+//			sourceCodeLines.add("def main:");
+//			sourceCodeLines.add("# Comment before print");
+//			sourceCodeLines.add("print('Hello World')");
+//		gui.getPpalmsInputHandler().processInput(sourceCodeLines);
+//		
+//		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
+//		lmsTargetComboBox.setSelectedIndex(1); 
+//		gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget");
+//		
+//		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
+//		problemTypeComboBox.setSelectedIndex(1); 
+//		gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType");
+//		
+//		gui.getPpalmsInputHandler().processInput(new JTextField("Test Title"), "problemTitle");
+//		gui.getPpalmsInputHandler().processInput(new JTextArea("Test Description"), "problemDescription");
+//		
+//		gui.getPpalmsInputHandler().processInput(0, "addAnnotation");
+//		gui.getPpalmsInputHandler().processInput(1, "addAnnotation");
+//	
+//		assertTrue(gui.getPpalmsInputHandler().processInput(null, "exportProblem"));
+//	}
 
 	/**
 	 * testProcessInputSourceCodeLinesInputSuccessful
@@ -331,29 +336,29 @@ public class PpalmsInputHandlerTests {
 		assertFalse(gui.getPpalmsInputHandler().processInput(lines));
 	}
 
-//	/**
-//	 * testProcessInputAddAnnotationSuccessful
-//	 * 
-//	 * @brief This tests if valid user input annotations are processed
-//	 * 
-//	 * @author Stephanie Ye
-//	 */
-//	@Test
-//	void testProcessInputAddAnnotationSuccessful() {
-//		PpalmsGui gui = new PpalmsGui();
-//		assertTrue(gui.getPpalmsInputHandler().processInput(0, "addAnnotation"));
-//	}
-//
-//	/**
-//	 * testProcessInputAddAnnotationUnsuccessful
-//	 * 
-//	 * @brief This tests if invalid user input annotations are not processed
-//	 * 
-//	 * @author Stephanie Ye
-//	 */
-//	@Test
-//	void testProcessInputAddAnnotationUnsuccessful() {
-//		PpalmsGui gui = new PpalmsGui();
-//		assertFalse(gui.getPpalmsInputHandler().processInput(0, "test"));
-//	}
+	/**
+	 * testProcessInputAddAnnotationSuccessful
+	 * 
+	 * @brief This tests if valid user input annotations are processed
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testProcessInputAddAnnotationSuccessful() {
+		PpalmsGui gui = new PpalmsGui();
+		assertTrue(gui.getPpalmsInputHandler().processInput(0, "addAnnotation"));
+	}
+
+	/**
+	 * testProcessInputAddAnnotationUnsuccessful
+	 * 
+	 * @brief This tests if event parameter is not valid (i.e. not addAnnotation)
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testProcessInputAddAnnotationUnsuccessful() {
+		PpalmsGui gui = new PpalmsGui();
+		assertFalse(gui.getPpalmsInputHandler().processInput(0, "test"));
+	}
 }

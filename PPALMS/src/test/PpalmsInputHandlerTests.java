@@ -257,46 +257,46 @@ public class PpalmsInputHandlerTests {
 		assertTrue(gui.getPpalmsInputHandler().processInput(new JTextArea(""), "problemDescription"));
 	}
 
-//	/**
-//	 * testProcessInputExportProblemInputSuccessful
-//	 * 
-//	 * @brief This tests if export problem is processed
-//	 * 
-//	 * @author Stephanie Ye
-//	 */
-//	@Test
-//	void testProcessInputExportProblemInputSuccessful() {
-//		PpalmsGui gui = new PpalmsGui();
-//		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-//		LMSInputStrategy lms = new LMSInputStrategy();
-//		gui.updateViewStrategy(lms);
-//		
-//		//Creating a valid PPALMS Problem
-//		PpalmsProblem problem = new PpalmsProblem();
-//		
-//		gui.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension");
-//		List<String> sourceCodeLines = new ArrayList<String>();
-//			sourceCodeLines.add("def main:");
-//			sourceCodeLines.add("# Comment before print");
-//			sourceCodeLines.add("print('Hello World')");
-//		gui.getPpalmsInputHandler().processInput(sourceCodeLines);
-//		
-//		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
-//		lmsTargetComboBox.setSelectedIndex(1); 
-//		gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget");
-//		
-//		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
-//		problemTypeComboBox.setSelectedIndex(1); 
-//		gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType");
-//		
-//		gui.getPpalmsInputHandler().processInput(new JTextField("Test Title"), "problemTitle");
-//		gui.getPpalmsInputHandler().processInput(new JTextArea("Test Description"), "problemDescription");
-//		
-//		gui.getPpalmsInputHandler().processInput(0, "addAnnotation");
-//		gui.getPpalmsInputHandler().processInput(1, "addAnnotation");
-//	
-//		assertTrue(gui.getPpalmsInputHandler().processInput(null, "exportProblem"));
-//	}
+	/**
+	 * testProcessInputExportProblemInputSuccessful
+	 * 
+	 * @brief This tests if export problem is processed. 
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testProcessInputExportProblemInputSuccessful() {
+		PpalmsGui gui = new PpalmsGui();
+		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
+		LMSInputStrategy lms = new LMSInputStrategy();
+		gui.updateViewStrategy(lms);
+		
+		//Creating a valid PPALMS Problem
+		PpalmsProblem problem = new PpalmsProblem();
+		
+		gui.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension");
+		List<String> sourceCodeLines = new ArrayList<String>();
+			sourceCodeLines.add("def main:");
+			sourceCodeLines.add("# Comment before print");
+			sourceCodeLines.add("print('Hello World')");
+		gui.getPpalmsInputHandler().processInput(sourceCodeLines);
+		
+		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getLmsTargetComboBox();
+		lmsTargetComboBox.setSelectedIndex(1); 
+		gui.getPpalmsInputHandler().processInput(lmsTargetComboBox, "lmsTarget");
+		
+		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) gui.getViewStrategy()).getProblemTypeComboBox();
+		problemTypeComboBox.setSelectedIndex(1); 
+		gui.getPpalmsInputHandler().processInput(problemTypeComboBox, "problemType");
+		
+		gui.getPpalmsInputHandler().processInput(new JTextField("Test Title"), "problemTitle");
+		gui.getPpalmsInputHandler().processInput(new JTextArea("Test Description"), "problemDescription");
+		
+		gui.getPpalmsInputHandler().processInput(0, "addAnnotation");
+		gui.getPpalmsInputHandler().processInput(1, "addAnnotation");
+	
+		assertTrue(gui.getPpalmsInputHandler().processInput(null, "exportProblem"));
+	}
 
 	/**
 	 * testProcessInputSourceCodeLinesInputSuccessful

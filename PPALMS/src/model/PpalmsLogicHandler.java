@@ -207,7 +207,7 @@ public class PpalmsLogicHandler {
 		obj.put("title", problem.getTitle());
 		obj.put("description", problem.getDescription());
 		obj.put("lms", problem.getLmsTarget().toString());
-		obj.put("type", problem.getProblemType());
+		obj.put("type", problem.getProblemType().toString());
 		obj.put("correct", problem.getSourceCodeLines());
 		obj.put("permutations", annotations);
 		

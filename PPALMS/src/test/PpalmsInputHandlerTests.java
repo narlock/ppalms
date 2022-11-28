@@ -27,8 +27,20 @@ import view.ProblemInputStrategy;
 import view.CodeInputStrategy;
 import view.LMSInputStrategy;
 
+/**
+ * 
+ * PpalmsInputHandler serves as the controller of the
+ * PPALMS application. This class handles the unit tests for the PpalmsInputHandler class and 
+ * the inputs of the user.
+ * @author Stephanie Ye
+ *
+ */
 public class PpalmsInputHandlerTests {
-
+	/**
+	 * testGetProblem()
+	 * This tests the getProblem() function in the InputHandler class
+	 * @author Stephanie Ye
+	 */
 	@Test 
 	void testGetProblem() {
 		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
@@ -36,6 +48,11 @@ public class PpalmsInputHandlerTests {
 		assertEquals(inputHandler.getProblem(), problem);
 	}
 	
+	/**
+	 * testGetProblemHandler()
+	 * This tests the getProblemHandler() function in the InputHandler class
+	 * @author Stephanie Ye
+	 */
 	@Test
 	void testGetProblemHandler() {
 		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
@@ -43,12 +60,21 @@ public class PpalmsInputHandlerTests {
 		assertEquals(inputHandler.getProblemHandler(), logicHandler);
 	}
 	
+	/**
+	 * testInvalidInput()
+	 * This tests if no input is given
+	 * @author Stephanie Ye 
+	 */
 	@Test
 	void testInvalidInput() {
 		PpalmsGui p = new PpalmsGui();
 		assertFalse(p.getPpalmsInputHandler().processInput(null, "test"));
 	}
 	
+	/**
+	 * testSourceCodeExtensionSuccessful() 
+	 * This tests the case where 
+	 */
 	@Test
 	void testSourceCodeExtensionSuccessful() {
 		PpalmsGui p = new PpalmsGui();
@@ -63,6 +89,7 @@ public class PpalmsInputHandlerTests {
 		PpalmsProblem problem = new PpalmsProblem();
 		PpalmsLogicHandler handler = new PpalmsLogicHandler();
 		p.getPpalmsInputHandler().processInput(new JTextField("example_source.py"), "sourceCode");
+//		assert
 	}
 	
 	@Test

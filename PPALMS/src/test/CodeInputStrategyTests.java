@@ -11,8 +11,8 @@ class CodeInputStrategyTests {
 
 	/**
 	 * testCodeInputStrategyAttributesNotNull
-	 * will ensure that the components of the
-	 * CodeInputStrategy is not null.
+	 * @brief This test will ensure that the components 
+	 * of the CodeInputStrategy is not null.
 	 * 
 	 * @author narlock
 	 * 

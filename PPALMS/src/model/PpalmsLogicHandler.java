@@ -36,7 +36,8 @@ public class PpalmsLogicHandler {
 		private int limit = 30; // specified in docs
 		private Integer[] nums;
 		private ArrayList<ArrayList<Integer>> permutations;
-		
+
+
 		private void swap(int i, int j) {
 			int temp = nums[i];
 			nums[i] = nums[j];
@@ -193,7 +194,7 @@ public class PpalmsLogicHandler {
 	 * @return true for successful export, false for unsuccessful export.
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
-		//TODO - will call createPermutations
+		//Call createPermutations
 		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
 		System.out.println(permutedProblems.size());
@@ -202,7 +203,7 @@ public class PpalmsLogicHandler {
 			System.out.println(permutedProblem.getSourceCodeLines());
 			annotations.add(permutedProblem.getSourceCodeLines());
 		}
-		//TODO - Create the JSON and save file location
+		//Create the JSON and save file location
 		JSONObject obj = new JSONObject();
 		obj.put("title", problem.getTitle());
 		obj.put("description", problem.getDescription());

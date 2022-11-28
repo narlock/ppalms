@@ -118,6 +118,8 @@ public class PpalmsInputHandler {
 	 * @return true for successful input, false for unsuccessful input.
 	 */
 	public boolean processInput(List<String> lines) {
+		int length = lines.size();
+		if(length == 0 || length > 50) { return false; }
 		problem.setSourceCodeLines(lines);
 		return true;
 	}

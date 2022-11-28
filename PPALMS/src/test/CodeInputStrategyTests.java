@@ -9,6 +9,9 @@ import view.PpalmsGui;
 
 class CodeInputStrategyTests {
 
+	/**
+	 *  This tests that each component of the strategy has been initialized
+	 */
 	@Test
 	void testCodeInputStrategyAttributesNotNull() {
 		CodeInputStrategy strategy = new CodeInputStrategy();

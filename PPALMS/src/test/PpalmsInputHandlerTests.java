@@ -112,7 +112,8 @@ public class PpalmsInputHandlerTests {
 	 * testProcessInputSourceCodeInputUnsuccessful
 	 * 
 	 * @brief This tests if no source code has been inputed to the application and therefore nothing is
-	 *        processed
+	 *        processed. This test will always return false because there is no return true in the switch
+	 *        case and there is no check in setSourceCode() to return anything either. 
 	 * 
 	 * @author Stephanie Ye
 	 */
@@ -260,7 +261,8 @@ public class PpalmsInputHandlerTests {
 	/**
 	 * testProcessInputExportProblemInputSuccessful
 	 * 
-	 * @brief This tests if export problem is processed. 
+	 * @brief This tests if export problem is processed given 
+	 * an input PPALMS problem. 
 	 * 
 	 * @author Stephanie Ye
 	 */
@@ -352,7 +354,8 @@ public class PpalmsInputHandlerTests {
 	/**
 	 * testProcessInputAddAnnotationUnsuccessful
 	 * 
-	 * @brief This tests if event parameter is not valid (i.e. not addAnnotation)
+	 * @brief This tests if event parameter is not valid for processInput of annotations  
+	 * (i.e. not addAnnotation)
 	 * 
 	 * @author Stephanie Ye
 	 */

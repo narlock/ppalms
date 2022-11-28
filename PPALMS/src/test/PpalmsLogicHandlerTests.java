@@ -440,7 +440,7 @@ class PpalmsLogicHandlerTests {
 	}
 	
 	/**
-	 * This tests that PPALMS problem exportation fails if the destination file already exists
+	 * This tests that PPALMS problem export fails if the destination file already exists
 	 */
 	@Test
 	void testExportPpalmsProblemFail() {
@@ -477,7 +477,7 @@ class PpalmsLogicHandlerTests {
 	 * is a permutation of a reference original String list.
 	 * @param reference - original String list to be compared to
 	 * @param candidate - candidate permutation of original String list
-	 * @return
+	 * @return true if is a permutation, false if not
 	 */
 	private boolean isPermutation(List<String> reference, List<String> candidate) {
 		HashMap<String, Integer> referenceCount = new HashMap<>();

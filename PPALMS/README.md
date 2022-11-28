@@ -1,5 +1,5 @@
-# **PPALMS v0.1**
-[Parson’s problems](https://en.wikipedia.org/wiki/Parsons_problems) are a form of assessment which differ from the typical code writing form of question on a typical exam in an introductory computer science class. The purpose of this application is to allow users to create a Parson's problem and export that problem to their LMS of choice. In version 0.1, the application supports only *ordering* problems.
+# **PPALMS v0.0.1**
+[Parson’s problems](https://en.wikipedia.org/wiki/Parsons_problems) are a form of assessment which differ from the typical code writing form of question on a typical exam in an introductory computer science class. The purpose of this application is to allow users to create a Parson's problem and export that problem to their LMS of choice. In version 0.0.1, the application supports only *ordering* problems.
 
 This is the first version of the PPALMS application. This document provides information related to instructing users to run the program and how the program is built and executed.
 

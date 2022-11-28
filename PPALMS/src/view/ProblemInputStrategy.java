@@ -116,9 +116,20 @@ public class ProblemInputStrategy extends ViewStrategy {
 	public void setControllerActions() {
 		exportProblem.setEnabled(false);
 	}
-
+	
+	/**
+	 * Getter method for problem title input text field.
+	 * 
+	 * @return titleInputTextField
+	 */
 	public JLabel getTitleInputLabel() { return titleInputLabel; }
 	public JTextField getTitleInputTextField() { return titleInputTextField; }
+	
+	/**
+	 * Getter method for problem description input text field. 
+	 * 
+	 * @return descriptionInputTextField
+	 */
 	public JLabel getDescriptionInputLabel() { return descriptionInputLabel; }
 	public JTextArea getDescriptionInputTextField() { return descriptionInputTextField; }
 	
@@ -134,6 +145,12 @@ public class ProblemInputStrategy extends ViewStrategy {
 	 * 
 	 * @return annotationPanel
 	 */
-=======
+	public JPanel getAnnotationPanel() { return annotationPanel; }
+	
+	/**
+	 * Getter method for problem annotation label.
+	 * 
+	 * @return annotationsLabel
+	 */
 	public JLabel getAnnotationsLabel() { return annotationsLabel; }
 }

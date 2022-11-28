@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -36,7 +35,11 @@ import controller.PpalmsInputHandler;
  * serve as the controller in the MVC
  * design pattern.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsGui
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class PpalmsGui extends JFrame {
@@ -75,6 +78,14 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
+	public ViewStrategy getViewStrategy() {
+		return viewStrategy;
+	}
+	
+	public PpalmsInputHandler getPpalmsInputHandler() {
+		return controller;
+	}
+	
 	/**
 	 * setCommmunicationActions method defines how the
 	 * view's components like buttons or text fields will be
@@ -102,8 +113,11 @@ public class PpalmsGui extends JFrame {
 						} else {
 							try {
 								List<String> yourFileLines = Files.readAllLines(Paths.get(inputFile.getAbsolutePath()));
-								controller.processInput(yourFileLines);
-								updateViewStrategy(new LMSInputStrategy());
+								if(controller.processInput(yourFileLines)) {
+									updateViewStrategy(new LMSInputStrategy());
+								} else {
+									viewStrategy.showErrorDialog("Invalid source code file.\nThe number of lines in the source code must\nbe between 1 and 50.");
+								}
 							} catch (IOException e1) {
 								viewStrategy.showErrorDialog("An IOException was thrown.");
 							}
@@ -199,10 +213,9 @@ public class PpalmsGui extends JFrame {
 				}
 				
 			});
-			
-			
+      
 			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
-			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
+			List<String> alines = controller.getProblem().getSourceCodeLines();
 			for(int i = 0; i < alines.size(); i++) {
 				annotationPanel.add(createAnnotationLineButton(exportProblem, i, alines.get(i)));
 			}

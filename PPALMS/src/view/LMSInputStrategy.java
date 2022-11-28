@@ -15,7 +15,11 @@ import javax.swing.JPanel;
  * the target LMS and the type of Parson's problem
  * to create.
  * 
- * @author narlock
+ * In the PPALMS design document, LMSInputStrategy
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class LMSInputStrategy extends ViewStrategy {
@@ -51,6 +55,11 @@ public class LMSInputStrategy extends ViewStrategy {
 	 */
 	private JButton confirmLmsTargetButton;
 	
+	/**
+	 * Sets the default view panel for LMSInputStrategy.
+	 * Generates a LMSTarget ComboBox with LMS options for selection,
+	 * And the same for ProblemType ComboBox. 
+	 */
 	@Override
 	public void setViewPanel() {
 		JPanel verticalPanel = new JPanel();
@@ -81,16 +90,49 @@ public class LMSInputStrategy extends ViewStrategy {
 		this.add(verticalPanel);
 	}
 
+	/**
+	 * Default controller actions with both problemType
+	 * ComboBox and LmsTarget Button components disabled. 
+	 */
 	@Override
 	public void setControllerActions() {
 		problemTypeComboBox.setEnabled(false);
 		confirmLmsTargetButton.setEnabled(false);
 	}
 	
+	/**
+	 * Getter that returns LMSTargetLabel component
+	 * 
+	 * @return lmsTargetlabel
+	 */
 	public JLabel getLmsTargetLabel() { return lmsTargetLabel; }
+	
+	/**
+	 * Getter that returns LMSTargetLabel component
+	 * 
+	 * @return lmsTargetComboBox
+	 */
 	public JComboBox<String> getLmsTargetComboBox() { return lmsTargetComboBox; }
+	
+	/**
+	 * Getter that returns LMSTargetLabel component
+	 * 
+	 * @return problemTypeLabel
+	 */
 	public JLabel getProblemTypeLabel() { return problemTypeLabel; }
+	
+	/**
+	 * Getter that returns problemType ComboBox component
+	 * 
+	 * @return problemTypeComboBox
+	 */
 	public JComboBox<String> getProblemTypeComboBox() { return problemTypeComboBox; }
+	
+	/**
+	 * Getter that returns confirmLmsTargetButton component
+	 * 
+	 * @return confirmLmsTargetButton
+	 */
 	public JButton getConfirmLmsTargetButton() { return confirmLmsTargetButton; }
 
 }

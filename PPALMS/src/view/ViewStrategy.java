@@ -8,7 +8,11 @@ import javax.swing.JPanel;
  * The PpalmsGui uses this to give behavior to
  * the display of the user interface.
  * 
- * @author narlock
+ * In the PPALMS design document, ViewStrategy
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public abstract class ViewStrategy extends JPanel {

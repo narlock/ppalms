@@ -18,7 +18,11 @@ import javax.swing.JTextField;
  * problem title, problem description, create
  * problem annotations, and export the problem.
  * 
- * @author narlock
+ * In the PPALMS design document, ProblemInputStrategy
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
  *
  */
 public class ProblemInputStrategy extends ViewStrategy {
@@ -103,14 +107,50 @@ public class ProblemInputStrategy extends ViewStrategy {
 		this.add(exportProblem, BorderLayout.SOUTH);
 		this.add(verticalPanel);
 	}
+	
 
+	/**
+	 * Setter for default controller actions.
+	 */
 	@Override
 	public void setControllerActions() {
 		exportProblem.setEnabled(false);
 	}
-
+	
+	/**
+	 * Getter method for problem title input text field.
+	 * 
+	 * @return titleInputTextField
+	 */
+	public JLabel getTitleInputLabel() { return titleInputLabel; }
 	public JTextField getTitleInputTextField() { return titleInputTextField; }
+	
+	/**
+	 * Getter method for problem description input text field. 
+	 * 
+	 * @return descriptionInputTextField
+	 */
+	public JLabel getDescriptionInputLabel() { return descriptionInputLabel; }
 	public JTextArea getDescriptionInputTextField() { return descriptionInputTextField; }
+	
+	/**
+	 * Getter method for exported Problem.
+	 * 
+	 * @return exportProblem
+	 */
 	public JButton getExportProblem() { return exportProblem; }
+	
+	/**
+	 * Getter method for problem annotation panel.
+	 * 
+	 * @return annotationPanel
+	 */
 	public JPanel getAnnotationPanel() { return annotationPanel; }
+	
+	/**
+	 * Getter method for problem annotation label.
+	 * 
+	 * @return annotationsLabel
+	 */
+	public JLabel getAnnotationsLabel() { return annotationsLabel; }
 }

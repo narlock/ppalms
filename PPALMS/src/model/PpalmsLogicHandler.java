@@ -20,7 +20,12 @@ import java.io.StringWriter;
  * and also serve as functions for creating
  * the final exported problem.
  * 
- * @author narlock
+ * In the PPALMS design document, PpalmsLogicHandler
+ * is one of the classes specified. It's purpose
+ * is reflected in that document.
+ * 
+ * @author Anthony Narlock
+ * @author Jaden Rodriguez
  *
  */
 public class PpalmsLogicHandler {
@@ -36,6 +41,7 @@ public class PpalmsLogicHandler {
 		private int limit = 30; // specified in docs
 		private Integer[] nums;
 		private ArrayList<ArrayList<Integer>> permutations;
+
 		/**
 		 * Swaps two elements in the nums list
 		 * @param i - index of first element to be swapped
@@ -210,7 +216,7 @@ public class PpalmsLogicHandler {
 	 * @return true for successful export, false for unsuccessful export.
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
-		// will call createPermutations
+		// Will call createPermutations
 		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
 		System.out.println(permutedProblems.size());
@@ -219,6 +225,7 @@ public class PpalmsLogicHandler {
 			System.out.println(permutedProblem.getSourceCodeLines());
 			annotations.add(permutedProblem.getSourceCodeLines());
 		}
+    
 		// Create the JSON and save file location
 		JSONObject obj = new JSONObject();
 		obj.put("title", problem.getTitle());

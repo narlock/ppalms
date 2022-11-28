@@ -29,9 +29,18 @@ import model.PpalmsProblem;
 import model.ProblemType;
 
 /**
- * Test suite which checks that the logic handler meets design specifications
- * and accounts for errors and situations which lie outside the design specification domain.
- * @author jadenrodriguez
+ * PpalmsLogicHandlerTests
+ * 
+ * This class holds all of the unit tests
+ * for the PpalmsLogicHandler class.
+ * 
+ * These unit tests are specified in the
+ * PPALMS Testing Document and implemented
+ * utilizing the JUnit testing framework
+ * in this class.
+ * 
+ * @author Anthony Narlock
+ * @author Jaden Rodriguez
  *
  */
 class PpalmsLogicHandlerTests {
@@ -101,8 +110,13 @@ class PpalmsLogicHandlerTests {
 		handler = new PpalmsLogicHandler();
 		problem = createValidPpalmsProblem();
 	}
+
 	/**
-	 * Test that handler accepts file extensions specified in design document
+	 * Ensure validity of a user’s source code file. 
+	 * This test executes the validateCodeInput method 
+	 * in the PpalmsLogicHandler.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test
 	void testValidateCodeInputSuccess() {
@@ -131,34 +145,54 @@ class PpalmsLogicHandlerTests {
 		assertTrue(handler.validateCodeInput(problem));
 		assertEquals("test.cc", problem.getSourceCode());
 	}
+	
 	/**
-	 * Test that handler rejects uninitialized code input
+	 * Ensure validity of a user’s source code file under the condition 
+	 * of failure to select a source code file. This can happen if the 
+	 * user selects cancel on the file chooser dialog. This test executes 
+	 * the validateCodeInput method in the PpalmsLogicHandler.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test
 	void testValidateCodeInputNoCode() {
 		PpalmsProblem problem = new PpalmsProblem();
 		assertFalse(handler.validateCodeInput(problem));
 	}
+	
 	/**
-	 * Test that PPALMS rejects extensions which are not listed in the design document
+	 * Ensure validity of a user’s source code file under the condition 
+	 * of failure to select a source code file. This can happen if the 
+	 * user selects a file that contains an unsupported file extension. 
+	 * This test executes the validateCodeInput method in the PpalmsLogicHandler.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test
 	void testValidateCodeInputInvalidExtension() {
+		//Test with .txt extension
 		problem.setSourceCode("test.txt");
 		assertFalse(handler.validateCodeInput(problem));
 		
+		//Test with .png extension
 		problem.setSourceCode("test.png");
 		assertFalse(handler.validateCodeInput(problem));
 		
+		//Test with .mp4 extension
 		problem.setSourceCode("test.mp4");
 		assertFalse(handler.validateCodeInput(problem));
 		
+		//Test with .ml extension
 		problem.setSourceCode("test.ml");
 		assertFalse(handler.validateCodeInput(problem));
 	}
+	
 	/**
-	 * Test that Title validation succeeds according to specification
-	 * (Succeed as long as initialized because it is optional).
+	 * Ensure that the PPALMS application properly validates title input 
+	 * in regards to the requirements specification. That is, the user can 
+	 * choose to leave the field blank and not indicate a title since it is optional.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test
 	void testValidateTitleInputSuccess() {
@@ -170,8 +204,13 @@ class PpalmsLogicHandlerTests {
 		problem.setTitle("");
 		assertTrue(handler.validateTitleInput(problem));
 	}
+  
 	/**
-	 * Test that Description validation fails when uninitialized
+	 * Ensure that the PPALMS application will return failure under an unexpected 
+	 * condition that does not initialize the title input text field in the 
+	 * ProblemInputStrategy.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test 
 	void testValidateTitleInputFailure() {
@@ -182,9 +221,13 @@ class PpalmsLogicHandlerTests {
 		problem.setTitle(null);
 		assertFalse(handler.validateTitleInput(problem));
 	}
+	
 	/**
-	 * Test that Description validation succeeds according to specification
-	 * (Succeed as long as initialized because it is optional).
+	 * Ensure that the PPALMS application properly validates description input in
+	 * regards to the requirements specification. That is, the user can choose to 
+	 * leave the field blank and not indicate a description since it is optional.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test
 	void testValidateDescInputSuccess() {
@@ -196,8 +239,13 @@ class PpalmsLogicHandlerTests {
 		problem.setDescription("");
 		assertTrue(handler.validateDescInput(problem));
 	}
+	
 	/**
-	 * Test that Description validation fails when uninitialized
+	 * Ensure that the PPALMS application will return failure under an unexpected 
+	 * condition that does not initialize the description input text field in the
+	 * ProblemInputStrategy.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test 
 	void testValidateDescInputFailure() {
@@ -208,9 +256,16 @@ class PpalmsLogicHandlerTests {
 		problem.setDescription(null);
 		assertFalse(handler.validateDescInput(problem));
 	}
+  
 	/**
-	 * Tests that setAnnotations correctly processes user annotations
-	 * via sorting and line filtering
+	 * Given an input selection of annotations for an ordering problem. 
+	 * The annotations will come in the form of user-selected lines. 
+	 * Upon selecting each line, the PPALMS application will validate 
+	 * the selected annotations by sorting them. This allows the user 
+	 * to select lines of code in their problem out of order and still 
+	 * receive their expected result.
+	 * 
+	 * @author Anthony Narlock
 	 */
 	@Test
 	void testSetAnnotations() {
@@ -434,9 +489,15 @@ class PpalmsLogicHandlerTests {
 		return candidateCount.equals(referenceCount);
 	}
 	/**
-	 * This method creates a PPALMS problem to run unit tests on.
-	 * It has been given values which purposefully push the limitations specified in the design document.
-	 * @return
+	 * This is a private helper function that creates
+	 * a sample PpalmsProblem object that can be used
+	 * during the test cases.
+	 * 
+	 * This helper function promotes code reuse as
+	 * the PpalmsLogicHandler requires the use
+	 * of modifying model attributes.
+	 * 
+	 * @return validate PpalmsProblem object
 	 */
 	private PpalmsProblem createValidPpalmsProblem() {
 		PpalmsProblem problem = new PpalmsProblem();

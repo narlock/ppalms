@@ -204,7 +204,8 @@ public class PpalmsGui extends JFrame {
 			});
       
 			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
-			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
+//			List<String> alines = controller.getPpalmsProblem().getSourceCodeLines();
+			List<String> alines = controller.getProblem().getSourceCodeLines();
 			for(int i = 0; i < alines.size(); i++) {
 				annotationPanel.add(createAnnotationLineButton(exportProblem, i, alines.get(i)));
 			}

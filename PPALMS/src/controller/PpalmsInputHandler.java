@@ -42,10 +42,20 @@ public class PpalmsInputHandler {
 		this.problemHandler = new PpalmsLogicHandler();
 	}
 	
+	/**
+	 * Getter method for PpalmsProblem. 
+	 * 
+	 * @return problem
+	 */
 	public PpalmsProblem getProblem() {
 		return problem;
 	}
 	
+	/**
+	 * Getter method for PpalmsLogicHandler. 
+	 * 
+	 * @return PpalmsLogicHandler
+	 */
 	public PpalmsLogicHandler getProblemHandler() {
 		return problemHandler;
 	}
@@ -69,7 +79,7 @@ public class PpalmsInputHandler {
 			case "sourceCode":
 				//This event will be called after it has been validated.
 				problem.setSourceCode(((JTextField) component).getText());
-				break;
+				return true;
 			case "lmsTarget":
 				String targetLms = (String) ((JComboBox<String>) component).getSelectedItem();
 				try {
@@ -139,12 +149,12 @@ public class PpalmsInputHandler {
 		return false;
 	}
 	
-	/**
-	 * Getter method for PpalmsProblem. 
-	 * 
-	 * @return problem
-	 */
-	public PpalmsProblem getPpalmsProblem() { 
-		return problem; 
-	}
+//	/**
+//	 * Getter method for PpalmsProblem. 
+//	 * 
+//	 * @return problem
+//	 */
+//	public PpalmsProblem getPpalmsProblem() { 
+//		return problem; 
+//	}
 }

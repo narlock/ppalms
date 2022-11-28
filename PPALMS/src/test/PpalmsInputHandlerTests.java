@@ -43,48 +43,20 @@ import view.LMSInputStrategy;
  */
 public class PpalmsInputHandlerTests {
 	/**
-	 * testGetProblem
-	 * 
-	 * @brief This tests the getProblem() function in the InputHandler class
-	 * 
-	 * @author Stephanie Ye
-	 */
-	@Test
-	void testGetProblem() {
-		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-		PpalmsProblem problem = inputHandler.getProblem();
-		assertEquals(inputHandler.getProblem(), problem);
-	}
-
-	/**
-	 * testGetProblemHandler
-	 * 
-	 * @brief This tests the getProblemHandler() function in the InputHandler class
-	 *
-	 * @author Stephanie Ye
-	 */
-	@Test
-	void testGetProblemHandler() {
-		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-		PpalmsLogicHandler logicHandler = inputHandler.getProblemHandler();
-		assertEquals(inputHandler.getProblemHandler(), logicHandler);
-	}
-
-	/**
-	 * testInvalidInput
+	 * testProcessInputInvalidInput
 	 * 
 	 * @brief This tests if no input is given, nothing is processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testInvalidInput() {
+	void testProcessInputInvalidInput() {
 		PpalmsGui p = new PpalmsGui();
 		assertFalse(p.getPpalmsInputHandler().processInput(null, "test"));
 	}
 
 	/**
-	 * testSourceCodeExtensionSuccessful
+	 * testProcessInputSourceCodeExtensionSuccessful
 	 * 
 	 * @brief This tests the case where a source file with an acceptable file
 	 *        extension is inputed and processed
@@ -92,13 +64,51 @@ public class PpalmsInputHandlerTests {
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testSourceCodeExtensionSuccessful() {
+	void testProcessInputSourceCodeExtensionSuccessful() {
 		PpalmsGui p = new PpalmsGui();
-		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("example_source.py"), "sourceCodeExtension"));
+		//Tests with Python code extension
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.py"), "sourceCodeExtension"));
+		
+		//Tests with Java code extension
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.java"), "sourceCodeExtension"));
+		
+		//Tests with C++ "cpp" code extension
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.cpp"), "sourceCodeExtension"));
+		
+		//Tests with C++ "cc" code extension
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.cc"), "sourceCodeExtension"));
+	
+		//Tests with C code extension
+		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test.c"), "sourceCodeExtension"));
+	}
+	
+	/**
+	 * testProcessInputSourceCodeExtensionUnsuccessful
+	 * 
+	 * @brief This tests the case where a source file with an unacceptable file
+	 *        extension is inputed and therefore not processed
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testProcessInputSourceCodeExtensionUnsuccessful() {
+		PpalmsGui p = new PpalmsGui();
+		//Tests with .txt extension
+		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.txt"), "sourceCodeExtension"));
+		
+		//Tests with .png extension
+		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.png"), "sourceCodeExtension"));
+		
+		//Tests with .mp4 extension
+		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.mp4"), "sourceCodeExtension"));
+				
+		//Tests with .ml extension
+		assertFalse(p.getPpalmsInputHandler().processInput(new JTextField("test.ml"), "sourceCodeExtension"));
+				
 	}
 
 	/**
-	 * testSourceCodeInputSuccessful
+	 * testProcessInputSourceCodeInputSuccessful
 	 * 
 	 * @brief This tests if source code has been inputed to the application and is
 	 *        processed
@@ -106,20 +116,20 @@ public class PpalmsInputHandlerTests {
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testSourceCodeInputSuccessful() {
+	void testProcessInputSourceCodeInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("example_source.py"), "sourceCode"));
 	}
 
 	/**
-	 * testLmsTargetInputSuccessful
+	 * testProcessInputLmsTargetInputSuccessful
 	 * 
 	 * @brief This tests the case where a valid target LMS is inputed and processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testLmsTargetInputSuccessful() {
+	void testProcessInputLmsTargetInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
 		LMSInputStrategy l = new LMSInputStrategy();
@@ -130,7 +140,7 @@ public class PpalmsInputHandlerTests {
 	}
 
 	/**
-	 * testLmsTargetInputUnsuccessful
+	 * testProcessInputLmsTargetInputUnsuccessful
 	 * 
 	 * @brief This tests if an invalid target LMS is inputed and therefore not
 	 *        processed
@@ -138,7 +148,7 @@ public class PpalmsInputHandlerTests {
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testLmsTargetInputUnsuccessful() {
+	void testProcessInputLmsTargetInputUnsuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
 		LMSInputStrategy l = new LMSInputStrategy();
@@ -149,14 +159,14 @@ public class PpalmsInputHandlerTests {
 	}
 
 	/**
-	 * testProblemTypeInputSuccessful
+	 * testProcessInputProblemTypeInputSuccessful
 	 * 
 	 * @brief This tests if a valid problem type is inputed and processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testProblemTypeInputSuccessful() {
+	void testProcessInputProblemTypeInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
@@ -167,7 +177,7 @@ public class PpalmsInputHandlerTests {
 	}
 
 	/**
-	 * testProblemTypeInputUnsuccessful
+	 * testProcessInputProblemTypeInputUnsuccessful
 	 * 
 	 * @brief This tests if an invalid problem type is inputed and therefore not
 	 *        processed
@@ -175,7 +185,7 @@ public class PpalmsInputHandlerTests {
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testProblemTypeInputUnsuccessful() {
+	void testProcessInputProblemTypeInputUnsuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
@@ -186,108 +196,95 @@ public class PpalmsInputHandlerTests {
 	}
 
 	/**
-	 * testProblemTtileInputSuccessful
+	 * testProcessInputProblemTtileInputSuccessful
 	 * 
 	 * @brief This tests if a Problem Title is inputed and processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testProblemTtileInputSuccessful() {
+	void testProcessInputProblemTtileInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertTrue(p.getPpalmsInputHandler().processInput(new JTextField("test title"), "problemTitle"));
 	}
 
 	/**
-	 * testProblemDescriptionInputSuccessful
+	 * testProcessInputProblemDescriptionInputSuccessful
 	 * 
 	 * @brief This tests if a Problem Description is inputed and processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testProblemDescriptionInputSuccessful() {
+	void testProcessInputProblemDescriptionInputSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertTrue(p.getPpalmsInputHandler().processInput(new JTextArea("test description: This is a PPALMS Problem"), "problemDescription"));
 	}
 
 	/**
-	 * testExportProblemInputSuccessful
+	 * testProcessInputExportProblemInputSuccessful
 	 * 
 	 * @brief This tests if export problem is processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testExportProblemInputSuccessful() {
-//		PpalmsGui p = new PpalmsGui();
-//		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-//		PpalmsProblem problem = new PpalmsProblem();
-//		problem.setTitle("Test Title");
-//		problem.setDescription("Test Description");
-//		
-//		problem.setSourceCode("test.py");
-//		List<String> sourceCodeLines = new ArrayList<String>();
-//			sourceCodeLines.add("def main:");
-//			sourceCodeLines.add("# Comment before print");
-//			sourceCodeLines.add("print('Hello World')");
-//		problem.setSourceCodeLines(sourceCodeLines);
-//		
-//		problem.setLmsTarget(LmsTarget.Canvas);
-//		problem.setProblemType(ProblemType.Ordering);
-//		assertTrue(p.getPpalmsInputHandler().processInput(null, "exportProblem"));
+	void testProcessInputExportProblemInputSuccessful() {
+		PpalmsGui p = new PpalmsGui();
+		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
+		PpalmsProblem problem = new PpalmsProblem();
+		problem.setTitle("Test Title");
+		problem.setDescription("Test Description");
+		
+		problem.setSourceCode("test.py");
+		List<String> sourceCodeLines = new ArrayList<String>();
+			sourceCodeLines.add("def main:");
+			sourceCodeLines.add("# Comment before print");
+			sourceCodeLines.add("print('Hello World')");
+		problem.setSourceCodeLines(sourceCodeLines);
+		
+		problem.setLmsTarget(LmsTarget.Canvas);
+		problem.setProblemType(ProblemType.Ordering);
+		assertTrue(p.getPpalmsInputHandler().processInput(null, "exportProblem"));
 	}
 
 	/**
-	 * testSourceCodeLinesInput
+	 * testProcessInputSourceCodeLinesInput
 	 * 
 	 * @brief This tests if user input source code lines are processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testSourceCodeLinesInput() {
+	void testProcessInputSourceCodeLinesInput() {
 		PpalmsGui p = new PpalmsGui();
 		List<String> lines = Arrays.asList("void function()", "function(variable)", "x=null");
 		assertTrue(p.getPpalmsInputHandler().processInput(lines));
 	}
 
 	/**
-	 * testAddAnnotationSuccessful
+	 * testProcessInputAddAnnotationSuccessful
 	 * 
 	 * @brief This tests if user input annotations are processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testAddAnnotationSuccessful() {
+	void testProcessInputAddAnnotationSuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertTrue(p.getPpalmsInputHandler().processInput(0, "addAnnotation"));
 	}
 
 	/**
-	 * testAddAnnotationUnsuccessful
+	 * testProcessInputAddAnnotationUnsuccessful
 	 * 
 	 * @brief This tests if user input annotations are not processed
 	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testAddAnnotationUnsuccessful() {
+	void testProcessInputAddAnnotationUnsuccessful() {
 		PpalmsGui p = new PpalmsGui();
 		assertFalse(p.getPpalmsInputHandler().processInput(0, "test"));
 	}
-
-//	/**
-//	 * testGetPpalmsProblem
-//	 * 
-//	 * @brief This tests the getPpalmsProblem() function in the InputHandler class
-//	 * 
-//	 * @author Stephanie Ye
-//	 */
-//	void testGetPpalmsProblem() {
-//		PpalmsInputHandler inputHandler = new PpalmsInputHandler();
-//		PpalmsProblem problem = inputHandler.getPpalmsProblem();
-//		assertEquals(inputHandler.getPpalmsProblem(), problem);
-//	}
 }

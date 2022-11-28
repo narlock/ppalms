@@ -78,13 +78,34 @@ public class PpalmsGui extends JFrame {
 		this.setCommunicationActions();
 	}
 	
+	/**
+	 * Getter method for ViewStrategy
+	 * @return viewStrategy
+	 */
 	public ViewStrategy getViewStrategy() {
 		return viewStrategy;
 	}
 	
+	/**
+	 * Getter method for PpalmsInputHandler
+	 * @return controller
+	 */
 	public PpalmsInputHandler getPpalmsInputHandler() {
 		return controller;
 	}
+	
+	/**
+	 * Getter method for private method getAnnotationLineButton
+	 * 
+	 * @param exportProblem
+	 * @param index
+	 * @param line
+	 * @return createAnnotationLineButton(exportProblem, index, line)
+	 */
+	public JButton getAnnotationLineButton(JButton exportProblem, int index, String line) {
+		return createAnnotationLineButton(exportProblem, index, line);
+	}
+	
 	
 	/**
 	 * setCommmunicationActions method defines how the

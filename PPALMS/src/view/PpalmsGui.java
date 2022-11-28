@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -191,6 +192,10 @@ public class PpalmsGui extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if(controller.processInput(null, "exportProblem"))
 						System.exit(1);
+					else {
+						viewStrategy.showErrorDialog("A system error occured which prevented the file from being made.\nMost likely, the file \"problem.json\" already exists, and you should move or delete it.");
+						
+					}
 				}
 				
 			});

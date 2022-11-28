@@ -57,8 +57,25 @@ public class CodeInputStrategy extends ViewStrategy {
 		this.add(verticalPanel);
 	}
 
+	/**
+	 * Getter method for code input label.
+	 * 
+	 * @return codeInputLabel
+	 */
 	public JLabel getCodeInputLabel() { return this.codeInputLabel; }
+	
+	/**
+	 * Getter method for code input button.
+	 * 
+	 * @return codeInputButton
+	 */
 	public JButton getCodeInputButton() { return this.codeInputButton; }
+	
+	/**
+	 * Getter method for filechooser component.
+	 * 
+	 * @return fileChooser
+	 */
 	public JFileChooser getFileChooser() { return this.fileChooser; }
 
 	@Override

@@ -7,9 +7,12 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.junit.jupiter.api.Test;
 
+import controller.PpalmsInputHandler;
 import model.LmsTarget;
 import view.LMSInputStrategy;
 import view.CodeInputStrategy;
@@ -17,9 +20,32 @@ import view.ViewStrategy;
 import view.ProblemInputStrategy;
 import view.PpalmsGui;
 
+/**
+ * PpalmsGuiTests
+ * 
+ * This class holds all the unite tests 
+ * for the PpalmsGuiTests class. 
+ * 
+ * The following unit tests are specified
+ * in the PPALMS Testing Document and implemented
+ * utilizing the JUnit testing framework
+ * in this class. 
+ * 
+ * @author Shen
+ *
+ */
 class PpalmsGuiTests {
 	
-	// Tests whether if the default "CodeInputStrategy" view strategy has been updated 
+	/**
+	 * testUpdateViewStrategy
+	 * 
+	 * @brief Tests whether if the view strategy has changed
+	 * from the default "CodeInputStrategy" to "LMSInputStrategy"
+	 * in this testing scenario when updateViewStrategy method 
+	 * is invoked.  
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testUpdateViewStrategy() {
 	  PpalmsGui p = new PpalmsGui();
@@ -28,18 +54,26 @@ class PpalmsGuiTests {
 	  assertEquals(true, p.getViewStrategy() instanceof LMSInputStrategy);
 	}
 	
-//	// example_source.py
-//	@Test
-//	void testFileInputSuccessful() {
-//		PpalmsGui p = new PpalmsGui();
-//		JButton btn = ((CodeInputStrategy) p.getViewStrategy()).getCodeInputButton();
-//		btn.doClick(); // simulate btn click
-//		File inputFile = new File("src/test/example_source.py");
-//		JFileChooser fileChooser = ((CodeInputStrategy) p.getViewStrategy()).getFileChooser();
-//		int returnValue = 0;
-//		assertEquals(0, JFileChooser.APPROVE_OPTION);
-//	}
+	@Test
+	void testFileInputSuccessful() {
+		//Functional test, done manually
+	}
 	
+	@Test
+	void testNoFileSelected() {
+		//Functional test, done manually
+	}
+	
+	/**
+	 * testTargetLMSNoneSelected
+	 * 
+	 * @brief Tests the intended behavior of the LMSInputStrategy
+	 * view, whereby given that no target LMS is selected, the 
+	 * problemType ComboBox and confirmLmsTarget button would not be
+	 * enabled. 
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test 
 	void testTargetLMSNoneSelected(){
 		PpalmsGui p = new PpalmsGui();
@@ -49,11 +83,18 @@ class PpalmsGuiTests {
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
 		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
 		lmsTargetComboBox.setSelectedIndex(0); // Invalid Argument
-		System.out.println(LmsTarget.Canvas.ordinal());
 		assertEquals(false, problemTypeComboBox.isEnabled()); // not enabled
 		assertEquals(false, confirmLmsTargetButton.isEnabled()); // not enabled
 	}
 	
+	/**
+	 * testTargetLMSCanvasSelected
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * LMS target "Canvas" was selected. 
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test
 	void testTargetLMSCanvasSelected() {
 		PpalmsGui p = new PpalmsGui();
@@ -65,6 +106,14 @@ class PpalmsGuiTests {
 		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
 	}
 	
+	/**
+	 * testTargetLMSD2LSelected
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * LMS target "D2L" was selected. 
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test
 	void testTargetLMSD2LSelected() {
 		PpalmsGui p = new PpalmsGui();
@@ -76,6 +125,14 @@ class PpalmsGuiTests {
 		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
 	}
 	
+	/**
+	 * testTargetLMSAbsorbSelected
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * LMS target "Absorb" was selected. 
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test
 	void testTargetLMSAbsorbSelected() {
 		PpalmsGui p = new PpalmsGui();
@@ -87,6 +144,14 @@ class PpalmsGuiTests {
 		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
 	}
 	
+	/**
+	 * testTargetLMSMatrixSelected
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * LMS target "Matrix" was selected. 
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test
 	void testTargetLMSMatrixSelected() {
 		PpalmsGui p = new PpalmsGui();
@@ -98,6 +163,14 @@ class PpalmsGuiTests {
 		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
 	}
 	
+	/**
+	 * testTargetLMSTalentSelected
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * LMS target "Talent" was selected. 
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testTargetLMSTalentSelected() {
 		PpalmsGui p = new PpalmsGui();
@@ -109,6 +182,14 @@ class PpalmsGuiTests {
 		assertEquals(true, problemTypeComboBox.isEnabled()); // enabled
 	}
 	
+	/**
+	 * testProblemTypeNotSelected
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * problem type is not selected. 
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test
 	void testProblemTypeNotSelected() { // no problem type selected
 		PpalmsGui p = new PpalmsGui();
@@ -120,6 +201,14 @@ class PpalmsGuiTests {
 		assertEquals(false, confirmLmsTargetButton.isEnabled());
 	}
 	
+	/**
+	 * testProblemTypeSelected
+	 * 
+	 * @brief Tests the intended system behavior when 
+	 * a problem type is selected from the combobox
+	 * 
+	 * @author Shen Lua 
+	 */
 	@Test
 	void testProblemTypeSelected() { // ordering Problem type
 		PpalmsGui p = new PpalmsGui();
@@ -130,24 +219,5 @@ class PpalmsGuiTests {
 		problemTypeComboBox.setSelectedIndex(1);
 		assertEquals(true, confirmLmsTargetButton.isEnabled());
 	}
-	
-	@Test
-	void testViewStrategyUpdatedAfterConfirmLmsTargetButton() {
-		PpalmsGui p = new PpalmsGui();
-		LMSInputStrategy l = new LMSInputStrategy();
-		p.updateViewStrategy(l);
-		JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) p.getViewStrategy()).getLmsTargetComboBox();
-		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
-		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
-		lmsTargetComboBox.setSelectedIndex(1);
-		problemTypeComboBox.setSelectedIndex(1);
-		confirmLmsTargetButton.doClick(); // once both lmsTargetComboBox & ProblemTypeComboBox have been selected, we simulate a click on the confirm button
-		assertEquals(true, p.getViewStrategy() instanceof ProblemInputStrategy);
-	}
-	
-	// When ViewStrategy is ProblemInputStrategy
-
-	
-	
 	
 }

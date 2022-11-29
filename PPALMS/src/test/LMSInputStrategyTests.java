@@ -25,7 +25,7 @@ class LMSInputStrategyTests {
 	/**
 	 * testAllLMSOptionsExistInLMSTargetComboBox
 	 * 
-	 * @briefTo ensure all LMS target options are available 
+	 * @brief To ensure all LMS target options are available 
 	 * for selection in the ComboBox
 	 * 
 	 * @author Shen Lua

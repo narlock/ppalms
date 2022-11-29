@@ -41,7 +41,8 @@ class CodeInputStrategyTests {
 	
 	/**
 	 * testCodeInputStrategyAttributesNotNull
-	 * will ensure that the component attributes
+	 * 
+	 * @brief will ensure that the component attributes
 	 * are visually set correctly.
 	 * 
 	 * @author Anthony Narlock

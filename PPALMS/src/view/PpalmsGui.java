@@ -47,17 +47,17 @@ import controller.PpalmsInputHandler;
 public class PpalmsGui extends JFrame {
 	
 	/**
-	 * See {@link ViewStrategy} for definition.
+	 * @brief See {@link ViewStrategy} for definition.
 	 */
 	private ViewStrategy viewStrategy;
 	
 	/**
-	 * See {@link PpalmsInputHandler} for definition.
+	 * @brief See {@link PpalmsInputHandler} for definition.
 	 */
 	private PpalmsInputHandler controller;
 	
 	/**
-	 * The PpalmsGui constructor defines the Java
+	 * @brief The PpalmsGui constructor defines the Java
 	 * JFrame in which creates the window that
 	 * the user will interact with.
 	 * 
@@ -81,7 +81,7 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	/**
-	 * Getter method for ViewStrategy
+	 * @brief Getter method for ViewStrategy
 	 * @return viewStrategy
 	 */
 	public ViewStrategy getViewStrategy() {
@@ -89,7 +89,7 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	/**
-	 * Getter method for PpalmsInputHandler
+	 * @brief Getter method for PpalmsInputHandler
 	 * @return controller
 	 */
 	public PpalmsInputHandler getPpalmsInputHandler() {
@@ -97,7 +97,7 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	/**
-	 * Getter method for private method getAnnotationLineButton
+	 * @brief Getter method for private method getAnnotationLineButton
 	 * 
 	 * @param exportProblem
 	 * @param index
@@ -110,7 +110,7 @@ public class PpalmsGui extends JFrame {
 	
 	
 	/**
-	 * setCommmunicationActions method defines how the
+	 * @brief setCommmunicationActions method defines how the
 	 * view's components like buttons or text fields will be
 	 * a controller event.
 	 * 
@@ -247,7 +247,7 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	/**
-	 * A helper function that updates the view.
+	 * @brief A helper function that updates the view.
 	 * 
 	 * @param newStrategy
 	 */
@@ -262,7 +262,7 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	/**
-	 * A helper function that refocuses the JFrame.
+	 * @brief A helper function that refocuses the JFrame.
 	 * The purpose of this is to "refresh" the frame
 	 * that is needed on some updates.
 	 */
@@ -272,7 +272,7 @@ public class PpalmsGui extends JFrame {
 	}
 	
 	/**
-	 * A helper function in which creates an annotation line button
+	 * @brief A helper function in which creates an annotation line button
 	 * that is used in the LMSInputStrategy. The reason that
 	 * this has been taken out is so that the application can
 	 * reuse this function for each of the lines the user

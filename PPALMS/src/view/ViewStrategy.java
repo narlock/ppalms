@@ -20,17 +20,17 @@ import javax.swing.JPanel;
 public abstract class ViewStrategy extends JPanel {
 	
 	/**
-	 * Sets and defines the components of the strategy.
+	 * @brief Sets and defines the components of the strategy.
 	 */
 	public abstract void setViewPanel();
 	
 	/**
-	 * Sets predefined component actions.
+	 * @brief Sets predefined component actions.
 	 */
 	public abstract void setControllerActions();
 	
 	/**
-	 * Displays an error message dialog when an error occurs.
+	 * @brief Displays an error message dialog when an error occurs.
 	 * @param message
 	 */
 	public void showErrorDialog(String message) {
@@ -39,7 +39,7 @@ public abstract class ViewStrategy extends JPanel {
 	}
 	
 	/**
-	 * ViewStrategy's constructor will call
+	 * @brief ViewStrategy's constructor will call
 	 * the setViewPanel function and setControllerActions
 	 * 
 	 * This is to provide separation of method purposes

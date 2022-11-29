@@ -216,6 +216,7 @@ public class PpalmsInputHandlerTests {
 	 * true because even when passing in a JTextField that is null, when it 
 	 * does JComponenet.getText(), it processes it as an empty string "" 
 	 * which is valid
+	 * 
 	 * @author Stephanie Ye
 	 */
 	@Test

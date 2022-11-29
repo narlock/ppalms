@@ -111,7 +111,9 @@ class PpalmsLogicHandlerTests {
 	}
 
 	/**
-	 * Ensure validity of a user’s source code file. 
+	 * testValidateCodeInputSuccess
+	 * 
+	 * @brief Ensure validity of a user’s source code file. 
 	 * This test executes the validateCodeInput method 
 	 * in the PpalmsLogicHandler.
 	 * 
@@ -146,7 +148,9 @@ class PpalmsLogicHandlerTests {
 	}
 	
 	/**
-	 * Ensure validity of a user’s source code file under the condition 
+	 * testValidateCodeInputNoCode
+	 * 
+	 * @brief Ensure validity of a user’s source code file under the condition 
 	 * of failure to select a source code file. This can happen if the 
 	 * user selects cancel on the file chooser dialog. This test executes 
 	 * the validateCodeInput method in the PpalmsLogicHandler.

@@ -27,38 +27,38 @@ import javax.swing.JPanel;
 public class LMSInputStrategy extends ViewStrategy {
 
 	/**
-	 * The label component indicating the target LMS.
+	 * @brief The label component indicating the target LMS.
 	 */
 	private JLabel lmsTargetLabel;
 	
 	/**
-	 * The combo box (if the term "combo box" is unfamiliar,
+	 * @brief The combo box (if the term "combo box" is unfamiliar,
 	 * think of it as a "drop down menu") component that
 	 * the user can input to select their target LMS.
 	 */
 	private JComboBox<String> lmsTargetComboBox;
 	
 	/**
-	 * The label component indicating the problem
+	 * @brief The label component indicating the problem
 	 * type.
 	 */
 	private JLabel problemTypeLabel;
 	
 	/**
-	 * The combo box (if the term "combo box" is unfamiliar,
+	 * @brief The combo box (if the term "combo box" is unfamiliar,
 	 * think of it as a "drop down menu") component that
 	 * the user can input to select their target LMS.
 	 */
 	private JComboBox<String> problemTypeComboBox;
 	
 	/**
-	 * The button component that the user can click
+	 * @brief The button component that the user can click
 	 * to confirm their selections.
 	 */
 	private JButton confirmLmsTargetButton;
 	
 	/**
-	 * Sets the default view panel for LMSInputStrategy.
+	 * @brief Sets the default view panel for LMSInputStrategy.
 	 * Generates a LMSTarget ComboBox with LMS options for selection,
 	 * And the same for ProblemType ComboBox. 
 	 */
@@ -93,7 +93,7 @@ public class LMSInputStrategy extends ViewStrategy {
 	}
 
 	/**
-	 * Default controller actions with both problemType
+	 * @brief Default controller actions with both problemType
 	 * ComboBox and LmsTarget Button components disabled. 
 	 */
 	@Override
@@ -103,35 +103,35 @@ public class LMSInputStrategy extends ViewStrategy {
 	}
 	
 	/**
-	 * Getter that returns LMSTargetLabel component
+	 * @brief Getter that returns LMSTargetLabel component
 	 * 
 	 * @return lmsTargetlabel
 	 */
 	public JLabel getLmsTargetLabel() { return lmsTargetLabel; }
 	
 	/**
-	 * Getter that returns LMSTargetLabel component
+	 * @brief Getter that returns LMSTargetLabel component
 	 * 
 	 * @return lmsTargetComboBox
 	 */
 	public JComboBox<String> getLmsTargetComboBox() { return lmsTargetComboBox; }
 	
 	/**
-	 * Getter that returns LMSTargetLabel component
+	 * @brief Getter that returns LMSTargetLabel component
 	 * 
 	 * @return problemTypeLabel
 	 */
 	public JLabel getProblemTypeLabel() { return problemTypeLabel; }
 	
 	/**
-	 * Getter that returns problemType ComboBox component
+	 * @brief Getter that returns problemType ComboBox component
 	 * 
 	 * @return problemTypeComboBox
 	 */
 	public JComboBox<String> getProblemTypeComboBox() { return problemTypeComboBox; }
 	
 	/**
-	 * Getter that returns confirmLmsTargetButton component
+	 * @brief Getter that returns confirmLmsTargetButton component
 	 * 
 	 * @return confirmLmsTargetButton
 	 */

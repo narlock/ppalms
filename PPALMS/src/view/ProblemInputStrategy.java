@@ -30,43 +30,43 @@ import javax.swing.JTextField;
 public class ProblemInputStrategy extends ViewStrategy {
 
 	/**
-	 * The label component indicating title for problem.
+	 * @brief The label component indicating title for problem.
 	 */
 	private JLabel titleInputLabel;
 	
 	/**
-	 * The text field component that the user can input
+	 * @brief The text field component that the user can input
 	 * title with their keyboard for the problem.
 	 */
 	private JTextField titleInputTextField;
 	
 	/**
-	 * The label component indicating description
+	 * @brief The label component indicating description
 	 * for the problem.
 	 */
 	private JLabel descriptionInputLabel;
 	
 	/**
-	 * The text area component that the user can input
+	 * @brief The text area component that the user can input
 	 * description with their keyboard for the problem.
 	 */
 	private JTextArea descriptionInputTextField;
 	
 	/**
-	 * The label component indicating annotation
+	 * @brief The label component indicating annotation
 	 * area for the problem.
 	 */
 	private JLabel annotationsLabel;
 	
 	/**
-	 * The sourceCodeArea and annotationPanel are
+	 * @brief The sourceCodeArea and annotationPanel are
 	 * panels that define problem annotation interface.
 	 */
 	private JPanel sourceCodeArea;
 	private JPanel annotationPanel;
 	
 	/**
-	 * The button component that allows the user
+	 * @brief The button component that allows the user
 	 * to export their created problem.
 	 */
 	private JButton exportProblem;

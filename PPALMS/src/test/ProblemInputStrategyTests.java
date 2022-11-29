@@ -25,6 +25,7 @@ class ProblemInputStrategyTests {
 
 	/**
 	 * testProblemInputStrategyAttributesNotNull
+	 * 
 	 * @brief This test will ensure that the components 
 	 * of the CodeInputStrategy is not null.
 	 * 
@@ -45,7 +46,8 @@ class ProblemInputStrategyTests {
 	
 	/**
 	 * testProblemInputStrategyAttributesNotNull
-	 * will ensure that the component attributes
+	 * 
+	 * @brief Will ensure that the component attributes
 	 * are visually set correctly.
 	 * 
 	 * @author Anthony Narlock

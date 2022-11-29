@@ -28,19 +28,19 @@ import javax.swing.JPanel;
 public class CodeInputStrategy extends ViewStrategy {
 
 	/**
-	 * The label component indicating code input.
+	 * @brief The label component indicating code input.
 	 */
 	private JLabel codeInputLabel;
 	
 	/**
-	 * The button component that the user can
+	 * @brief The button component that the user can
 	 * click with their mouse to input open
 	 * file chooser dialog.
 	 */
 	private JButton codeInputButton;
 	
 	/**
-	 * The file chooser component that allows
+	 * @brief The file chooser component that allows
 	 * the user to input a file.
 	 */
 	private JFileChooser fileChooser;
@@ -60,21 +60,21 @@ public class CodeInputStrategy extends ViewStrategy {
 	}
 
 	/**
-	 * Getter method for code input label.
+	 * @brief Getter method for code input label.
 	 * 
 	 * @return codeInputLabel
 	 */
 	public JLabel getCodeInputLabel() { return this.codeInputLabel; }
 	
 	/**
-	 * Getter method for code input button.
+	 * @brief Getter method for code input button.
 	 * 
 	 * @return codeInputButton
 	 */
 	public JButton getCodeInputButton() { return this.codeInputButton; }
 	
 	/**
-	 * Getter method for filechooser component.
+	 * @brief Getter method for filechooser component.
 	 * 
 	 * @return fileChooser
 	 */

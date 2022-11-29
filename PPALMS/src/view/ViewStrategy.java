@@ -4,7 +4,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * ViewStrategy serves as a GUI state blueprint.
+ * ViewStrategy 
+ * 
+ * @brief GUI state blueprint.
  * The PpalmsGui uses this to give behavior to
  * the display of the user interface.
  * 
@@ -47,4 +49,5 @@ public abstract class ViewStrategy extends JPanel {
 		setViewPanel();
 		setControllerActions();
 	}
+	
 }

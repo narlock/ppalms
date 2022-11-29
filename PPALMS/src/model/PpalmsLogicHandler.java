@@ -12,9 +12,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter; 
 
-
 /**
- * PpalmsLogicHandler serves to manipulate the
+ * PpalmsLogicHandler
+ *  
+ * @brief Serves to manipulate the
  * model in the MVC pattern. The logic handler
  * will validate the user input given to the domain
  * and also serve as functions for creating
@@ -31,10 +32,12 @@ import java.io.StringWriter;
 public class PpalmsLogicHandler {
 	
 	/**
-	 * PermutationMaker is a private inner class responsible for generating permutations.
+	 * PermutationMaker
+	 * 
+	 * @brief A private inner class responsible for generating permutations.
 	 * It will generate a limited number of unique orderings of n elements.
 	 * 
-	 * @author Jaden
+	 * @author Jaden Rodriguez
 	 *
 	 */
 	private class PermutationMaker {
@@ -43,7 +46,7 @@ public class PpalmsLogicHandler {
 		private ArrayList<ArrayList<Integer>> permutations;
 
 		/**
-		 * Swaps two elements in the nums list
+		 * @brief Swaps two elements in the nums list
 		 * @param i - index of first element to be swapped
 		 * @param j - index of second element to be swapped
 		 */
@@ -53,7 +56,7 @@ public class PpalmsLogicHandler {
 			nums[j] = temp;
 		}
 		/**
-		 * Recursively builds permutations list using backtracking and recursive substructure.
+		 * @brief Recursively builds permutations list using backtracking and recursive substructure.
 		 * The nums array is considered from the start index to its end with start initially at 0.
 		 * Each element is swapped into the starting position, and the following subarray
 		 * is permuted recursively as a subproblem.
@@ -77,7 +80,7 @@ public class PpalmsLogicHandler {
 		      
 		}
 		/**
-		 *  Builds a list of unique permutations of n indices (0-indexed)
+		 * @brief Builds a list of unique permutations of n indices (0-indexed)
 		 * @param n - number of indices to permute
 		 * @return
 		 */
@@ -89,12 +92,10 @@ public class PpalmsLogicHandler {
 		    permutation(nums, 0);
 		    return permutations;
 		}
-		
-		
 	}
 	
 	/**
-	 * Validates the source code input. The source code must
+	 * @brief Validates the source code input. The source code must
 	 * be a supported programming language file. An input is
 	 * valid if the user inputs source code file that contains
 	 * the proper file extension of a supported programming
@@ -123,7 +124,7 @@ public class PpalmsLogicHandler {
 	}
 	
 	/**
-	 * Checks that the title and description objects are defined.
+	 * @brief Checks that the title and description objects are defined.
 	 * Since these fields are not required by the user, this
 	 * validation is sufficient.
 	 * 
@@ -138,7 +139,7 @@ public class PpalmsLogicHandler {
 	}
 	
 	/**
-	 * Checks that the title and description objects are defined.
+	 * @brief Checks that the title and description objects are defined.
 	 * Since these fields are not required by the user, this
 	 * validation is sufficient.
 	 * 
@@ -153,7 +154,7 @@ public class PpalmsLogicHandler {
 	}
 	
 	/**
-	 * Grabs the annotations from the annotations list of integers
+	 * @brief Grabs the annotations from the annotations list of integers
 	 * will modify the sourceCode list of strings to only include
 	 * the integers that are in the list of annotations.
 	 * These will be the selected lines of code the user wishes
@@ -167,14 +168,11 @@ public class PpalmsLogicHandler {
 		for(int index : problem.getAnnotations()) {
 			chosenCodeLines.add(problem.getSourceCodeLines().get(index));
 		}
-//		for(String line : chosenCodeLines) {
-//			System.out.println(line);
-//		}
 		problem.setSourceCodeLines(chosenCodeLines);
 	}
 	
 	/**
-	 * Creates the permutations of the parson's problem. This is
+	 * @brief Creates the permutations of the parson's problem. This is
 	 * to different versions of the problem so the problem
 	 * can be reused.
 	 * 
@@ -182,10 +180,9 @@ public class PpalmsLogicHandler {
 	 * @return A list of permutations of the PpalmsProblem.
 	 */
 	public List<PpalmsProblem> createPermutations(PpalmsProblem problem) {
-		//TODO Generate permutations and return List of problems
+		//Generate permutations and return List of problems
 		setAnnotations(problem);
 		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
-//		System.out.println("Creating Permutations for " + problem.toString());
 		int n = problem.getAnnotations().size();
 		ArrayList<ArrayList<Integer>> permutations = new PermutationMaker().getPermutations(n);
 		for (ArrayList<Integer> permutation: permutations) {
@@ -196,6 +193,7 @@ public class PpalmsLogicHandler {
 				reorderedSourceCodeLines.add(oldSourceCodeLines.get(position));
 			}
 			reorderedProblem.setSourceCodeLines(reorderedSourceCodeLines);
+			
 			// copy rest of attributes
 			reorderedProblem.setSourceCode(problem.getSourceCode());
 			reorderedProblem.setProblemType(problem.getProblemType());
@@ -205,19 +203,17 @@ public class PpalmsLogicHandler {
 			
 			permutedProblems.add(reorderedProblem);
 		}
-			
 		return permutedProblems;
 	}
 	
 	/**
-	 * Exports the PpalmsProblem.
+	 * @brief Exports the PpalmsProblem.
 	 * 
 	 * @param problem
 	 * @return true for successful export, false for unsuccessful export.
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
 		// Will call createPermutations
-		
 		List<PpalmsProblem> permutedProblems = createPermutations(problem);
 		System.out.println(permutedProblems.size());
 		ArrayList<List<String>> annotations = new ArrayList<>();
@@ -244,7 +240,6 @@ public class PpalmsLogicHandler {
 			System.out.println("Error occured converting JSON to String.");
 			e1.printStackTrace();
 	        return false;
-
 		}
 	    String jsonText = out.toString();
 		
@@ -252,7 +247,8 @@ public class PpalmsLogicHandler {
 		
 		String filename = "problem.json";
 		File file;
-		// create file
+		
+		// Create file
 		try {
 		      file = new File(filename);
 		      if (!file.createNewFile()) {
@@ -265,7 +261,8 @@ public class PpalmsLogicHandler {
 		      e.printStackTrace();
 		      return false;
 		}
-		// write JSON
+		
+		// Write JSON
 		try {
 		      FileWriter writer = new FileWriter(filename);
 		      writer.write(jsonText);
@@ -278,8 +275,7 @@ public class PpalmsLogicHandler {
 		}
 		
 		//If the user saves a file, then return true
-		
-		
 		return true;
 	}
+	
 }

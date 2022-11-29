@@ -2,34 +2,24 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.junit.jupiter.api.Test;
 
-import controller.PpalmsInputHandler;
-import model.LmsTarget;
 import view.LMSInputStrategy;
-import view.CodeInputStrategy;
-import view.ViewStrategy;
 import view.ProblemInputStrategy;
 import view.PpalmsGui;
 
 /**
  * PpalmsGuiTests
  * 
- * This class holds all the unit tests 
+ * @brief This class holds all the unit tests 
  * for the PpalmsGuiTests class. 
  * 
  * The following unit tests are specified
@@ -108,21 +98,11 @@ class PpalmsGuiTests {
 		gui.getPpalmsInputHandler().getProblem().setSourceCodeLines(testSourceCodeLines);
 		gui.updateViewStrategy(new ProblemInputStrategy());
 		JButton exportProblem = ((ProblemInputStrategy) gui.getViewStrategy()).getExportProblem();
-		List<String> alines = gui.getPpalmsInputHandler().getPpalmsProblem().getSourceCodeLines();
+		List<String> alines = gui.getPpalmsInputHandler().getProblem().getSourceCodeLines();
 		JButton lineButton = gui.getAnnotationLineButton(exportProblem, 0, alines.get(0));
 		lineButton.doClick();
 		lineButton.doClick(); 
 		assertTrue(exportProblem.isEnabled()); 
-	}
-	
-	@Test
-	void testFileInputSuccessful() {
-		//Functional test, done manually
-	}
-	
-	@Test
-	void testNoFileSelected() {
-		//Functional test, done manually
 	}
 	
 	

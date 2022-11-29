@@ -6,8 +6,30 @@ import org.junit.jupiter.api.Test;
 
 import view.LMSInputStrategy;
 
+/**
+ * ProblemInputStrategyTests
+ * 
+ * @brief This class holds all of the unit tests
+ * for the ProblemInputStrategyTests class.
+ * 
+ * These unit tests are specified in the
+ * PPALMS Testing Document and implemented
+ * utilizing the JUnit testing framework
+ * in this class.
+ * 
+ * @author Shen Lua
+ *
+ */
 class LMSInputStrategyTests {
 
+	/**
+	 * testAllLMSOptionsExistInLMSTargetComboBox
+	 * 
+	 * @briefTo ensure all LMS target options are available 
+	 * for selection in the ComboBox
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testAllLMSOptionsExistInLMSTargetComboBox() {
 		LMSInputStrategy l = new LMSInputStrategy();
@@ -21,6 +43,13 @@ class LMSInputStrategyTests {
 		assertEquals("Talent", (l.getLmsTargetComboBox()).getItemAt(5));
 	}
 	
+	/**
+	 * testAllProblemTypesExistInProblemTypeComboBox
+	 * To ensure all problem type options are available 
+	 * for selection in the ComboBox.
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testAllProblemTypesExistInProblemTypeComboBox() {
 		LMSInputStrategy l = new LMSInputStrategy();
@@ -29,14 +58,27 @@ class LMSInputStrategyTests {
 		assertEquals("Ordering", (l.getProblemTypeComboBox()).getItemAt(1));
 	}
 	
+	/**
+	 * testControllerActionsSet
+	 * To ensure default controller behavior, disables both ProblemType 
+	 * ComboBox and confirmLmsTargetButton until further action.
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testControllerActionsSet() {
 		LMSInputStrategy l = new LMSInputStrategy();
 		l.setControllerActions();
 		assertFalse(l.getProblemTypeComboBox().isEnabled());
 		assertFalse(l.getConfirmLmsTargetButton().isEnabled());
-  }
+	}
 	
+	/**
+	 * testLmsTargetLabelExists
+	 * To ensure that target LMS label exists so as to guide the user.
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testLmsTargetLabelExists() {
 		LMSInputStrategy l = new LMSInputStrategy();
@@ -44,10 +86,17 @@ class LMSInputStrategyTests {
 		assertNotNull(l.getLmsTargetLabel());
 	}
 	
+	/**
+	 * testProblemTypeLabelExists
+	 * To ensure that problem type labels are present for the user.
+	 * 
+	 * @author Shen Lua
+	 */
 	@Test
 	void testProblemTypeLabelExists() {
 		LMSInputStrategy l = new LMSInputStrategy();
 		l.setViewPanel();
 		assertNotNull(l.getProblemTypeLabel());
 	}
+	
 }

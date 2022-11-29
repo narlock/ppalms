@@ -22,7 +22,9 @@ import javax.swing.JTextField;
 import controller.PpalmsInputHandler;
 
 /**
- * The PPALMS Graphical User Interface.
+ * PpalmsGui
+ * 
+ * @brief The PPALMS Graphical User Interface.
  * This is the interface in which the user will
  * interact with a keyboard, mouse, and display.
  * 
@@ -279,7 +281,7 @@ public class PpalmsGui extends JFrame {
 	 * @param exportProblem
 	 * @param index
 	 * @param line
-	 * @return JButton for a line in the inputted source code.
+	 * @return JButton for a line in the input source code.
 	 */
 	private JButton createAnnotationLineButton(JButton exportProblem, int index, String line) {
 		JButton button = new JButton(line);

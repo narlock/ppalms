@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The PPLAMS problem object.
+ * PpalmsProblem
+ * 
+ * @brief The PPLAMS problem object.
  * 
  * In the PPALMS design document, PpalmsProblem
  * is one of the classes specified. It's purpose
@@ -16,37 +18,37 @@ import java.util.List;
 public class PpalmsProblem {
 
 	/**
-	 * The source code string of the input source code.
+	 * @brief The source code string of the input source code.
 	 */
 	private String sourceCode;
 	
 	/**
-	 * The lines of the input source code.
+	 * @brief The lines of the input source code.
 	 */
 	private List<String> sourceCodeLines;
 	
 	/**
-	 * The type of problem.
+	 * @brief The type of problem.
 	 */
 	private ProblemType problemType;
 	
 	/**
-	 * The target LMS for the problem.
+	 * @brief The target LMS for the problem.
 	 */
 	private LmsTarget lmsTarget;
 	
 	/**
-	 * The annotations for the problem.
+	 * @brief The annotations for the problem.
 	 */
 	private List<Integer> annotations;
 	
 	/**
-	 * The title of the problem.
+	 * @brief The title of the problem.
 	 */
 	private String title;
 	
 	/**
-	 * The description of the problem.
+	 * @brief The description of the problem.
 	 */
 	private String description;
 	
@@ -55,7 +57,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for sourceCode
+	 * @brief Setter method for sourceCode
 	 * 
 	 * @param sourceCode
 	 */
@@ -64,7 +66,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Getter method for problemType
+	 * @brief Getter method for problemType
 	 * 
 	 * @return problemType
 	 */
@@ -73,7 +75,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for setting problemType
+	 * @brief Setter method for setting problemType
 	 * 
 	 * @param problemType
 	 */
@@ -82,7 +84,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Getter method for lmsTarget
+	 * @brief Getter method for lmsTarget
 	 * 
 	 * @return lmsTarget
 	 */
@@ -91,7 +93,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for lmsTarget
+	 * @brief Setter method for lmsTarget
 	 * 
 	 * @param lmsTarget
 	 */
@@ -100,7 +102,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Getter method for Parson's Problem annotations
+	 * @brief Getter method for Parson's Problem annotations
 	 * 
 	 * @return annotations
 	 */
@@ -112,7 +114,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for Parson's Problem annotations
+	 * @brief Setter method for Parson's Problem annotations
 	 * 
 	 * @param annotations
 	 */
@@ -121,7 +123,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Getter method for title 
+	 * @brief Getter method for title 
 	 * 
 	 * @return title
 	 */
@@ -130,7 +132,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for Problem title
+	 * @brief Setter method for Problem title
 	 * 
 	 * @param title
 	 */
@@ -139,7 +141,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Getter method for Problem Description
+	 * @brief Getter method for Problem Description
 	 * 
 	 * @return description
 	 */
@@ -148,7 +150,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for Problem Description
+	 * @brief Setter method for Problem Description
 	 * 
 	 * @param description
 	 */
@@ -157,7 +159,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Getter method for list of lines from uploaded input
+	 * @brief Getter method for list of lines from uploaded input
 	 * sourcecode file.
 	 * 
 	 * @return sourceCodeLines
@@ -167,7 +169,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Setter method for storing list of lines
+	 * @brief Setter method for storing list of lines
 	 * from uploaded input sourcecode file
 	 * 
 	 * @param sourceCodeLines
@@ -177,7 +179,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * Concatenates all relevant properties of the 
+	 * @brief Concatenates all relevant properties of the 
 	 * PpalmsProblem into string format.
 	 * 
 	 * @return concatenated String of Parson's Problem details

@@ -10,7 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * LMSInputStrategy is the view "state" in which
+ * LMSInputStrategy
+ * 
+ * @brief The view "state" in which
  * the PPALMS application will allow the user to input
  * the target LMS and the type of Parson's problem
  * to create.

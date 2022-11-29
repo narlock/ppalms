@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * CodeInputStrategy is the view "state" in which
+ * CodeInputStrategy
+ * 
+ * @brief The view "state" in which
  * the PPALMS application will allow the user to
  * input their source code file for problem
  * creation.

@@ -13,7 +13,9 @@ import model.PpalmsProblem;
 import model.ProblemType;
 
 /**
- * PpalmsInputHandler serves as the controller of the
+ * PpalmsInputHandler 
+ * 
+ * @brief Serves as the controller of the
  * PPALMS application. This class handles the inputs
  * of the user.
  * 
@@ -27,18 +29,18 @@ import model.ProblemType;
 public class PpalmsInputHandler {
 	
 	/**
-	 * The PpalmsProblem that the user is creating.
+	 * @brief The PpalmsProblem that the user is creating.
 	 * The user's inputs will modify this problem.
 	 */
 	private PpalmsProblem problem;
 	
 	/**
-	 * See {@link PpalmsLogicHandler} for details.
+	 * @brief See {@link PpalmsLogicHandler} for details.
 	 */
 	private PpalmsLogicHandler problemHandler;
 	
 	/**
-	 * The constructor of the PpalmsInputHandler
+	 * @brief The constructor of the PpalmsInputHandler
 	 * instantiates its member attributes.
 	 */
 	public PpalmsInputHandler() {
@@ -47,7 +49,7 @@ public class PpalmsInputHandler {
 	}
 	
 	/**
-	 * Getter method for PpalmsProblem. 
+	 * @brief Getter method for PpalmsProblem. 
 	 * 
 	 * @return problem
 	 */
@@ -56,7 +58,7 @@ public class PpalmsInputHandler {
 	}
 	
 	/**
-	 * Getter method for PpalmsLogicHandler. 
+	 * @brief Getter method for PpalmsLogicHandler. 
 	 * 
 	 * @return PpalmsLogicHandler
 	 */
@@ -65,7 +67,7 @@ public class PpalmsInputHandler {
 	}
 	
 	/**
-	 * Processes a given user input.
+	 * @brief Processes a given user input.
 	 * 
 	 * @param component
 	 * @param event
@@ -125,7 +127,7 @@ public class PpalmsInputHandler {
 	}
 	
 	/**
-	 * Processes a given user input specific
+	 * @brief Processes a given user input specific
 	 * for source code lines.
 	 * 
 	 * @param lines
@@ -139,7 +141,7 @@ public class PpalmsInputHandler {
 	}
 	
 	/**
-	 * Processes a given user input specific
+	 * @brief Processes a given user input specific
 	 * for adding an annotation.
 	 * 
 	 * @param index
@@ -154,4 +156,5 @@ public class PpalmsInputHandler {
 		}
 		return false;
 	}
+	
 }

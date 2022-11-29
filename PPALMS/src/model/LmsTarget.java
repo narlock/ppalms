@@ -1,7 +1,9 @@
 package model;
 
 /**
- * LmsTarget is an enumerated type for indicating
+ * LmsTarget 
+ * 
+ * @brief An enumerated type for indicating
  * the target LMS that a user can select using
  * the PPALMS system.
  * 

@@ -31,7 +31,7 @@ import model.ProblemType;
 /**
  * PpalmsLogicHandlerTests
  * 
- * This class holds all of the unit tests
+ * @brief This class holds all of the unit tests
  * for the PpalmsLogicHandler class.
  * 
  * These unit tests are specified in the
@@ -44,7 +44,6 @@ import model.ProblemType;
  *
  */
 class PpalmsLogicHandlerTests {
-	
 	
 	private PpalmsLogicHandler handler;
 	private PpalmsProblem problem;
@@ -358,6 +357,7 @@ class PpalmsLogicHandlerTests {
 			assertTrue(allUniquePermutations(permutedProblems));
 		}
 	}
+	
 	/**
 	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original problem
 	 * and its permutations (does not check that annotations/source lines are within constraints
@@ -440,7 +440,7 @@ class PpalmsLogicHandlerTests {
 	}
 	
 	/**
-	 * This tests that PPALMS problem export fails if the destination file already exists
+	 * This tests that PPALMS problem export if the destination file already exists
 	 */
 	@Test
 	void testExportPpalmsProblemFail() {
@@ -455,6 +455,7 @@ class PpalmsLogicHandlerTests {
 		}
 		assertFalse(handler.exportPpalmsProblem(problem));
 	}
+	
 	/**
 	 * This method helps ensure that a list of permutations was generated
 	 * by confirming that each element is unique
@@ -472,6 +473,7 @@ class PpalmsLogicHandlerTests {
 		}
 		return true;
 	}
+	
 	/**
 	 * This helper method tells whether a candidate String list
 	 * is a permutation of a reference original String list.
@@ -488,6 +490,7 @@ class PpalmsLogicHandlerTests {
 			candidateCount.put(line, candidateCount.getOrDefault(line, 0) + 1);		
 		return candidateCount.equals(referenceCount);
 	}
+	
 	/**
 	 * This is a private helper function that creates
 	 * a sample PpalmsProblem object that can be used
@@ -510,6 +513,5 @@ class PpalmsLogicHandlerTests {
 		problem.setProblemType(ProblemType.Ordering);
 		return problem;
 	}
-	
 
 }

@@ -3,38 +3,29 @@ package test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.junit.jupiter.api.Test;
 
 import controller.PpalmsInputHandler;
-import model.LmsTarget;
-import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
-import model.ProblemType;
 import view.PpalmsGui;
-import view.ProblemInputStrategy;
-import view.CodeInputStrategy;
 import view.LMSInputStrategy;
 
 /**
  * PpalmsInputHandlerTests
  * 
- * This class handles the unit tests for the PpalmsInputHandler class and the
- * inputs of the user.
+ * @brief This class handles the unit tests for the 
+ * PpalmsInputHandler class and the inputs of the user.
  * 
  * These unit tests are specified in the PPALMS Testing Document and implemented
  * utilizing the JUnit testing framework in this class.
@@ -297,6 +288,21 @@ public class PpalmsInputHandlerTests {
 		gui.getPpalmsInputHandler().processInput(0, "addAnnotation");
 		gui.getPpalmsInputHandler().processInput(1, "addAnnotation");
 	
+		/**
+		 * We must delete the problem.json to ensure that
+		 * we get the expected result after calling processInput
+		 * 
+		 * @author Anthony Narlock
+		 */
+		try {
+            Files.deleteIfExists(
+                Paths.get("problem.json"));
+        }
+        catch (Exception e) {
+            System.out.println(
+                "No such file/directory exists");
+        }
+		
 		assertTrue(gui.getPpalmsInputHandler().processInput(null, "exportProblem"));
 	}
 

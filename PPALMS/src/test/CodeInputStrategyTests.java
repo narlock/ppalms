@@ -9,7 +9,7 @@ import view.CodeInputStrategy;
 /**
  * CodeInputStrategyTests
  * 
- * This class holds all of the unit tests
+ * @brief This class holds all of the unit tests
  * for the CodeInputStrategy class.
  * 
  * These unit tests are specified in the
@@ -24,7 +24,8 @@ class CodeInputStrategyTests {
 
 	/**
 	 * testCodeInputStrategyAttributesNotNull
-	 * This test will ensure that the components 
+	 * 
+	 * @brief This test will ensure that the components 
 	 * of the CodeInputStrategy is not null.
 	 * 
 	 * @author Anthony Narlock

@@ -10,7 +10,7 @@ import view.ProblemInputStrategy;
 /**
  * ProblemInputStrategyTest
  * 
- * This class holds all of the unit tests
+ * @brief This class holds all of the unit tests
  * for the ProblemInputStrategy class.
  * 
  * These unit tests are specified in the
@@ -32,7 +32,7 @@ class ProblemInputStrategyTests {
 	 * 
 	 */
 	@Test
-	void testCodeInputStrategyAttributesNotNull() {
+	void testProblemInputStrategyAttributesNotNull() {
 		ProblemInputStrategy strategy = new ProblemInputStrategy();
 		assertNotNull(strategy.getTitleInputLabel());
 		assertNotNull(strategy.getTitleInputTextField());
@@ -52,7 +52,7 @@ class ProblemInputStrategyTests {
 	 * 
 	 */
 	@Test
-	void testCodeInputStrategyComponentAttributes() {
+	void testProblemInputStrategyComponentAttributes() {
 		ProblemInputStrategy strategy = new ProblemInputStrategy();
 		assertEquals("Problem Title", strategy.getTitleInputLabel().getText());
 		assertEquals("", strategy.getTitleInputTextField().getText());

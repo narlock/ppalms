@@ -13,7 +13,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * ProblemInputStrategy is the view "state" in which
+ * ProblemInputStrategy
+ * 
+ * @brief The view "state" in which
  * the PPALMS application will allow the user to input
  * problem title, problem description, create
  * problem annotations, and export the problem.

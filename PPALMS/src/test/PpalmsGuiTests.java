@@ -108,7 +108,7 @@ class PpalmsGuiTests {
 		gui.getPpalmsInputHandler().getProblem().setSourceCodeLines(testSourceCodeLines);
 		gui.updateViewStrategy(new ProblemInputStrategy());
 		JButton exportProblem = ((ProblemInputStrategy) gui.getViewStrategy()).getExportProblem();
-		List<String> alines = gui.getPpalmsInputHandler().getPpalmsProblem().getSourceCodeLines();
+		List<String> alines = gui.getPpalmsInputHandler().getProblem().getSourceCodeLines();
 		JButton lineButton = gui.getAnnotationLineButton(exportProblem, 0, alines.get(0));
 		lineButton.doClick();
 		lineButton.doClick(); 

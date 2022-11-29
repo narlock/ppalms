@@ -105,7 +105,6 @@ class PpalmsGuiTests {
 		assertTrue(exportProblem.isEnabled()); 
 	}
 	
-	
 	/**
 	 * testSettargetLMSSuccess
 	 * 
@@ -139,7 +138,7 @@ class PpalmsGuiTests {
 	}
 	
 	/**
-	 * testProblemTypeNotSelected
+	 * testProblemTypeSelection
 	 * 
 	 * @brief Tests the intended system behavior when the 
 	 * problem type is and not selected. 

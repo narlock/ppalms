@@ -1,3 +1,6 @@
+# PPALMS - Software Engineering Project
+This repository holds the activities of our group's project in our CSCI 5801 Software Engineering I course during the Fall 2022 semester.
+
 ### Group Roster
 
 | Member Name  | x500 | GitHub |

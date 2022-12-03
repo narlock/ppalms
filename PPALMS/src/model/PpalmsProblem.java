@@ -52,6 +52,11 @@ public class PpalmsProblem {
 	 */
 	private String description;
 	
+	/**
+	 * @brief The number of students for the problem
+	 */
+	private int numberOfStudents;
+	
 	public String getSourceCode() {
 		return sourceCode;
 	}
@@ -178,6 +183,24 @@ public class PpalmsProblem {
 		this.sourceCodeLines = sourceCodeLines;
 	}
 	
+	/**
+	 * @brief Getter method for the number of students attribute
+	 * 
+	 * @return numberOfStudents
+	 */
+	public int getNumberOfStudents() {
+		return numberOfStudents;
+	}
+
+	/**
+	 * @brief Setter method for the number of students
+	 * 
+	 * @param numberOfStudents
+	 */
+	public void setNumberOfStudents(int numberOfStudents) {
+		this.numberOfStudents = numberOfStudents;
+	}
+
 	/**
 	 * @brief Concatenates all relevant properties of the 
 	 * PpalmsProblem into string format.

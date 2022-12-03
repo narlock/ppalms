@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 /**
  * LMSInputStrategy
@@ -52,6 +55,21 @@ public class LMSInputStrategy extends ViewStrategy {
 	private JComboBox<String> problemTypeComboBox;
 	
 	/**
+	 * @brief The label component indicating the number
+	 * of students.
+	 */
+	private JLabel numberOfStudentsLabel;
+	
+	/**
+	 * @brief The spinner component for selecting the
+	 * number of students.
+	 * 
+	 * The JSpinner forces the number to be within the bounds.
+	 * It will not update upon invalid input.
+	 */
+	private JSpinner numberOfStudentsSpinner;
+	
+	/**
 	 * @brief The button component that the user can click
 	 * to confirm their selections.
 	 */
@@ -78,6 +96,9 @@ public class LMSInputStrategy extends ViewStrategy {
 		problemTypeComboBox = new JComboBox<String>();
 			problemTypeComboBox.addItem("Expand");
 			problemTypeComboBox.addItem("Ordering");
+		numberOfStudentsLabel = new JLabel("Number of Students");
+		SpinnerModel value = new SpinnerNumberModel(1, 1, 1000, 1);
+		numberOfStudentsSpinner = new JSpinner(value);
 		confirmLmsTargetButton = new JButton("Confirm");
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		verticalPanel.add(lmsTargetLabel);
@@ -87,6 +108,10 @@ public class LMSInputStrategy extends ViewStrategy {
 		verticalPanel.add(problemTypeLabel);
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 		verticalPanel.add(problemTypeComboBox);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(numberOfStudentsLabel);
+		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalPanel.add(numberOfStudentsSpinner);
 		verticalPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		verticalPanel.add(confirmLmsTargetButton);
 		this.add(verticalPanel);
@@ -99,6 +124,7 @@ public class LMSInputStrategy extends ViewStrategy {
 	@Override
 	public void setControllerActions() {
 		problemTypeComboBox.setEnabled(false);
+		numberOfStudentsSpinner.setEnabled(false);
 		confirmLmsTargetButton.setEnabled(false);
 	}
 	
@@ -137,4 +163,10 @@ public class LMSInputStrategy extends ViewStrategy {
 	 */
 	public JButton getConfirmLmsTargetButton() { return confirmLmsTargetButton; }
 
+	/**
+	 * @brief Getter that returns numberOfStudentsSpinner component
+	 * 
+	 * @return numberOfStudentsSpinner
+	 */
+	public JSpinner getNumberOfStudentsSpinner() { return numberOfStudentsSpinner; }
 }

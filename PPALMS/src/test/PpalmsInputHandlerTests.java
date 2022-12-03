@@ -371,4 +371,19 @@ public class PpalmsInputHandlerTests {
 		PpalmsGui gui = new PpalmsGui();
 		assertFalse(gui.getPpalmsInputHandler().processInput(0, "test"));
 	}
+	
+	/**
+	 * testNumberOfStudentsInput
+	 * 
+	 * @brief This tests the event that will update the number of students attribute
+	 * 
+	 * @author Anthony Narlock
+	 */
+	@Test
+	void testNumberOfStudentsInput() {
+		PpalmsGui gui = new PpalmsGui();
+		gui.updateViewStrategy(new LMSInputStrategy());
+		assertTrue(gui.getPpalmsInputHandler().processInput(((LMSInputStrategy) gui.getViewStrategy()).getNumberOfStudentsSpinner(), "numberOfStudents"));
+		assertEquals(1, gui.getPpalmsInputHandler().getProblem().getNumberOfStudents());
+	}
 }

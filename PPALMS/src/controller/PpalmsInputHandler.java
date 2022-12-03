@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -116,6 +117,10 @@ public class PpalmsInputHandler {
 					return true;
 				}
 				break;
+			case "numberOfStudents":
+				int numberOfStudents = (int) ((JSpinner) component).getValue();
+				problem.setNumberOfStudents(numberOfStudents);
+				return true;
 			case "exportProblem":
 				if(problemHandler.exportPpalmsProblem(problem)) {
 					return true;

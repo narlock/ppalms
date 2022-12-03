@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -156,6 +157,24 @@ class PpalmsGuiTests {
 		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
 		problemTypeComboBox.setSelectedIndex(1); // ordering
 		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
+	}
+	
+	/**
+	 * testNumberOfStudentsChangeListener
+	 * 
+	 * @brief Tests the change listener in the PpalmsGui
+	 * 
+	 * @author Anthony Narlock
+	 */
+	@Test
+	void testNumberOfStudentsChangeListener() {
+		PpalmsGui gui = new PpalmsGui();
+		gui.updateViewStrategy(new LMSInputStrategy());
+		JSpinner numberOfStudentsSpinner = ((LMSInputStrategy) gui.getViewStrategy()).getNumberOfStudentsSpinner();
+		numberOfStudentsSpinner.setEnabled(true);
+		numberOfStudentsSpinner.setValue(10);
+		
+		assertEquals(10, gui.getPpalmsInputHandler().getProblem().getNumberOfStudents());
 	}
 	
 }

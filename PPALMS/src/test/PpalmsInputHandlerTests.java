@@ -384,5 +384,6 @@ public class PpalmsInputHandlerTests {
 		PpalmsGui gui = new PpalmsGui();
 		gui.updateViewStrategy(new LMSInputStrategy());
 		assertTrue(gui.getPpalmsInputHandler().processInput(((LMSInputStrategy) gui.getViewStrategy()).getNumberOfStudentsSpinner(), "numberOfStudents"));
+		assertEquals(1, gui.getPpalmsInputHandler().getProblem().getNumberOfStudents());
 	}
 }

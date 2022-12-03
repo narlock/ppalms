@@ -210,7 +210,8 @@ public class PpalmsProblem {
 	@Override
 	public String toString() {
 		return "PpalmsProblem [sourceCode Exists=" + sourceCode + ", problemType=" + problemType + ", lmsTarget=" + lmsTarget
-				+ ", annotations=" + annotations + ", title=" + title + ", description=" + description + "]";
+				+ ", annotations=" + annotations + ", title=" + title + ", description=" + description + ", numberOfStudents="
+				+ numberOfStudents + "]";
 	}
 	
 	@Override

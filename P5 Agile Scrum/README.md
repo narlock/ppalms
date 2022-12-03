@@ -1,6 +1,6 @@
 # Agile Scrum
 
-| Member Name  | x500 | GitHub | Contribution | Role |
+| Member Name  | x500 | GitHub | P4 Contribution | P5 Role |
 | ------------- | ------------- | ------------- |------------- |------------- |
 | Anthony Narlock | narlo041  | [narlock](https://github.com/narlock) | UI Design & Development, MVC Developer, Code Documentation, Tester, Test Documentation, README Creator, End-to-end Tester, End-to-end Test Documentation. | Product Owner, Developer |
 | Stephanie Ye | ye000080  | [Ye000080](https://github.com/Ye000080) | Tester, Test Documentation. | Developer |

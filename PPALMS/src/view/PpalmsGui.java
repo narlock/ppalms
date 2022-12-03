@@ -16,8 +16,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.PpalmsInputHandler;
 
@@ -156,6 +159,7 @@ public class PpalmsGui extends JFrame {
 		{
 			JComboBox<String> lmsTargetComboBox = ((LMSInputStrategy) viewStrategy).getLmsTargetComboBox();
 			JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) viewStrategy).getProblemTypeComboBox();
+			JSpinner numberOfStudentsSpinner = ((LMSInputStrategy) viewStrategy).getNumberOfStudentsSpinner();
 			JButton confirmLmsTargetButton = ((LMSInputStrategy) viewStrategy).getConfirmLmsTargetButton();
 			lmsTargetComboBox.addActionListener(new ActionListener() {
 				@Override
@@ -163,8 +167,12 @@ public class PpalmsGui extends JFrame {
 					if(!controller.processInput(lmsTargetComboBox, "lmsTarget")) {
 						problemTypeComboBox.setEnabled(false);
 						confirmLmsTargetButton.setEnabled(false);
+						numberOfStudentsSpinner.setEnabled(false);
 					} else {
 						problemTypeComboBox.setEnabled(true);
+						if(problemTypeComboBox.getSelectedIndex() != 0) {
+							numberOfStudentsSpinner.setEnabled(true);
+						}
 					}
 				}
 			});
@@ -172,10 +180,20 @@ public class PpalmsGui extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if(!controller.processInput(problemTypeComboBox, "problemType")) {
+						numberOfStudentsSpinner.setEnabled(false);
 						confirmLmsTargetButton.setEnabled(false);
 					} else {
+						numberOfStudentsSpinner.setEnabled(true);
 						confirmLmsTargetButton.setEnabled(true);
 					}
+				}
+			});
+			numberOfStudentsSpinner.addChangeListener(new ChangeListener() {
+				@Override
+				public void stateChanged(ChangeEvent e) {
+					//This will always return true due to the nature of a JSpinner
+					//It automatically performs input validation.
+					controller.processInput(numberOfStudentsSpinner, "numberOfStudents");
 				}
 			});
 			confirmLmsTargetButton.addActionListener(new ActionListener() {

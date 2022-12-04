@@ -96,6 +96,8 @@ public class LMSInputStrategy extends ViewStrategy {
 		problemTypeComboBox = new JComboBox<String>();
 			problemTypeComboBox.addItem("Expand");
 			problemTypeComboBox.addItem("Ordering");
+			problemTypeComboBox.addItem("FillInTheBlank");
+			problemTypeComboBox.addItem("MultipleChoice");
 		numberOfStudentsLabel = new JLabel("Number of Students");
 		SpinnerModel value = new SpinnerNumberModel(1, 1, 1000, 1);
 		numberOfStudentsSpinner = new JSpinner(value);

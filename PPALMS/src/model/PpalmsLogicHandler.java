@@ -179,4 +179,12 @@ public class PpalmsLogicHandler {
 		return true;
 	}
 	
+	public void setProblemCreationInterface(ProblemCreationInterface problemCreation) {
+		this.problemCreation = problemCreation;
+	}
+	
+	public ProblemCreationInterface getProblemCreationInterface() {
+		return problemCreation;
+	}
+	
 }

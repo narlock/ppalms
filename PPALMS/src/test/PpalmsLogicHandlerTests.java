@@ -24,6 +24,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.LmsTarget;
+import model.OrderingCreation;
 import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
 import model.ProblemType;
@@ -347,7 +348,9 @@ class PpalmsLogicHandlerTests {
 				annotations.add(i);
 			}
 			problem.setAnnotations(annotations);
-			List<PpalmsProblem> permutedProblems = handler.createPermutations(problem);
+			
+			handler.setProblemCreationInterface(new OrderingCreation(problem)); 
+			List<PpalmsProblem> permutedProblems = ((OrderingCreation) handler.getProblemCreationInterface()).createPermutations(problem);
 			// check the  number of permutations is within bounds
 			int length = permutedProblems.size();
 			assertTrue(0 < length && length <= maxLength);

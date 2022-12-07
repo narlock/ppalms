@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import view.LMSInputStrategy;
 import view.ProblemInputStrategy;
 import view.PpalmsGui;
+import view.AnnotationInterface;
 
 /**
  * PpalmsGuiTests

@@ -23,6 +23,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controller.PpalmsInputHandler;
+import view.AnnotationInterface;
 
 /**
  * PpalmsGui
@@ -58,6 +59,8 @@ public class PpalmsGui extends JFrame {
 	 * @brief See {@link PpalmsInputHandler} for definition.
 	 */
 	private PpalmsInputHandler controller;
+	
+//	private AnnotationInterface annotationInterface;
 	
 	/**
 	 * @brief The PpalmsGui constructor defines the Java
@@ -97,18 +100,6 @@ public class PpalmsGui extends JFrame {
 	 */
 	public PpalmsInputHandler getPpalmsInputHandler() {
 		return controller;
-	}
-	
-	/**
-	 * @brief Getter method for private method getAnnotationLineButton
-	 * 
-	 * @param exportProblem
-	 * @param index
-	 * @param line
-	 * @return createAnnotationLineButton(exportProblem, index, line)
-	 */
-	public JButton getAnnotationLineButton(JButton exportProblem, int index, String line) {
-		return createAnnotationLineButton(exportProblem, index, line);
 	}
 	
 	
@@ -254,16 +245,32 @@ public class PpalmsGui extends JFrame {
 				}
 				
 			});
-      
-			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
-			List<String> alines = controller.getProblem().getSourceCodeLines();
-			for(int i = 0; i < alines.size(); i++) {
-				annotationPanel.add(createAnnotationLineButton(exportProblem, i, alines.get(i)));
-			}
+			
+//			//Get the annotation panel
+//			AnnotationInterface annotationInterface = new AnnotationInterface();    
+//			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
+//			
+//		    //Set the controls of the annotation panel
+//		    switch (controller.getProblem().getProblemType()) {
+//		    case Ordering:
+//				List<String> alines = controller.getProblem().getSourceCodeLines();
+//				for(int i = 0; i < alines.size(); i++) {
+//					annotationPanel.add(annotationInterface.createAnnotationLineButton(exportProblem, i, alines.get(i)));
+//				}
+//		    case FillInBlank:
+//		    	break;
+//		    case MultipleChoice:
+//		    	break;
+//		    }
 			refocusFrame();
 		}
 	}
 	
+	private PpalmsInputHandler getPpalmsProblemType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * @brief A helper function that updates the view.
 	 * 
@@ -288,34 +295,5 @@ public class PpalmsGui extends JFrame {
 		this.setSize(499, 500);
 		this.setSize(500, 500);
 	}
-	
-	/**
-	 * @brief A helper function in which creates an annotation line button
-	 * that is used in the LMSInputStrategy. The reason that
-	 * this has been taken out is so that the application can
-	 * reuse this function for each of the lines the user
-	 * inputs.
-	 * 
-	 * @param exportProblem
-	 * @param index
-	 * @param line
-	 * @return JButton for a line in the input source code.
-	 */
-	private JButton createAnnotationLineButton(JButton exportProblem, int index, String line) {
-		JButton button = new JButton(line);
-		button.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(index);
-				if(!button.getForeground().equals(Color.GREEN)) {
-					button.setForeground(Color.GREEN);
-					controller.processInput(index, "addAnnotation");
-					exportProblem.setEnabled(true);
-				}
-			}
-			
-		});
-		return button;
-	}
 }

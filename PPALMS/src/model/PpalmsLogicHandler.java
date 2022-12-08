@@ -125,13 +125,7 @@ public class PpalmsLogicHandler {
 		}
 		
 		// Create the JSON and save file location
-		JSONObject obj = new JSONObject();
-		obj.put("title", problem.getTitle());
-		obj.put("description", problem.getDescription());
-		obj.put("lms", problem.getLmsTarget().toString());
-		obj.put("type", problem.getProblemType().toString());
-		obj.put("problem", problemCreation.getProblemJson());
-		
+		JSONObject obj = problemCreation.getProblemJson();		
 		
 		StringWriter out = new StringWriter();
 	    try {

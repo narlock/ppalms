@@ -324,46 +324,6 @@ class PpalmsLogicHandlerTests {
 	    });
 	}
 	
-	/**
-	 * This tests that  createPermutations generates a list of the correct specifications,
-	 * including size limit, and element content and uniqueness 
-	 * (checks that the list is actually a list of permutations).
-	 * It checks it over the range of allowed input sizes for more coverage.
-	 */
-	@Test
-	void testCreatePermutations() {
-		//TODO @Jaden Rodriguez
-		int limit = 30;
-		int lineLimit = 50;
-		int maxLength = 1; // 0! = 1
-		for (int numLines = 1; numLines <= lineLimit; numLines++) {
-			// update length using factorial (Dynamic programming)
-			maxLength *= numLines; // n! = n * (n-1)!
-			if (maxLength > limit) {
-				maxLength = limit;
-			}
-			problem = createValidPpalmsProblem();
-			ArrayList<Integer> annotations = new ArrayList<>();
-			for (int i = 0; i < numLines; i++) {
-				annotations.add(i);
-			}
-			problem.setAnnotations(annotations);
-			
-			handler.setProblemCreationInterface(new OrderingCreation(problem)); 
-			List<PpalmsProblem> permutedProblems = ((OrderingCreation) handler.getProblemCreationInterface()).createPermutations(problem);
-			// check the  number of permutations is within bounds
-			int length = permutedProblems.size();
-			assertTrue(0 < length && length <= maxLength);
-			// check each element is a permutation of the original problem
-			List<String> original = problem.getSourceCodeLines();
-			for (PpalmsProblem permutedProblem : permutedProblems) {
-				List<String> candidate = permutedProblem.getSourceCodeLines();
-				assertTrue(isPermutation(original, candidate));
-			}
-			// check that no duplicate permutations were made
-			assertTrue(allUniquePermutations(permutedProblems));
-		}
-	}
 	
 	/**
 	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original problem
@@ -384,29 +344,20 @@ class PpalmsLogicHandlerTests {
         }
 		assertTrue(handler.exportPpalmsProblem(problem));
 		
-		JSONObject obj;
+		
+		JSONObject parsed, original;
 		try {
-			obj = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
+			parsed = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 			assertTrue(false); // fail test if JSON can't be parsed
 			return;
 		} 
-		assertEquals(obj.get("title"),problem.getTitle());
-		assertEquals(obj.get("description"),problem.getDescription());
-		assertEquals(obj.get("lms"),problem.getLmsTarget().toString());
-		assertEquals(obj.get("type"), problem.getProblemType().toString());
-		List<String> original = (List<String>) obj.get("correct");
-		System.out.println(original);
-		assertEquals(original,problem.getSourceCodeLines());
-		List<List<String>> permutations = (List<List<String>>) obj.get("permutations");
-		for (List<String> permutation : permutations) {
-			assertTrue(isPermutation(original, permutation));
-		}
-		// check that no duplicate permutations were made
-		assertTrue(allUniquePermutations(permutations));
 		
+		original = (new OrderingCreation(problem)).getProblemJson();
+		assertEquals(parsed, original);
+
 		// verify that JSON output is parsed correctly in the case that
 		// tile/description not specified
 		// Also try different LMS target for coverage
@@ -425,25 +376,17 @@ class PpalmsLogicHandlerTests {
 		assertTrue(handler.exportPpalmsProblem(problem));
 		
 		try {
-			obj = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
+			parsed = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 			assertTrue(false); // fail test if JSON can't be parsed
 			return;
 		} 
-		assertEquals(obj.get("title"),problem.getTitle());
-		assertEquals(obj.get("description"),problem.getDescription());
-		assertEquals(obj.get("lms"),problem.getLmsTarget().toString());
-		assertEquals(obj.get("type"), problem.getProblemType().toString());
-		original = (List<String>) obj.get("correct");
-		assertEquals(original,problem.getSourceCodeLines());
-		permutations = (List<List<String>>) obj.get("permutations");
-		for (List<String> permutation : permutations) {
-			assertTrue(isPermutation(original, permutation));
-		}
-		// check that no duplicate permutations were made
-		assertTrue(allUniquePermutations(permutations));
+		
+		original = (new OrderingCreation(problem)).getProblemJson();
+		assertEquals(parsed, original);
+
 	}
 	
 	/**
@@ -463,41 +406,7 @@ class PpalmsLogicHandlerTests {
 		assertFalse(handler.exportPpalmsProblem(problem));
 	}
 	
-	/**
-	 * This method helps ensure that a list of permutations was generated
-	 * by confirming that each element is unique
-	 * @param <T> - generic type of list
-	 * @param l - list of permutations
-	 * @return
-	 */
-	private <T> boolean allUniquePermutations(List<T> l) {
-		for (int i = 0; i < l.size(); i++) {
-			for (int j = i + 1; j < l.size(); j++) {
-				if (l.get(i).equals(l.get(j))) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-	
-	/**
-	 * This helper method tells whether a candidate String list
-	 * is a permutation of a reference original String list.
-	 * @param reference - original String list to be compared to
-	 * @param candidate - candidate permutation of original String list
-	 * @return true if is a permutation, false if not
-	 */
-	private boolean isPermutation(List<String> reference, List<String> candidate) {
-		HashMap<String, Integer> referenceCount = new HashMap<>();
-		HashMap<String, Integer> candidateCount = new HashMap<>();
-		for (String line: reference)
-			referenceCount.put(line, referenceCount.getOrDefault(line, 0) + 1);			
-		for (String line: candidate)
-			candidateCount.put(line, candidateCount.getOrDefault(line, 0) + 1);		
-		return candidateCount.equals(referenceCount);
-	}
-	
+
 	/**
 	 * This is a private helper function that creates
 	 * a sample PpalmsProblem object that can be used

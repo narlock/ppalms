@@ -24,8 +24,7 @@ public class OrderingCreation extends ProblemCreationInterface {
 	@Override
 	public JSONObject getProblemJson() {
 		// Will call createPermutations
-		List<PpalmsProblem> permutedProblems = createPermutations(problem);
-		System.out.println(permutedProblems.size());
+		List<PpalmsProblem> permutedProblems = createPermutations();
 		ArrayList<List<String>> annotations = new ArrayList<>();
 		for (PpalmsProblem permutedProblem: permutedProblems) {
 			System.out.println(permutedProblem.getSourceCodeLines());
@@ -109,7 +108,7 @@ public class OrderingCreation extends ProblemCreationInterface {
 	 * @param problem
 	 * @return A list of permutations of the PpalmsProblem.
 	 */
-	public List<PpalmsProblem> createPermutations(PpalmsProblem problem) {
+	public List<PpalmsProblem> createPermutations() {
 		//Generate permutations and return List of problems
 		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
 		int n = problem.getAnnotations().size();

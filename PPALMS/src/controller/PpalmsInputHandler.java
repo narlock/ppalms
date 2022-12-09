@@ -59,6 +59,13 @@ public class PpalmsInputHandler {
 	}
 	
 	/**
+	 * @brief Setter method for PpalmsProblem. 
+	 */
+	public void setProblem(PpalmsProblem problem) {
+		this.problem = problem;
+	}
+	
+	/**
 	 * @brief Getter method for PpalmsLogicHandler. 
 	 * 
 	 * @return PpalmsLogicHandler

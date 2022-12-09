@@ -17,6 +17,7 @@ import view.LMSInputStrategy;
 import view.ProblemInputStrategy;
 import view.PpalmsGui;
 import view.AnnotationInterface;
+import view.ChooseLinesAnnotation;
 
 /**
  * PpalmsGuiTests
@@ -87,8 +88,6 @@ class PpalmsGuiTests {
 	 * @brief Tests whether if clicking on 
 	 * a line button for annotation would 
 	 * result in the exportProblem button
-	 * to be enabled. 
-	 * 
 	 * 
 	 * @author Shen Lua
 	 */
@@ -101,11 +100,27 @@ class PpalmsGuiTests {
 		gui.updateViewStrategy(new ProblemInputStrategy());
 		JButton exportProblem = ((ProblemInputStrategy) gui.getViewStrategy()).getExportProblem();
 		List<String> alines = gui.getPpalmsInputHandler().getProblem().getSourceCodeLines();
-		JButton lineButton = gui.getAnnotationLineButton(exportProblem, 0, alines.get(0));
+		
+		ChooseLinesAnnotation chooseLines = new ChooseLinesAnnotation(gui.getPpalmsInputHandler(), gui.getPpalmsInputHandler().getProblem());
+		JButton lineButton = chooseLines.getAnnotationLineButton(exportProblem, 0, alines.get(0));
 		lineButton.doClick();
 		lineButton.doClick(); 
 		assertTrue(exportProblem.isEnabled()); 
 	}
+	
+	/**
+	 * testOrderingAnnotationInterface
+	 * 
+	 * @brief This tests the case where the Ordering problem type 
+	 * is selected and the annotation interface does show up
+	 * 
+	 * @author Stephanie Ye
+	 */
+	@Test
+	void testOrderingAnnotationInterface() {
+		
+	}
+	
 	
 	/**
 	 * testSettargetLMSSuccess
@@ -140,10 +155,11 @@ class PpalmsGuiTests {
 	}
 	
 	/**
-	 * testProblemTypeSelection
+	 * testOrderingProblemTypeSelection
 	 * 
 	 * @brief Tests the intended system behavior when the 
-	 * problem type is and not selected. 
+	 * problem type is and not selected and when the 
+	 * Ordering problem type is selected
 	 * 
 	 * @author Shen Lua 
 	 */
@@ -157,6 +173,50 @@ class PpalmsGuiTests {
 		problemTypeComboBox.setSelectedIndex(0);
 		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
 		problemTypeComboBox.setSelectedIndex(1); // ordering
+		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
+	}
+	
+	/**
+	 * testFillInBlankProblemTypeSelection
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * problem type is and not selected and the Fill In Blank
+	 * problem type is selected
+	 * 
+	 * @author Stephanie Ye 
+	 */
+	@Test
+	void testFillInBlankProblemTypeSelection() {
+		PpalmsGui p = new PpalmsGui();
+		LMSInputStrategy l = new LMSInputStrategy();
+		p.updateViewStrategy(l);
+		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
+		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
+		problemTypeComboBox.setSelectedIndex(0);
+		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
+		problemTypeComboBox.setSelectedIndex(2); // ordering
+		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
+	}
+	
+	/**
+	 * testMultipleChoiceProblemTypeSelection
+	 * 
+	 * @brief Tests the intended system behavior when the 
+	 * problem type is and not selected and the Multiple 
+	 * Choice problem type is selected
+	 * 
+	 * @author Stephanie Ye 
+	 */
+	@Test
+	void testMultipleChoiceProblemTypeSelection() {
+		PpalmsGui p = new PpalmsGui();
+		LMSInputStrategy l = new LMSInputStrategy();
+		p.updateViewStrategy(l);
+		JButton confirmLmsTargetButton = ((LMSInputStrategy) p.getViewStrategy()).getConfirmLmsTargetButton();
+		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
+		problemTypeComboBox.setSelectedIndex(0);
+		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
+		problemTypeComboBox.setSelectedIndex(2); // ordering
 		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
 	}
 	

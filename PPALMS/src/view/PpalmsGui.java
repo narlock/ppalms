@@ -61,6 +61,11 @@ public class PpalmsGui extends JFrame {
 	private PpalmsInputHandler controller;
 	
 	/**
+	 * @brief See {@link AnnotationInterface} for definition.
+	 */
+	private AnnotationInterface annotationInterface; 
+	
+	/**
 	 * @brief The PpalmsGui constructor defines the Java
 	 * JFrame in which creates the window that
 	 * the user will interact with.
@@ -244,24 +249,22 @@ public class PpalmsGui extends JFrame {
 			});
 			
 			//Get the annotation panel
-			AnnotationInterface annotationInterface;    
-			
 			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
 			List<String> alines = controller.getProblem().getSourceCodeLines();
 			
 		    //Set the controls of the annotation panel
 		    switch (controller.getProblem().getProblemType()) {
 			    case Ordering:
-					annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
+					this.annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
 					for(int i = 0; i < alines.size(); i++) {
-						annotationPanel.add(annotationInterface.createAnnotationLineButton(exportProblem, i, alines.get(i)));
+						annotationPanel.add(((ChooseLinesAnnotation) annotationInterface).createAnnotationLineButton(exportProblem, i, alines.get(i)));
 					}
 			    case FillInTheBlank:
 			    	break;
 			    case MultipleChoice:
-			    	annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
+			    	this.annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
 			    	for(int i = 0; i < alines.size(); i++) {
-			    		annotationPanel.add(annotationInterface.createAnnotationLineButton(exportProblem, i, alines.get(i)));
+			    		annotationPanel.add(((ChooseLinesAnnotation) annotationInterface).createAnnotationLineButton(exportProblem, i, alines.get(i)));
 			    	}
 			    	break;
 		    }
@@ -298,5 +301,7 @@ public class PpalmsGui extends JFrame {
 		this.setSize(499, 500);
 		this.setSize(500, 500);
 	}
+	
+	public AnnotationInterface getAnnotationInterface() { return this.annotationInterface; }
 
 }

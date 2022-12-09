@@ -2,7 +2,9 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -13,11 +15,13 @@ import javax.swing.JTextField;
 
 import org.junit.jupiter.api.Test;
 
+import model.LmsTarget;
+import model.PpalmsProblem;
+import model.ProblemType;
 import view.LMSInputStrategy;
 import view.ProblemInputStrategy;
-import view.PpalmsGui;
-import view.AnnotationInterface;
 import view.ChooseLinesAnnotation;
+import view.PpalmsGui;
 
 /**
  * PpalmsGuiTests
@@ -48,6 +52,8 @@ class PpalmsGuiTests {
 	@Test
 	void testUpdateViewStrategySuccess() {
 		 PpalmsGui gui = new PpalmsGui();
+		 PpalmsProblem problem = createValidPpalmsProblem();
+		 gui.getPpalmsInputHandler().setProblem(problem);
 		 // To prevent errors when transitioning from LMSInputStrategy to ProblemInputStrategy view
 		 List<String> testSourceCodeLines = new ArrayList<String>();
 		 testSourceCodeLines.add("int main() {printf('hello world')}");
@@ -70,6 +76,8 @@ class PpalmsGuiTests {
 	@Test
 	void testProblemTitleDescriptionInput() {
 		PpalmsGui gui = new PpalmsGui();
+		PpalmsProblem problem = createValidPpalmsProblem();
+		gui.getPpalmsInputHandler().setProblem(problem);
 		List<String> testSourceCodeLines = new ArrayList<String>();
 		testSourceCodeLines.add("int main() {printf('hello world')}");
 		gui.getPpalmsInputHandler().getProblem().setSourceCodeLines(testSourceCodeLines);
@@ -94,18 +102,17 @@ class PpalmsGuiTests {
 	@Test
 	void testProblemAnnotation() {
 		PpalmsGui gui = new PpalmsGui();
-		List<String> testSourceCodeLines = new ArrayList<String>();
-		testSourceCodeLines.add("int main() {printf('hello world')}");
-		gui.getPpalmsInputHandler().getProblem().setSourceCodeLines(testSourceCodeLines);
+		gui.getPpalmsInputHandler().setProblem(createValidPpalmsProblem());
 		gui.updateViewStrategy(new ProblemInputStrategy());
-		JButton exportProblem = ((ProblemInputStrategy) gui.getViewStrategy()).getExportProblem();
-		List<String> alines = gui.getPpalmsInputHandler().getProblem().getSourceCodeLines();
-		
-		ChooseLinesAnnotation chooseLines = new ChooseLinesAnnotation(gui.getPpalmsInputHandler(), gui.getPpalmsInputHandler().getProblem());
-		JButton lineButton = chooseLines.getAnnotationLineButton(exportProblem, 0, alines.get(0));
-		lineButton.doClick();
-		lineButton.doClick(); 
-		assertTrue(exportProblem.isEnabled()); 
+		JButton lineButton = ((ChooseLinesAnnotation) gui.getAnnotationInterface()).getFirstAnnotationLineButton();
+		assertNotNull(lineButton);
+		assertEquals(lineButton.getText(), "Hello");
+		assertTrue(lineButton instanceof JButton);
+		try {
+			lineButton.doClick();
+		} catch(UnsupportedOperationException e) {
+			assertTrue(lineButton.getForeground().equals(Color.GREEN));
+		}
 	}
 	
 	/**
@@ -236,6 +243,29 @@ class PpalmsGuiTests {
 		numberOfStudentsSpinner.setValue(10);
 		
 		assertEquals(10, gui.getPpalmsInputHandler().getProblem().getNumberOfStudents());
+	}
+	
+	/**
+	 * This is a private helper function that creates
+	 * a sample PpalmsProblem object that can be used
+	 * during the test cases.
+	 * 
+	 * This helper function promotes code reuse as
+	 * the PpalmsLogicHandler requires the use
+	 * of modifying model attributes.
+	 * 
+	 * @return validate PpalmsProblem object
+	 */
+	private PpalmsProblem createValidPpalmsProblem() {
+		PpalmsProblem problem = new PpalmsProblem();
+		problem.setTitle("Test Title");
+		problem.setDescription("Test Description");
+		problem.setSourceCode("test.py");
+		problem.setSourceCodeLines(List.of(new String("Hello")));
+		problem.setAnnotations(Arrays.asList(31, 13, 45));
+		problem.setLmsTarget(LmsTarget.Canvas);
+		problem.setProblemType(ProblemType.Ordering);
+		return problem;
 	}
 	
 }

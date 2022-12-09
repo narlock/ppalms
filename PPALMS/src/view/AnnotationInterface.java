@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -48,45 +49,21 @@ public abstract class AnnotationInterface extends JPanel{
 	 */
 	public abstract void setAnnotationActions();
 	
-    
-    /**
-	 * @brief A helper function in which creates an annotation line button
-	 * that is used in the LMSInputStrategy. The reason that
-	 * this has been taken out is so that the application can
-	 * reuse this function for each of the lines the user
-	 * inputs.
-	 * 
-	 * @param exportProblem
-	 * @param index
-	 * @param line
-	 * @return JButton for a line in the input source code.
-	 */
-	public JButton createAnnotationLineButton(JButton exportProblem, int index, String line) {
-		JButton button = new JButton(line);
-		button.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(index);
-				if(!button.getForeground().equals(Color.GREEN)) {
-					button.setForeground(Color.GREEN);
-					controller.processInput(index, "addAnnotation");
-					exportProblem.setEnabled(true);
-				}
-			}	
-		});
-		return button;
+	public PpalmsInputHandler getController() {
+		return controller;
+	}
+
+	public void setController(PpalmsInputHandler controller) {
+		this.controller = controller;
+	}
+
+	public PpalmsProblem getProblem() {
+		return problem;
+	}
+
+	public void setProblem(PpalmsProblem problem) {
+		this.problem = problem;
 	}
 	
-	/**
-	 * @brief Getter method for private method getAnnotationLineButton
-	 * 
-	 * @param exportProblem
-	 * @param index
-	 * @param line
-	 * @return createAnnotationLineButton(exportProblem, index, line)
-	 */
-	public JButton getAnnotationLineButton(JButton exportProblem, int index, String line) {
-		return createAnnotationLineButton(exportProblem, index, line);
-	}
 }

@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class PpalmsProblem {
 
+	
+	
 	/**
 	 * @brief The source code string of the input source code.
 	 */
@@ -56,6 +58,7 @@ public class PpalmsProblem {
 	 * @brief The number of students for the problem
 	 */
 	private int numberOfStudents;
+	
 	
 	public String getSourceCode() {
 		return sourceCode;
@@ -224,6 +227,24 @@ public class PpalmsProblem {
         }
         PpalmsProblem otherProblem = (PpalmsProblem) other;
 	    return sourceCodeLines == otherProblem.getSourceCodeLines();
+	}
+
+	/**
+	 * @brief Copies all attributes to a new object, to be used for creating permutations
+	 * 
+	 * @return new Parson's problem with copied attributes
+	 */
+	public PpalmsProblem copy() {
+		PpalmsProblem copiedProblem = new PpalmsProblem();
+		copiedProblem.setSourceCode(sourceCode);
+		copiedProblem.setSourceCodeLines(new ArrayList<>(sourceCodeLines));
+		copiedProblem.setProblemType(problemType);
+		copiedProblem.setLmsTarget(lmsTarget);
+		copiedProblem.setAnnotations(new ArrayList<>(annotations));
+		copiedProblem.setTitle(title);
+		copiedProblem.setDescription(description);
+		copiedProblem.setNumberOfStudents(numberOfStudents);
+		return copiedProblem;
 	}
 	
 }

@@ -15,5 +15,5 @@ package model;
  *
  */
 public enum ProblemType {
-	Ordering, FillInBlank, MultipleChoice;
+	Ordering, FillInTheBlank, MultipleChoice;
 }

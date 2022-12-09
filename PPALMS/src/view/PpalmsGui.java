@@ -60,8 +60,6 @@ public class PpalmsGui extends JFrame {
 	 */
 	private PpalmsInputHandler controller;
 	
-//	private AnnotationInterface annotationInterface;
-	
 	/**
 	 * @brief The PpalmsGui constructor defines the Java
 	 * JFrame in which creates the window that
@@ -101,7 +99,6 @@ public class PpalmsGui extends JFrame {
 	public PpalmsInputHandler getPpalmsInputHandler() {
 		return controller;
 	}
-	
 	
 	/**
 	 * @brief setCommmunicationActions method defines how the
@@ -246,22 +243,28 @@ public class PpalmsGui extends JFrame {
 				
 			});
 			
-//			//Get the annotation panel
-//			AnnotationInterface annotationInterface = new AnnotationInterface();    
-//			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
-//			
-//		    //Set the controls of the annotation panel
-//		    switch (controller.getProblem().getProblemType()) {
-//		    case Ordering:
-//				List<String> alines = controller.getProblem().getSourceCodeLines();
-//				for(int i = 0; i < alines.size(); i++) {
-//					annotationPanel.add(annotationInterface.createAnnotationLineButton(exportProblem, i, alines.get(i)));
-//				}
-//		    case FillInBlank:
-//		    	break;
-//		    case MultipleChoice:
-//		    	break;
-//		    }
+			//Get the annotation panel
+			AnnotationInterface annotationInterface;    
+			
+			JPanel annotationPanel = ((ProblemInputStrategy) viewStrategy).getAnnotationPanel();
+			List<String> alines = controller.getProblem().getSourceCodeLines();
+			
+		    //Set the controls of the annotation panel
+		    switch (controller.getProblem().getProblemType()) {
+			    case Ordering:
+					annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
+					for(int i = 0; i < alines.size(); i++) {
+						annotationPanel.add(annotationInterface.createAnnotationLineButton(exportProblem, i, alines.get(i)));
+					}
+			    case FillInTheBlank:
+			    	break;
+			    case MultipleChoice:
+			    	annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
+			    	for(int i = 0; i < alines.size(); i++) {
+			    		annotationPanel.add(annotationInterface.createAnnotationLineButton(exportProblem, i, alines.get(i)));
+			    	}
+			    	break;
+		    }
 			refocusFrame();
 		}
 	}

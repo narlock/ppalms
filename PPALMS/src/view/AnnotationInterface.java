@@ -23,7 +23,7 @@ import model.PpalmsProblem;
  * @author Stephanie Ye
  *
  */
-public abstract class AnnotationInterface extends JComponent{
+public abstract class AnnotationInterface extends JPanel{
 	private PpalmsInputHandler controller;
 	private PpalmsProblem problem;
 	

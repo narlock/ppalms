@@ -119,7 +119,7 @@ class OrderingCreationTests {
 	 * This tests that getProblemJson creates a JSON object with the expected keys and values
 	 */
 	@Test
-	void getProblemJsonTest() {
+	void testGetProblemJson() {
 		JSONObject obj = orderingCreation.getProblemJson();
 		List<String> original = (List<String>) obj.get("correct");
 		assertEquals(original,problem.getSourceCodeLines());

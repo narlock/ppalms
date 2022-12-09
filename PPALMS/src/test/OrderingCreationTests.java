@@ -45,7 +45,6 @@ import model.ProblemType;
  */
 class OrderingCreationTests {
 	
-	private PpalmsLogicHandler handler;
 	private PpalmsProblem problem;
 	private List<String> dummyLines;
 	private OrderingCreation orderingCreation;
@@ -122,14 +121,13 @@ class OrderingCreationTests {
 	@Test
 	void getProblemJsonTest() {
 		JSONObject obj = orderingCreation.getProblemJson();
-		assertEquals(obj.get("title"),problem.getTitle());
-		assertEquals(obj.get("description"),problem.getDescription());
-		assertEquals(obj.get("lms"),problem.getLmsTarget().toString());
-		assertEquals(obj.get("type"), problem.getProblemType().toString());
 		List<String> original = (List<String>) obj.get("correct");
 		assertEquals(original,problem.getSourceCodeLines());
 		List<List<String>> permutations = (List<List<String>>) obj.get("permutations");
 		for (List<String> permutation : permutations) {
+			System.out.println(original);
+			System.out.println(permutation);
+			System.out.println('\n');
 			assertTrue(isPermutation(original, permutation));
 		}
 		assertTrue(allUniquePermutations(permutations));
@@ -144,6 +142,7 @@ class OrderingCreationTests {
 	 */
 	@Test
 	void testCreatePermutations() {
+		PpalmsLogicHandler handler = new PpalmsLogicHandler();
 		int limit = 30;
 		int lineLimit = 50;
 		int maxLength = 1; // 0! = 1
@@ -159,12 +158,14 @@ class OrderingCreationTests {
 				annotations.add(i);
 			}
 			problem.setAnnotations(annotations);
+			handler.setAnnotations(problem);
 			
 			orderingCreation = new OrderingCreation(problem);
 			List<PpalmsProblem> permutedProblems = orderingCreation.createPermutations();
 			// check the  number of permutations is within bounds
 			int length = permutedProblems.size();
-			assertTrue(0 < length && length <= maxLength);
+			assertTrue(0 < length);
+			assertTrue(length <= maxLength);
 			// check each element is a permutation of the original problem
 			List<String> original = problem.getSourceCodeLines();
 			for (PpalmsProblem permutedProblem : permutedProblems) {

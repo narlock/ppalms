@@ -111,24 +111,19 @@ public class OrderingCreation extends ProblemCreationInterface {
 	public List<PpalmsProblem> createPermutations() {
 		//Generate permutations and return List of problems
 		List<PpalmsProblem> permutedProblems = new ArrayList<PpalmsProblem>();
-		int n = problem.getAnnotations().size();
+		int n = problem.getSourceCodeLines().size();
 		ArrayList<ArrayList<Integer>> permutations = new PermutationMaker().getPermutations(n);
 		for (ArrayList<Integer> permutation: permutations) {
-			PpalmsProblem reorderedProblem = new PpalmsProblem();
+			PpalmsProblem reorderedProblem = problem.copy();
 			List<String> oldSourceCodeLines = problem.getSourceCodeLines();
+			System.out.println(oldSourceCodeLines);
+			System.out.println(permutation);
 			ArrayList<String> reorderedSourceCodeLines = new ArrayList<>();
 			for (Integer position : permutation) {
 				reorderedSourceCodeLines.add(oldSourceCodeLines.get(position));
 			}
+			System.out.println(reorderedSourceCodeLines);
 			reorderedProblem.setSourceCodeLines(reorderedSourceCodeLines);
-			
-			// copy rest of attributes
-			reorderedProblem.setSourceCode(problem.getSourceCode());
-			reorderedProblem.setProblemType(problem.getProblemType());
-			reorderedProblem.setLmsTarget(problem.getLmsTarget());
-			reorderedProblem.setTitle(problem.getTitle());
-			reorderedProblem.setDescription(problem.getDescription());
-			
 			permutedProblems.add(reorderedProblem);
 		}
 		return permutedProblems;

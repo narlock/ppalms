@@ -108,7 +108,7 @@ class PpalmsLogicHandlerTests {
 				"    y = x * 2"
 				);
 		handler = new PpalmsLogicHandler();
-		problem = createValidPpalmsProblem();
+		problem = createValidOrderingProblem();
 	}
 
 	/**
@@ -287,6 +287,7 @@ class PpalmsLogicHandlerTests {
 		System.out.println(problem.toString());
 		System.out.println(problem.getSourceCodeLines());
 		handler.setAnnotations(problem);
+		assertEquals(annotations.size(), problem.getSourceCodeLines().size());
 		assertEquals(dummyLines.get(0), problem.getSourceCodeLines().get(0));
 		assertEquals(dummyLines.get(1), problem.getSourceCodeLines().get(1));
 		assertEquals(dummyLines.get(2), problem.getSourceCodeLines().get(2));
@@ -355,13 +356,22 @@ class PpalmsLogicHandlerTests {
 			return;
 		} 
 		
-		original = (new OrderingCreation(problem)).getProblemJson();
-		assertEquals(parsed, original);
+		
+		assertEquals(parsed.get("title"), problem.getTitle());
+		assertEquals(parsed.get("description"), problem.getDescription());
+		assertEquals(parsed.get("lms"), problem.getLmsTarget().toString());
+		assertEquals(parsed.get("type"), problem.getProblemType().toString());
+		OrderingCreation problemCreation = null;
+		if(problem.getProblemType() == ProblemType.Ordering) {
+			problemCreation = new OrderingCreation(problem);
+		}
+		
+		assertEquals(parsed.get("problem"), problemCreation.getProblemJson());
 
 		// verify that JSON output is parsed correctly in the case that
 		// tile/description not specified
 		// Also try different LMS target for coverage
-		problem = createValidPpalmsProblem();
+		problem = createValidOrderingProblem();
 		try {
             Files.deleteIfExists(
                 Paths.get("problem.json"));
@@ -384,8 +394,16 @@ class PpalmsLogicHandlerTests {
 			return;
 		} 
 		
-		original = (new OrderingCreation(problem)).getProblemJson();
-		assertEquals(parsed, original);
+		assertEquals(parsed.get("title"), problem.getTitle());
+		assertEquals(parsed.get("description"), problem.getDescription());
+		assertEquals(parsed.get("lms"), problem.getLmsTarget().toString());
+		assertEquals(parsed.get("type"), problem.getProblemType().toString());
+		problemCreation = null;
+		if(problem.getProblemType() == ProblemType.Ordering) {
+			problemCreation = new OrderingCreation(problem);
+		}
+		
+		assertEquals(parsed.get("problem"), problemCreation.getProblemJson());
 
 	}
 	
@@ -418,7 +436,7 @@ class PpalmsLogicHandlerTests {
 	 * 
 	 * @return validate PpalmsProblem object
 	 */
-	private PpalmsProblem createValidPpalmsProblem() {
+	private PpalmsProblem createValidOrderingProblem() {
 		PpalmsProblem problem = new PpalmsProblem();
 		problem.setTitle("Test Title");
 		problem.setDescription("Test Description");

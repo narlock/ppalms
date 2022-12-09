@@ -21,7 +21,8 @@ import org.junit.platform.suite.api.Suite;
 		PpalmsLogicHandlerTests.class, 
 		PpalmsGuiTests.class, 
 		PpalmsInputHandlerTests.class,
-		ProblemInputStrategyTests.class
+		ProblemInputStrategyTests.class,
+		OrderingCreationTests.class
 	})
 public class AllTests {
 

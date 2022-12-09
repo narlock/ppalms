@@ -91,7 +91,7 @@ class PpalmsGuiTests {
 	}
 	
 	/**
-	 * testProblemAnnotation
+	 * testOrderingAnnotationInterface
 	 * 
 	 * @brief Tests whether if clicking on 
 	 * a line button for annotation would 
@@ -100,7 +100,7 @@ class PpalmsGuiTests {
 	 * @author Shen Lua
 	 */
 	@Test
-	void testProblemAnnotation() {
+	void testOrderingAnnotationInterface() {
 		PpalmsGui gui = new PpalmsGui();
 		gui.getPpalmsInputHandler().setProblem(createValidPpalmsProblem());
 		gui.updateViewStrategy(new ProblemInputStrategy());
@@ -116,7 +116,7 @@ class PpalmsGuiTests {
 	}
 	
 	/**
-	 * testOrderingAnnotationInterface
+	 * testMultipleChoiceAnnotationInterface
 	 * 
 	 * @brief This tests the case where the Ordering problem type 
 	 * is selected and the annotation interface does show up
@@ -124,8 +124,19 @@ class PpalmsGuiTests {
 	 * @author Stephanie Ye
 	 */
 	@Test
-	void testOrderingAnnotationInterface() {
-		
+	void testMultipleChoiceAnnotationInterface() {
+		PpalmsGui gui = new PpalmsGui();
+		gui.getPpalmsInputHandler().setProblem(createValidMultipleChoicePpalmsProblem());
+		gui.updateViewStrategy(new ProblemInputStrategy());
+		JButton lineButton = ((ChooseLinesAnnotation) gui.getAnnotationInterface()).getFirstAnnotationLineButton();
+		assertNotNull(lineButton);
+		assertEquals(lineButton.getText(), "Hello");
+		assertTrue(lineButton instanceof JButton);
+		try {
+			lineButton.doClick();
+		} catch(UnsupportedOperationException e) {
+			assertTrue(lineButton.getForeground().equals(Color.GREEN));
+		}
 	}
 	
 	
@@ -265,6 +276,29 @@ class PpalmsGuiTests {
 		problem.setAnnotations(Arrays.asList(31, 13, 45));
 		problem.setLmsTarget(LmsTarget.Canvas);
 		problem.setProblemType(ProblemType.Ordering);
+		return problem;
+	}
+	
+	/**
+	 * This is a private helper function that creates
+	 * a sample PpalmsProblem object that can be used
+	 * during the test cases.
+	 * 
+	 * This helper function promotes code reuse as
+	 * the PpalmsLogicHandler requires the use
+	 * of modifying model attributes.
+	 * 
+	 * @return validate PpalmsProblem object
+	 */
+	private PpalmsProblem createValidMultipleChoicePpalmsProblem() {
+		PpalmsProblem problem = new PpalmsProblem();
+		problem.setTitle("Test Title");
+		problem.setDescription("Test Description");
+		problem.setSourceCode("test.py");
+		problem.setSourceCodeLines(List.of(new String("Hello")));
+		problem.setAnnotations(Arrays.asList(31, 13, 45));
+		problem.setLmsTarget(LmsTarget.Canvas);
+		problem.setProblemType(ProblemType.MultipleChoice);
 		return problem;
 	}
 	

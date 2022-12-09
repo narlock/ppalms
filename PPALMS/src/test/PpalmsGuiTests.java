@@ -34,7 +34,7 @@ import view.PpalmsGui;
  * utilizing the JUnit testing framework
  * in this class. 
  * 
- * @author Shen
+ * @author Shen Lua 
  *
  */
 class PpalmsGuiTests {

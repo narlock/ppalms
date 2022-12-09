@@ -40,28 +40,48 @@ public abstract class AnnotationInterface extends JPanel{
 	}
 	
 	/**
-	 * @brief Function to set up the visual components of the interface
+	 * @brief Method to set up the visual components of the interface
 	 */
 	public abstract void setUpInterface();
 	
 	/**
-	 * @brief Function to set the actions of the annotations with respect to the InputHandler
+	 * @brief Method to set the actions of the annotations with respect to the InputHandler
 	 */
 	public abstract void setAnnotationActions();
 	
 
+	/**
+	 * @brief Getter method for the controller (PpalmsInputHandler)
+	 * 
+	 * @return controller
+	 */
 	public PpalmsInputHandler getController() {
 		return controller;
 	}
 
+	/**
+	 * @brief Setter method for controller (PpalmsInputHandler)
+	 * 
+	 * @param controller
+	 */
 	public void setController(PpalmsInputHandler controller) {
 		this.controller = controller;
 	}
 
+	/**
+	 * @brief Getter method for PpalmsProblem
+	 * 
+	 * @return problem
+	 */
 	public PpalmsProblem getProblem() {
 		return problem;
 	}
 
+	/**
+	 * @brief Setter method for problem (PpalmsProblem)
+	 * 
+	 * @param problem
+	 */
 	public void setProblem(PpalmsProblem problem) {
 		this.problem = problem;
 	}

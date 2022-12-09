@@ -13,17 +13,32 @@ import model.PpalmsProblem;
 
 public class ChooseLinesAnnotation extends AnnotationInterface {
 	
+	/**
+	 * @brief problemLines stores an ArrayList of JButtons
+	 */
 	private List<JButton> problemLines;
 	
+	/**
+	 * @brief Constructor for ChooseLinesAnnotation
+	 * 
+	 * @param controller
+	 * @param problem
+	 */
 	public ChooseLinesAnnotation(PpalmsInputHandler controller, PpalmsProblem problem) {
 		super(controller, problem);
 		this.problemLines = new ArrayList<JButton>();
 	}
 
+	/**
+	 * @brief method to setUpInterface
+	 */
 	public void setUpInterface() {
 		
 	}
 	
+	/**
+	 * @brief method that sets annotation specific actions
+	 */
 	public void setAnnotationActions() {
 		
 	}

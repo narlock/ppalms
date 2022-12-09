@@ -116,7 +116,7 @@ class OrderingCreationTests {
 
 	
 	/**
-	 
+	 * This tests that getProblemJson creates a JSON object with the expected keys and values
 	 */
 	@Test
 	void getProblemJsonTest() {

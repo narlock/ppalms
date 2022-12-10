@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
 
 import controller.PpalmsInputHandler;
 import model.PpalmsProblem;
@@ -17,11 +19,10 @@ public class ChooseLinesAnnotation extends AnnotationInterface {
 	
 	public ChooseLinesAnnotation(PpalmsInputHandler controller, PpalmsProblem problem) {
 		super(controller, problem);
-		this.problemLines = new ArrayList<JButton>();
 	}
 
 	public void setUpInterface() {
-		
+		this.problemLines = new ArrayList<JButton>();
 	}
 	
 	public void setAnnotationActions() {

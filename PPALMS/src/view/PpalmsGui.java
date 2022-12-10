@@ -255,14 +255,19 @@ public class PpalmsGui extends JFrame {
 		    //Set the controls of the annotation panel
 		    switch (controller.getProblem().getProblemType()) {
 			    case Ordering:
-					this.annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
+					this.annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(), getPpalmsInputHandler().getProblem());
 					for(int i = 0; i < alines.size(); i++) {
 						annotationPanel.add(((ChooseLinesAnnotation) annotationInterface).createAnnotationLineButton(exportProblem, i, alines.get(i)));
 					}
+					break;
 			    case FillInTheBlank:
+			    	this.annotationInterface = new ChooseLinesAddBlank(getPpalmsInputHandler(), getPpalmsInputHandler().getProblem());
+					for(int i = 0; i < alines.size(); i++) {
+						annotationPanel.add(((ChooseLinesAddBlank) annotationInterface).createAnnotationLineButtonPanel(exportProblem, i, alines.get(i)));
+					}
 			    	break;
 			    case MultipleChoice:
-			    	this.annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(),getPpalmsInputHandler().getProblem());
+			    	this.annotationInterface = new ChooseLinesAnnotation(getPpalmsInputHandler(), getPpalmsInputHandler().getProblem());
 			    	for(int i = 0; i < alines.size(); i++) {
 			    		annotationPanel.add(((ChooseLinesAnnotation) annotationInterface).createAnnotationLineButton(exportProblem, i, alines.get(i)));
 			    	}

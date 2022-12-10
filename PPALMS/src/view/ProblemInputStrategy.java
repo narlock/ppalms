@@ -163,4 +163,14 @@ public class ProblemInputStrategy extends ViewStrategy {
 	 * @return annotationsLabel
 	 */
 	public JLabel getAnnotationsLabel() { return annotationsLabel; }
+
+
+	/**
+	 * Getter method for Annotation Interface
+	 * 
+	 * @return annotationInterface
+	 */
+	public AnnotationInterface getAnnotationInterface() {
+		return annotationInterface;
+	}
 }

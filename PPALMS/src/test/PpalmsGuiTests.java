@@ -21,6 +21,7 @@ import model.ProblemType;
 import view.LMSInputStrategy;
 import view.ProblemInputStrategy;
 import view.ChooseLinesAnnotation;
+import view.ChooseLinesAddBlank;
 import view.PpalmsGui;
 
 /**
@@ -118,7 +119,7 @@ class PpalmsGuiTests {
 	/**
 	 * testMultipleChoiceAnnotationInterface
 	 * 
-	 * @brief This tests the case where the Ordering problem type 
+	 * @brief This tests the case where the Multiple Choice problem type 
 	 * is selected and the annotation interface does show up
 	 * 
 	 * @author Stephanie Ye
@@ -129,6 +130,30 @@ class PpalmsGuiTests {
 		gui.getPpalmsInputHandler().setProblem(createValidMultipleChoicePpalmsProblem());
 		gui.updateViewStrategy(new ProblemInputStrategy());
 		JButton lineButton = ((ChooseLinesAnnotation) gui.getAnnotationInterface()).getFirstAnnotationLineButton();
+		assertNotNull(lineButton);
+		assertEquals(lineButton.getText(), "Hello");
+		assertTrue(lineButton instanceof JButton);
+		try {
+			lineButton.doClick();
+		} catch(UnsupportedOperationException e) {
+			assertTrue(lineButton.getForeground().equals(Color.GREEN));
+		}
+	}
+	
+	/**
+	 * testMultipleChoiceAnnotationInterface
+	 * 
+	 * @brief This tests the case where the Ordering problem type 
+	 * is selected and the annotation interface does show up
+	 * 
+	 * @author Anthony Narlock
+	 */
+	@Test
+	void testFillInTheBlankAnnotationInterface() {
+		PpalmsGui gui = new PpalmsGui();
+		gui.getPpalmsInputHandler().setProblem(createValidFillInTheBlankPpalmsProblem());
+		gui.updateViewStrategy(new ProblemInputStrategy());
+		JButton lineButton = ((ChooseLinesAddBlank) gui.getAnnotationInterface()).getFirstAnnotationLineButton();
 		assertNotNull(lineButton);
 		assertEquals(lineButton.getText(), "Hello");
 		assertTrue(lineButton instanceof JButton);
@@ -299,6 +324,29 @@ class PpalmsGuiTests {
 		problem.setAnnotations(Arrays.asList(31, 13, 45));
 		problem.setLmsTarget(LmsTarget.Canvas);
 		problem.setProblemType(ProblemType.MultipleChoice);
+		return problem;
+	}
+	
+	/**
+	 * This is a private helper function that creates
+	 * a sample PpalmsProblem object that can be used
+	 * during the test cases.
+	 * 
+	 * This helper function promotes code reuse as
+	 * the PpalmsLogicHandler requires the use
+	 * of modifying model attributes.
+	 * 
+	 * @return validate PpalmsProblem object
+	 */
+	private PpalmsProblem createValidFillInTheBlankPpalmsProblem() {
+		PpalmsProblem problem = new PpalmsProblem();
+		problem.setTitle("Test Title");
+		problem.setDescription("Test Description");
+		problem.setSourceCode("test.py");
+		problem.setSourceCodeLines(List.of(new String("Hello")));
+		problem.setAnnotations(Arrays.asList(31, 13, 45));
+		problem.setLmsTarget(LmsTarget.Canvas);
+		problem.setProblemType(ProblemType.FillInTheBlank);
 		return problem;
 	}
 	

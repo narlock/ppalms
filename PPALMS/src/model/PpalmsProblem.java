@@ -234,10 +234,11 @@ public class PpalmsProblem {
 			System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
 			break;
 		case "upper":
-			blankBounds.get(index).set(1, boundIndex);
+			blankBounds.get(index).set(1, boundIndex + blankBounds.get(index).get(0));
 			System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
 			break;
 		}
+		System.out.println(blankBounds);
 	}
 
 	/**

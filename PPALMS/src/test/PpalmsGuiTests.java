@@ -43,7 +43,7 @@ class PpalmsGuiTests {
 	 * testUpdateViewStrategySuccess
 	 * 
 	 * @brief Tests whether if the view strategy has changed
-	 * from the default "CodeInputStrategy" to "LMSInputStrategy"
+	 * from "LMSInputStrategy" to "ProblemInputStrategy"
 	 * in this testing scenario when updateViewStrategy method 
 	 * is invoked.  
 	 * 
@@ -95,7 +95,8 @@ class PpalmsGuiTests {
 	 * 
 	 * @brief Tests whether if clicking on 
 	 * a line button for annotation would 
-	 * result in the exportProblem button
+	 * result in the line button text turning green
+	 * to indicate successful selection
 	 * 
 	 * @author Shen Lua
 	 */
@@ -182,7 +183,7 @@ class PpalmsGuiTests {
 	 * @author Shen Lua 
 	 */
 	@Test
-	void testProblemTypeSelection() {
+	void testOrderingProblemTypeSelection() {
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
@@ -190,7 +191,7 @@ class PpalmsGuiTests {
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
 		problemTypeComboBox.setSelectedIndex(0);
 		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
-		problemTypeComboBox.setSelectedIndex(1); // ordering
+		problemTypeComboBox.setSelectedIndex(1); // Ordering
 		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
 	}
 	
@@ -204,7 +205,7 @@ class PpalmsGuiTests {
 	 * @author Stephanie Ye 
 	 */
 	@Test
-	void testFillInBlankProblemTypeSelection() {
+	void testFillInTheBlankProblemTypeSelection() {
 		PpalmsGui p = new PpalmsGui();
 		LMSInputStrategy l = new LMSInputStrategy();
 		p.updateViewStrategy(l);
@@ -212,7 +213,7 @@ class PpalmsGuiTests {
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
 		problemTypeComboBox.setSelectedIndex(0);
 		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
-		problemTypeComboBox.setSelectedIndex(2); // ordering
+		problemTypeComboBox.setSelectedIndex(2); // FillInTheBlank
 		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
 	}
 	
@@ -234,7 +235,7 @@ class PpalmsGuiTests {
 		JComboBox<String> problemTypeComboBox = ((LMSInputStrategy) p.getViewStrategy()).getProblemTypeComboBox();
 		problemTypeComboBox.setSelectedIndex(0);
 		assertFalse(confirmLmsTargetButton.isEnabled()); // disabled when none selected
-		problemTypeComboBox.setSelectedIndex(2); // ordering
+		problemTypeComboBox.setSelectedIndex(3); // MultipleChoice
 		assertTrue(confirmLmsTargetButton.isEnabled()); // enabled when selected
 	}
 	

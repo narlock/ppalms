@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * PpalmsProblem
@@ -46,7 +48,7 @@ public class PpalmsProblem {
 	 * @brief The lower and upper bound for each problem
 	 * Only utilized in the FillInTheBlank problem type
 	 */
-	private List<List<Integer>> blankBounds;
+	private Map<Integer, List<Integer>> blankBounds;
 	
 	/**
 	 * @brief The title of the problem.
@@ -64,7 +66,7 @@ public class PpalmsProblem {
 	private int numberOfStudents;
 	
 	public PpalmsProblem() {
-		blankBounds = new ArrayList<List<Integer>>();
+		blankBounds = new HashMap<Integer, List<Integer>>();
 	}
 	
 	public String getSourceCode() {
@@ -216,14 +218,14 @@ public class PpalmsProblem {
 	 * 
 	 * @return
 	 */
-	public List<List<Integer>> getBlankBounds() {
+	public Map<Integer, List<Integer>> getBlankBounds() {
 		return blankBounds;
 	}
 	
 	public void addItemToList(int index) {
-		blankBounds.add(new ArrayList<Integer>());
-		blankBounds.get(index).add(0, -1);
-		blankBounds.get(index).add(0, -2);
+		blankBounds.put(index, new ArrayList<Integer>());
+		blankBounds.get(index).add(-1);
+		blankBounds.get(index).add(-2);
 		System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
 	}
 	
@@ -246,7 +248,7 @@ public class PpalmsProblem {
 	 * 
 	 * @param blankBounds
 	 */
-	public void setBlankBounds(List<List<Integer>> blankBounds) {
+	public void setBlankBounds(Map<Integer, List<Integer>> blankBounds) {
 		this.blankBounds = blankBounds;
 	}
 

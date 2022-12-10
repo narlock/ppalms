@@ -34,7 +34,7 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 	 * @brief Combo boxes for a problem line
 	 * Used only for testing purposes
 	 */
-	private List<JComboBox<Character>> problemLineComboBox;
+	private List<JComboBox<String>> problemLineComboBox;
 	
 	/**
 	 * The index for a lower bound
@@ -53,7 +53,7 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 	@Override
 	public void setUpInterface() {
 		this.problemLines = new ArrayList<JButton>();
-		this.problemLineComboBox = new ArrayList<JComboBox<Character>>();
+		this.problemLineComboBox = new ArrayList<JComboBox<String>>();
 	}
 
 	@Override
@@ -76,8 +76,8 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 	public JPanel createAnnotationLineButtonPanel(JButton exportProblem, int index, String line) {
 		JPanel linePanel = new JPanel();
 		JButton button = new JButton(line);
-		JComboBox<Character> lowerBoundComboBox = new JComboBox<Character>();
-		JComboBox<Character> upperBoundComboBox = new JComboBox<Character>();
+		JComboBox<String> lowerBoundComboBox = new JComboBox<String>();
+		JComboBox<String> upperBoundComboBox = new JComboBox<String>();
 		
 		button.addActionListener(new ActionListener() {
 
@@ -96,7 +96,7 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 			
 			private void populateLowerBoundComboBox(String line) {
 				for(int i = 0; i < line.length(); i++) {
-					lowerBoundComboBox.addItem(line.charAt(i));
+					lowerBoundComboBox.addItem(line.charAt(i) + " (" + i + ")");
 				}
 			}
 			
@@ -123,9 +123,8 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 				} else {
 					upperBoundComboBox.removeAllItems();
 					for(int i = lowerBoundIndex + 1; i < line.length(); i++) {
-						upperBoundComboBox.addItem(line.charAt(i));
+						upperBoundComboBox.addItem(line.charAt(i) + " (" + i + ")");
 					}
-					upperBoundComboBox.setSelectedIndex(0);
 				}
 			}
 		});
@@ -136,9 +135,16 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				upperBoundIndex = upperBoundComboBox.getSelectedIndex();
-				getController().processInput(upperBoundIndex, "setUpperBound", index);
-				exportProblem.setEnabled(true);
+				if(e.getSource().toString().contains("hidden")) {
+					System.out.println("setVisible event");
+				} else {
+					upperBoundIndex = upperBoundComboBox.getSelectedIndex();
+					if(upperBoundIndex + 1 >= line.length()) {
+						upperBoundIndex = lowerBoundIndex;
+					}
+					getController().processInput(upperBoundIndex + 1, "setUpperBound", index);
+					exportProblem.setEnabled(true);
+				}
 			}
 			
 		});
@@ -160,11 +166,11 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 		return problemLines.get(0);
 	}
 
-	public JComboBox<Character> getProblemLineComboBoxIndex(int index) {
+	public JComboBox<String> getProblemLineComboBoxIndex(int index) {
 		return problemLineComboBox.get(index);
 	}
 	
-	public List<JComboBox<Character>> getProblemLineComboBox() {
+	public List<JComboBox<String>> getProblemLineComboBox() {
 		return problemLineComboBox;
 	}
 }

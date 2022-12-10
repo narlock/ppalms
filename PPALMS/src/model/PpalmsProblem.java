@@ -224,8 +224,8 @@ public class PpalmsProblem {
 	
 	public void addItemToList(int index) {
 		blankBounds.put(index, new ArrayList<Integer>());
-		blankBounds.get(index).add(0, -1);
-		blankBounds.get(index).add(1, -2);
+		blankBounds.get(index).add(-1);
+		blankBounds.get(index).add(-2);
 		System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
 	}
 	

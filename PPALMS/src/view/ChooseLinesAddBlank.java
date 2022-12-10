@@ -125,7 +125,6 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 					for(int i = lowerBoundIndex + 1; i < line.length(); i++) {
 						upperBoundComboBox.addItem(line.charAt(i));
 					}
-					upperBoundComboBox.setSelectedIndex(0);
 				}
 			}
 		});
@@ -136,9 +135,13 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				upperBoundIndex = upperBoundComboBox.getSelectedIndex();
-				getController().processInput(upperBoundIndex, "setUpperBound", index);
-				exportProblem.setEnabled(true);
+				if(e.getSource().toString().contains("hidden")) {
+					System.out.println("setVisible event");
+				} else {
+					upperBoundIndex = upperBoundComboBox.getSelectedIndex();
+					getController().processInput(upperBoundIndex, "setUpperBound", index);
+					exportProblem.setEnabled(true);
+				}
 			}
 			
 		});

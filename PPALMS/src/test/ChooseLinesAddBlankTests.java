@@ -38,14 +38,14 @@ class ChooseLinesAddBlankTests {
 		ChooseLinesAddBlank annotationInterface = new ChooseLinesAddBlank(gui.getPpalmsInputHandler(), problem);
 		annotationInterface.createAnnotationLineButtonPanel(new JButton(), 0, problem.getSourceCodeLines().get(0));
 		
-		JComboBox<Character> lowerBoundBox = annotationInterface.getProblemLineComboBoxIndex(0);
+		JComboBox<String> lowerBoundBox = annotationInterface.getProblemLineComboBoxIndex(0);
 		assertNotNull(lowerBoundBox);
 		assertEquals(2,annotationInterface.getProblemLineComboBox().size());
 		for(int i = 0; i < problem.getSourceCodeLines().get(0).length(); i++) {
-			lowerBoundBox.addItem(problem.getSourceCodeLines().get(0).charAt(i));
+			lowerBoundBox.addItem(problem.getSourceCodeLines().get(0).charAt(i) + " (0)");
 		}
 		lowerBoundBox.setSelectedIndex(0);
-		assertEquals('H', lowerBoundBox.getSelectedItem());
+		assertEquals("H (0)", lowerBoundBox.getSelectedItem());
 	}
 	
 	/**
@@ -67,14 +67,14 @@ class ChooseLinesAddBlankTests {
 		ChooseLinesAddBlank annotationInterface = new ChooseLinesAddBlank(gui.getPpalmsInputHandler(), problem);
 		annotationInterface.createAnnotationLineButtonPanel(new JButton(), 0, problem.getSourceCodeLines().get(0));
 		
-		JComboBox<Character> upperBoundBox = annotationInterface.getProblemLineComboBoxIndex(0);
+		JComboBox<String> upperBoundBox = annotationInterface.getProblemLineComboBoxIndex(0);
 		assertNotNull(upperBoundBox);
 		assertEquals(2,annotationInterface.getProblemLineComboBox().size());
 		for(int i = 0; i < problem.getSourceCodeLines().get(0).length(); i++) {
-			upperBoundBox.addItem(problem.getSourceCodeLines().get(0).charAt(i));
+			upperBoundBox.addItem(problem.getSourceCodeLines().get(0).charAt(i) + " (0)");
 		}
 		upperBoundBox.setSelectedIndex(0);
-		assertEquals('H', upperBoundBox.getSelectedItem());
+		assertEquals("H (0)", upperBoundBox.getSelectedItem());
 	}
 	
 	/**

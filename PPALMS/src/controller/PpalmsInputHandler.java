@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
@@ -164,6 +165,30 @@ public class PpalmsInputHandler {
 		switch (event) {
 		case "addAnnotation":
 			problem.getAnnotations().add(index);
+			return true;
+		case "createBounds":
+			problem.addItemToList(index);
+			return true;
+		}
+		return false;
+	}
+		
+	/**
+	 * @brief Processes a given user input specific
+	 * for adding an annotation for setting bounds.
+	 * 
+	 * @param index
+	 * @param event
+	 * @return true for successful input, false for unsuccessful input.
+	 */
+	public boolean processInput(int index, String event, int buttonIndex) {
+		System.out.println("Bound Input Received for buttonIndex " + buttonIndex);
+		switch (event) {
+		case "setLowerBound":
+			problem.setBound(buttonIndex, "lower", index);
+			return true;
+		case "setUpperBound":
+			problem.setBound(buttonIndex, "upper", index);
 			return true;
 		}
 		return false;

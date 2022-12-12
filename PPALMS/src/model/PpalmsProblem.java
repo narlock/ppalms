@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * PpalmsProblem
@@ -16,8 +18,6 @@ import java.util.List;
  *
  */
 public class PpalmsProblem {
-
-	
 	
 	/**
 	 * @brief The source code string of the input source code.
@@ -45,6 +45,12 @@ public class PpalmsProblem {
 	private List<Integer> annotations;
 	
 	/**
+	 * @brief The lower and upper bound for each problem
+	 * Only utilized in the FillInTheBlank problem type
+	 */
+	private Map<Integer, List<Integer>> blankBounds;
+	
+	/**
 	 * @brief The title of the problem.
 	 */
 	private String title;
@@ -59,6 +65,9 @@ public class PpalmsProblem {
 	 */
 	private int numberOfStudents;
 	
+	public PpalmsProblem() {
+		blankBounds = new HashMap<Integer, List<Integer>>();
+	}
 	
 	public String getSourceCode() {
 		return sourceCode;
@@ -202,6 +211,45 @@ public class PpalmsProblem {
 	 */
 	public void setNumberOfStudents(int numberOfStudents) {
 		this.numberOfStudents = numberOfStudents;
+	}
+	
+	/**
+	 * @brief Getter for blankBounds
+	 * 
+	 * @return
+	 */
+	public Map<Integer, List<Integer>> getBlankBounds() {
+		return blankBounds;
+	}
+	
+	public void addItemToList(int index) {
+		blankBounds.put(index, new ArrayList<Integer>());
+		blankBounds.get(index).add(-1);
+		blankBounds.get(index).add(-2);
+		System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
+	}
+	
+	public void setBound(int index, String bound, int boundIndex) {
+		switch(bound) {
+		case "lower":
+			blankBounds.get(index).set(0, boundIndex);
+			System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
+			break;
+		case "upper":
+			blankBounds.get(index).set(1, boundIndex + blankBounds.get(index).get(0));
+			System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
+			break;
+		}
+		System.out.println(blankBounds);
+	}
+
+	/**
+	 * @brief Setter method for the blankBounds
+	 * 
+	 * @param blankBounds
+	 */
+	public void setBlankBounds(Map<Integer, List<Integer>> blankBounds) {
+		this.blankBounds = blankBounds;
 	}
 
 	/**

@@ -56,6 +56,8 @@ class LMSInputStrategyTests {
 		l.setViewPanel();
 		assertEquals("Expand", (l.getProblemTypeComboBox()).getItemAt(0));
 		assertEquals("Ordering", (l.getProblemTypeComboBox()).getItemAt(1));
+		assertEquals("FillInTheBlank", (l.getProblemTypeComboBox().getItemAt(2)));
+		assertEquals("MultipleChoice", (l.getProblemTypeComboBox().getItemAt(3)));
 	}
 	
 	/**

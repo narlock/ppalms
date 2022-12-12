@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controller.PpalmsInputHandler;
+import view.AnnotationInterface;
+
 /**
  * ProblemInputStrategy
  * 
@@ -70,6 +73,11 @@ public class ProblemInputStrategy extends ViewStrategy {
 	 * to export their created problem.
 	 */
 	private JButton exportProblem;
+	
+	/**
+	 * @brief See {@link AnnotationInterface} for definition.
+	 */
+	private AnnotationInterface annotationInterface; 
 	
 	@Override
 	public void setViewPanel() {
@@ -155,4 +163,14 @@ public class ProblemInputStrategy extends ViewStrategy {
 	 * @return annotationsLabel
 	 */
 	public JLabel getAnnotationsLabel() { return annotationsLabel; }
+
+
+	/**
+	 * Getter method for Annotation Interface
+	 * 
+	 * @return annotationInterface
+	 */
+	public AnnotationInterface getAnnotationInterface() {
+		return annotationInterface;
+	}
 }

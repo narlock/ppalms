@@ -135,6 +135,7 @@ public class PpalmsLogicHandler {
 		obj.put("description", problem.getDescription());
 		obj.put("lms", problem.getLmsTarget().toString());
 		obj.put("type", problem.getProblemType().toString());
+		obj.put("students", problem.getNumberOfStudents());
 		obj.put("problem", problemCreation.getProblemJson());
 		
 		

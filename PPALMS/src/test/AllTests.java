@@ -23,7 +23,7 @@ import org.junit.platform.suite.api.Suite;
 		PpalmsInputHandlerTests.class,
 		ProblemInputStrategyTests.class,
 		OrderingCreationTests.class,
-		MultipleChoiceCreationTests.class
+		MultipleChoiceCreationTests.class,
 		ChooseLinesAddBlankTests.class
 	})
 public class AllTests {

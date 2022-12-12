@@ -125,9 +125,6 @@ class OrderingCreationTests {
 		assertEquals(original,problem.getSourceCodeLines());
 		List<List<String>> permutations = (List<List<String>>) obj.get("permutations");
 		for (List<String> permutation : permutations) {
-			System.out.println(original);
-			System.out.println(permutation);
-			System.out.println('\n');
 			assertTrue(isPermutation(original, permutation));
 		}
 		assertTrue(allUniquePermutations(permutations));

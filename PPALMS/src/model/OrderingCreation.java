@@ -21,13 +21,13 @@ public class OrderingCreation extends ProblemCreationInterface {
 		super(problem);
 	}
 	
+	
 	@Override
 	public JSONObject getProblemJson() {
 		// Will call createPermutations
 		List<PpalmsProblem> permutedProblems = createPermutations();
 		ArrayList<List<String>> annotations = new ArrayList<>();
 		for (PpalmsProblem permutedProblem: permutedProblems) {
-			System.out.println(permutedProblem.getSourceCodeLines());
 			annotations.add(permutedProblem.getSourceCodeLines());
 		}
 		
@@ -116,13 +116,10 @@ public class OrderingCreation extends ProblemCreationInterface {
 		for (ArrayList<Integer> permutation: permutations) {
 			PpalmsProblem reorderedProblem = problem.copy();
 			List<String> oldSourceCodeLines = problem.getSourceCodeLines();
-			System.out.println(oldSourceCodeLines);
-			System.out.println(permutation);
 			ArrayList<String> reorderedSourceCodeLines = new ArrayList<>();
 			for (Integer position : permutation) {
 				reorderedSourceCodeLines.add(oldSourceCodeLines.get(position));
 			}
-			System.out.println(reorderedSourceCodeLines);
 			reorderedProblem.setSourceCodeLines(reorderedSourceCodeLines);
 			permutedProblems.add(reorderedProblem);
 		}

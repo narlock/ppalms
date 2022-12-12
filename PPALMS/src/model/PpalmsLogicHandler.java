@@ -118,12 +118,17 @@ public class PpalmsLogicHandler {
 	 */
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
 		setAnnotations(problem);
-		
+		System.out.println(problem);
+		System.out.println("hi again again");
 		//Logic to instantiate problem creation based on problem type
 		if(problem.getProblemType() == ProblemType.Ordering) {
 			problemCreation = new OrderingCreation(problem);
 		}
-		
+		else if(problem.getProblemType() == ProblemType.MultipleChoice) {
+			problemCreation = new MultipleChoiceCreation(problem);
+		}
+		System.out.println(problem);
+		System.out.println("hi again again again");
 		// Create the JSON and save file location
 		JSONObject obj = new JSONObject();
 		obj.put("title", problem.getTitle());

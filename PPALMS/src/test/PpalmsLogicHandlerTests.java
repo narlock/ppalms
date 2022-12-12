@@ -24,6 +24,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.LmsTarget;
+import model.MultipleChoiceCreation;
 import model.OrderingCreation;
 import model.PpalmsLogicHandler;
 import model.PpalmsProblem;
@@ -283,9 +284,6 @@ class PpalmsLogicHandlerTests {
 			annotations.add(1);
 			annotations.add(2);
 		problem.setAnnotations(annotations);
-		System.out.println(annotations);
-		System.out.println(problem.toString());
-		System.out.println(problem.getSourceCodeLines());
 		handler.setAnnotations(problem);
 		assertEquals(annotations.size(), problem.getSourceCodeLines().size());
 		assertEquals(dummyLines.get(0), problem.getSourceCodeLines().get(0));
@@ -327,13 +325,13 @@ class PpalmsLogicHandlerTests {
 	
 	
 	/**
-	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original problem
+	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original ordering problem
 	 * and its permutations (does not check that annotations/source lines are within constraints
 	 * because this method should only called if this is so; these constraints are tested
 	 * in another component)
 	 */
 	@Test
-	void testExportPpalmsProblem() {
+	void testExportOrderingPpalmsProblem() {
 		// make sure problem file is not present
 		try {
             Files.deleteIfExists(
@@ -361,10 +359,7 @@ class PpalmsLogicHandlerTests {
 		assertEquals(parsed.get("description"), problem.getDescription());
 		assertEquals(parsed.get("lms"), problem.getLmsTarget().toString());
 		assertEquals(parsed.get("type"), problem.getProblemType().toString());
-		OrderingCreation problemCreation = null;
-		if(problem.getProblemType() == ProblemType.Ordering) {
-			problemCreation = new OrderingCreation(problem);
-		}
+		OrderingCreation problemCreation = new OrderingCreation(problem);
 		
 		assertEquals(parsed.get("problem"), problemCreation.getProblemJson());
 
@@ -398,11 +393,7 @@ class PpalmsLogicHandlerTests {
 		assertEquals(parsed.get("description"), problem.getDescription());
 		assertEquals(parsed.get("lms"), problem.getLmsTarget().toString());
 		assertEquals(parsed.get("type"), problem.getProblemType().toString());
-		problemCreation = null;
-		if(problem.getProblemType() == ProblemType.Ordering) {
-			problemCreation = new OrderingCreation(problem);
-		}
-		
+		problemCreation = new OrderingCreation(problem);
 		assertEquals(parsed.get("problem"), problemCreation.getProblemJson());
 
 	}
@@ -424,10 +415,89 @@ class PpalmsLogicHandlerTests {
 		assertFalse(handler.exportPpalmsProblem(problem));
 	}
 	
+	/**
+	 * This tests that exportPpalmsProblem creates an output file and that the JSON parses to the original MultipleChoice problem
+	 * structure
+	 */
+	@Test
+	void testExportMultipleChoiceOrderingPpalmsProblem() {
+		// make sure problem file is not present
+		try {
+            Files.deleteIfExists(
+                Paths.get("problem.json"));
+        }
+        catch (Exception e) {
+            System.out.println(
+                "No such file/directory exists");
+        }
+		problem = createValidMultipleChoiceProblem();
+		System.out.println(problem);
+		System.out.println("hi again");
+		assertTrue(handler.exportPpalmsProblem(problem));
+		
+		
+		JSONObject parsed;
+		try {
+			parsed = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false); // fail test if JSON can't be parsed
+			return;
+		} 
+		
+		
+		assertEquals(parsed.get("title"), problem.getTitle());
+		assertEquals(parsed.get("description"), problem.getDescription());
+		assertEquals(parsed.get("lms"), problem.getLmsTarget().toString());
+		assertEquals(parsed.get("type"), problem.getProblemType().toString());
+		MultipleChoiceCreation mcCreation = new MultipleChoiceCreation(problem);
+		JSONObject problemJSON = (JSONObject) parsed.get("problem");
+		for (Object key : mcCreation.getProblemJson().keySet()) {
+			assertTrue(problemJSON.containsKey(key));
+		}
+
+		// verify that JSON output is parsed correctly in the case that
+		// tile/description not specified
+		// Also try different LMS target for coverage
+		problem = createValidMultipleChoiceProblem();
+		try {
+            Files.deleteIfExists(
+                Paths.get("problem.json"));
+        }
+        catch (Exception e) {
+            System.out.println(
+                "No such file/directory exists");
+        }
+		problem.setLmsTarget(LmsTarget.D2L);
+		problem.setTitle("");
+		problem.setDescription("");
+		assertTrue(handler.exportPpalmsProblem(problem));
+		
+		try {
+			parsed = (JSONObject) new JSONParser().parse(new FileReader("problem.json"));
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			assertTrue(false); // fail test if JSON can't be parsed
+			return;
+		} 
+		
+		assertEquals(parsed.get("title"), problem.getTitle());
+		assertEquals(parsed.get("description"), problem.getDescription());
+		assertEquals(parsed.get("lms"), problem.getLmsTarget().toString());
+		assertEquals(parsed.get("type"), problem.getProblemType().toString());
+		mcCreation = new MultipleChoiceCreation(problem);
+		problemJSON = (JSONObject) parsed.get("problem");
+		for (Object key : mcCreation.getProblemJson().keySet()) {
+			assertTrue(problemJSON.containsKey(key));
+		}
+		
+	}
 
 	/**
 	 * This is a private helper function that creates
-	 * a sample PpalmsProblem object that can be used
+	 * a sample Ordering PpalmsProblem object that can be used
 	 * during the test cases.
 	 * 
 	 * This helper function promotes code reuse as
@@ -437,15 +507,40 @@ class PpalmsLogicHandlerTests {
 	 * @return validate PpalmsProblem object
 	 */
 	private PpalmsProblem createValidOrderingProblem() {
-		PpalmsProblem problem = new PpalmsProblem();
-		problem.setTitle("Test Title");
-		problem.setDescription("Test Description");
-		problem.setSourceCode("test.py");
-		problem.setSourceCodeLines(dummyLines);
-		problem.setAnnotations(Arrays.asList(31, 13, 45));
-		problem.setLmsTarget(LmsTarget.Canvas);
-		problem.setProblemType(ProblemType.Ordering);
-		return problem;
+		PpalmsProblem orderingProblem = new PpalmsProblem();
+		orderingProblem.setTitle("Test Title");
+		orderingProblem.setDescription("Test Description");
+		orderingProblem.setSourceCode("test.py");
+		orderingProblem.setSourceCodeLines(dummyLines);
+		orderingProblem.setAnnotations(Arrays.asList(31, 13, 45));
+		orderingProblem.setLmsTarget(LmsTarget.Canvas);
+		orderingProblem.setProblemType(ProblemType.Ordering);
+		return orderingProblem;
+	}
+	
+	/**
+	 * This is a private helper function that creates
+	 * a sample MultipleChoice PpalmsProblem object that can be used
+	 * during the test cases.
+	 * 
+	 * This helper function promotes code reuse as
+	 * the PpalmsLogicHandler requires the use
+	 * of modifying model attributes.
+	 * 
+	 * @return validate PpalmsProblem object
+	 */
+	private PpalmsProblem createValidMultipleChoiceProblem() {
+		PpalmsProblem mcProblem = new PpalmsProblem();
+		mcProblem.setTitle("Test Title");
+		mcProblem.setDescription("Test Description");
+		mcProblem.setSourceCode("test.py");
+		mcProblem.setSourceCodeLines(dummyLines);
+		mcProblem.setAnnotations(Arrays.asList(31, 13, 45));
+		mcProblem.setLmsTarget(LmsTarget.Canvas);
+		mcProblem.setProblemType(ProblemType.MultipleChoice);
+		System.out.println(mcProblem);
+		System.out.println("hi");
+		return mcProblem;
 	}
 
 }

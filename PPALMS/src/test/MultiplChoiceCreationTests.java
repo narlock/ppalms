@@ -121,6 +121,7 @@ class MultipleChoiceCreationTests {
 	@Test
 	void testGetProblemJson() {
 		JSONObject obj = mcCreation.getProblemJson();
+		assertTrue(obj.containsKey("questions"));
 		List<JSONObject> questions = (List<JSONObject>) obj.get("questions");
 		List<String> lines = problem.getSourceCodeLines();
 		assertEquals(lines.size(), questions.size());

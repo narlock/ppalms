@@ -125,6 +125,7 @@ class FillInTheBlankCreationTests {
 	@Test
 	void testGetProblemJson() {
 		JSONObject obj = fillInTheBlankCreation.getProblemJson();
+		assertTrue(obj.containsKey("questions"));
 		List<JSONObject> questions = (List<JSONObject>) obj.get("questions");
 		
 		Map<Integer, List<Integer>> blankBounds = problem.getBlankBounds();
@@ -196,7 +197,7 @@ class FillInTheBlankCreationTests {
 				}
 			);
 		problem.setLmsTarget(LmsTarget.Canvas);
-		problem.setProblemType(ProblemType.Ordering);
+		problem.setProblemType(ProblemType.FillInTheBlank);
 		return problem;
 	}
 

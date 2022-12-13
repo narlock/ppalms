@@ -38,8 +38,6 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 	public JSONObject getProblemJson() {
 		
 		List<JSONObject> multipleChoiceQuestions = new ArrayList<>();
-		System.out.println(problem);
-		System.out.println(problem.getSourceCodeLines());
 		for (String line : problem.getSourceCodeLines()) {
 			String trimmedLine = line.trim();
 			if (trimmedLine.isEmpty()) { continue; }

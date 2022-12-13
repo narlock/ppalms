@@ -38,8 +38,8 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 		System.out.println(problem);
 		System.out.println(problem.getSourceCodeLines());
 		for (String line : problem.getSourceCodeLines()) {
-			line = line.trim();
-			if (line.isEmpty()) { continue; }
+			String trimmedLine = line.trim();
+			if (trimmedLine.isEmpty()) { continue; }
 			JSONObject multipleChoiceQuestion = makeMultipleChoiceQuestion(line);
 			multipleChoiceQuestions.add(multipleChoiceQuestion);
 		}

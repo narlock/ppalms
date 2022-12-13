@@ -24,6 +24,7 @@ import org.junit.platform.suite.api.Suite;
 		ProblemInputStrategyTests.class,
 		OrderingCreationTests.class,
 		MultipleChoiceCreationTests.class,
+		FillInTheBlankCreationTests.class,
 		ChooseLinesAddBlankTests.class
 	})
 public class AllTests {

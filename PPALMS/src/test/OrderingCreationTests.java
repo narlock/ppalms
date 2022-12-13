@@ -50,7 +50,7 @@ class OrderingCreationTests {
 	private OrderingCreation orderingCreation;
 	
 	/**
-	 * Helper function which initializes handler and problem to useful state before each test
+	 * @brief Helper function which initializes handler and problem to useful state before each test
 	 */
 	@BeforeEach
 	void beforeEach() {
@@ -116,7 +116,8 @@ class OrderingCreationTests {
 
 	
 	/**
-	 * This tests that getProblemJson creates a JSON object with the expected keys and values
+	 * @brief This tests that getProblemJson creates a JSON object with the expected 
+	 * keys and values.
 	 */
 	@Test
 	void testGetProblemJson() {

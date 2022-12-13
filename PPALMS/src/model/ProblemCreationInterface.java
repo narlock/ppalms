@@ -14,9 +14,17 @@ import org.json.simple.JSONObject;
 public abstract class ProblemCreationInterface {
 	protected PpalmsProblem problem;
 	
+	/**
+	 * @brief Constructor. 
+	 * @param problem
+	 */
 	public ProblemCreationInterface(PpalmsProblem problem) {
 		this.problem = problem;
 	}
 	
+	/**
+	 * @brief Abstract of getProblemJson method.
+	 * @return JSONObject
+	 */
 	public abstract JSONObject getProblemJson();
 }

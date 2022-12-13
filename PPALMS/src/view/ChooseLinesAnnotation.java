@@ -13,18 +13,37 @@ import javax.swing.JPanel;
 import controller.PpalmsInputHandler;
 import model.PpalmsProblem;
 
+/**
+ * ChooseLinesAnnotation
+ * @brief Provides concrete implementation of methods by extending 
+ * the abstract class AnnotationInterface. 
+ * 
+ * @author Stephanie Ye
+ *
+ */
 public class ChooseLinesAnnotation extends AnnotationInterface {
 	
 	private List<JButton> problemLines;
 	
+	/**
+	 * @brief Constructor. 
+	 * @param controller
+	 * @param problem
+	 */
 	public ChooseLinesAnnotation(PpalmsInputHandler controller, PpalmsProblem problem) {
 		super(controller, problem);
 	}
 
+	/**
+	 * @brief Setter method for the interface.
+	 */
 	public void setUpInterface() {
 		this.problemLines = new ArrayList<JButton>();
 	}
 	
+	/**
+	 * @brief Setter method for annotation actions.
+	 */
 	public void setAnnotationActions() {
 		
 	}

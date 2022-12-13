@@ -65,10 +65,18 @@ public class PpalmsProblem {
 	 */
 	private int numberOfStudents;
 	
+	/**
+	 * @brief Constructor.
+	 */
 	public PpalmsProblem() {
 		blankBounds = new HashMap<Integer, List<Integer>>();
 	}
 	
+	/**
+	 * @brief Getter method for sourceCode. 
+	 * 
+	 * @return
+	 */
 	public String getSourceCode() {
 		return sourceCode;
 	}
@@ -216,12 +224,17 @@ public class PpalmsProblem {
 	/**
 	 * @brief Getter for blankBounds
 	 * 
-	 * @return
+	 * @return blankBounds
 	 */
 	public Map<Integer, List<Integer>> getBlankBounds() {
 		return blankBounds;
 	}
 	
+	/**
+	 * @brief Method that adds item to list.
+	 * 
+	 * @param index
+	 */
 	public void addItemToList(int index) {
 		blankBounds.put(index, new ArrayList<Integer>());
 		blankBounds.get(index).add(-1);
@@ -229,6 +242,13 @@ public class PpalmsProblem {
 		System.out.println("blankBounds Size " + blankBounds.size() + ", lower = " + blankBounds.get(index).get(0) + ", upper = " + blankBounds.get(index).get(1));
 	}
 	
+	/**
+	 * @brief Method that sets the bounds given the index, bound, and boundIndex. 
+	 * 
+	 * @param index
+	 * @param bound
+	 * @param boundIndex
+	 */
 	public void setBound(int index, String bound, int boundIndex) {
 		switch(bound) {
 		case "lower":
@@ -265,6 +285,9 @@ public class PpalmsProblem {
 				+ numberOfStudents + "]";
 	}
 	
+	/**
+	 * @brief Equality check. 
+	 */
 	@Override
 	public boolean equals(Object other) {
 		if (other == this) {

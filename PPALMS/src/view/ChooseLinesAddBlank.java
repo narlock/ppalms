@@ -166,10 +166,19 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 		return problemLines.get(0);
 	}
 
+	/**
+	 * @brief Getter method for problem line ComboBox index.
+	 * @param index
+	 * @return problemLineComboBox.get(index)
+	 */
 	public JComboBox<String> getProblemLineComboBoxIndex(int index) {
 		return problemLineComboBox.get(index);
 	}
 	
+	/**
+	 * @brief Getter for problem line ComboBox. 
+	 * @return problemLineComboBox
+	 */
 	public List<JComboBox<String>> getProblemLineComboBox() {
 		return problemLineComboBox;
 	}

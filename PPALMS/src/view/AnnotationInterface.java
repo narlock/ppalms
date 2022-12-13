@@ -50,18 +50,34 @@ public abstract class AnnotationInterface extends JPanel{
 	public abstract void setAnnotationActions();
 	
 
+	/**
+	 * @brief Getter method that returns the controller (PpalmsInputHandler instance). 
+	 * @return controller
+	 */
 	public PpalmsInputHandler getController() {
 		return controller;
 	}
-
+	
+	/**
+	 * @brief Setter method that sets the controller (PpalmsInputHandler instance). 
+	 * @param controller
+	 */
 	public void setController(PpalmsInputHandler controller) {
 		this.controller = controller;
 	}
 
+	/**
+	 * @brief Getter method that returns the problem (PpalmsProblem instance). 
+	 * @return problem
+	 */
 	public PpalmsProblem getProblem() {
 		return problem;
 	}
-
+	
+	/**
+	 * @brief Setter method for the problem (PpalmsProblem instance).
+	 * @param problem
+	 */
 	public void setProblem(PpalmsProblem problem) {
 		this.problem = problem;
 	}

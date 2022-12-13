@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.json.simple.JSONObject;
 
+import view.AnnotationInterface;
+
 /**
  * MultipleChoiceCreation
  * @brief Concrete implementation of ProblemCreationInterface
@@ -27,9 +29,8 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 	}
 
 	
-	/** 
-	 * @brief Getter that returns a JSONObject of the problem
-	 * @return obj 
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
 	 */
 	public JSONObject getProblemJson() {
 		
@@ -51,7 +52,7 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 	 * @brief generates multiple choice question
 	 * 
 	 * @param line
-	 * @return
+	 * @return JSONObject representing a question
 	 */
 	private JSONObject makeMultipleChoiceQuestion(String line) {
 		

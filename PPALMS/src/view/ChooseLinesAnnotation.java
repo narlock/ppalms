@@ -26,23 +26,21 @@ public class ChooseLinesAnnotation extends AnnotationInterface {
 	private List<JButton> problemLines;
 	
 	/**
-	 * @brief Constructor. 
-	 * @param controller
-	 * @param problem
+	 * @brief See {@link AnnotationInterface} for definition.
 	 */
 	public ChooseLinesAnnotation(PpalmsInputHandler controller, PpalmsProblem problem) {
 		super(controller, problem);
 	}
 
 	/**
-	 * @brief Setter method for the interface.
+	 * @brief See {@link AnnotationInterface} for definition.
 	 */
 	public void setUpInterface() {
 		this.problemLines = new ArrayList<JButton>();
 	}
 	
 	/**
-	 * @brief Setter method for annotation actions.
+	 * @brief See {@link AnnotationInterface} for definition.
 	 */
 	public void setAnnotationActions() {
 		

@@ -66,7 +66,7 @@ public class PpalmsProblem {
 	private int numberOfStudents;
 	
 	/**
-	 * @brief Constructor.
+	 * @brief Default constructor
 	 */
 	public PpalmsProblem() {
 		blankBounds = new HashMap<Integer, List<Integer>>();
@@ -231,7 +231,7 @@ public class PpalmsProblem {
 	}
 	
 	/**
-	 * @brief Method that adds item to list.
+	 * @brief Adds new bound to bound map
 	 * 
 	 * @param index
 	 */

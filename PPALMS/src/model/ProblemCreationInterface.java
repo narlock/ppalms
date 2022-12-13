@@ -15,7 +15,7 @@ public abstract class ProblemCreationInterface {
 	protected PpalmsProblem problem;
 	
 	/**
-	 * @brief Constructor. 
+	 * @brief Constructor
 	 * @param problem
 	 */
 	public ProblemCreationInterface(PpalmsProblem problem) {
@@ -23,7 +23,7 @@ public abstract class ProblemCreationInterface {
 	}
 	
 	/**
-	 * @brief Abstract of getProblemJson method.
+	 * @brief Creates the problem JSONObject used in export
 	 * @return JSONObject
 	 */
 	public abstract JSONObject getProblemJson();

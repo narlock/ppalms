@@ -35,6 +35,7 @@ public class ChooseLinesAnnotation extends AnnotationInterface {
 	/**
 	 * @brief See {@link AnnotationInterface} for definition.
 	 */
+	@Override
 	public void setUpInterface() {
 		this.problemLines = new ArrayList<JButton>();
 	}
@@ -42,6 +43,7 @@ public class ChooseLinesAnnotation extends AnnotationInterface {
 	/**
 	 * @brief See {@link AnnotationInterface} for definition.
 	 */
+	@Override
 	public void setAnnotationActions() {
 		
 	}

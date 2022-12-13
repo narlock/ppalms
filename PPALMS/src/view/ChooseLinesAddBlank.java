@@ -46,16 +46,25 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 	 */
 	int upperBoundIndex;
 
+	/**
+	 * @brief See {@link AnnotationInterface} for definition.
+	 */
 	public ChooseLinesAddBlank(PpalmsInputHandler controller, PpalmsProblem problem) {
 		super(controller, problem);
 	}
 
+	/**
+	 * @brief See {@link AnnotationInterface} for definition.
+	 */
 	@Override
 	public void setUpInterface() {
 		this.problemLines = new ArrayList<JButton>();
 		this.problemLineComboBox = new ArrayList<JComboBox<String>>();
 	}
 
+	/**
+	 * @brief See {@link AnnotationInterface} for definition.
+	 */
 	@Override
 	public void setAnnotationActions() {
 		
@@ -159,7 +168,7 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 	}
 	
 	/**
-	 * Getter for JUnit tests
+	 * Obtains the first annotation line button
 	 * @return first line JButton
 	 */
 	public JButton getFirstAnnotationLineButton() {

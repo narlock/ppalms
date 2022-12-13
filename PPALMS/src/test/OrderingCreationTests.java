@@ -109,11 +109,6 @@ class OrderingCreationTests {
 		problem = createValidPpalmsProblem();
 		orderingCreation = new OrderingCreation(problem);
 	}
-
-
-	
-
-
 	
 	/**
 	 * @brief This tests that getProblemJson creates a JSON object with the expected 

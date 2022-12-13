@@ -6,11 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import org.json.simple.JSONObject;
-
-import view.AnnotationInterface;
 
 /**
  * MultipleChoiceCreation
@@ -22,13 +19,19 @@ import view.AnnotationInterface;
  *
  */
 public class MultipleChoiceCreation extends ProblemCreationInterface{
-	private int numOptions = 4; // a, b, c, d
 	
+	/**
+	 * Constant for number of options in Multiple choice problem
+	 */
+	private final int numOptions = 4; // a, b, c, d
+	
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
+	 */
 	public MultipleChoiceCreation(PpalmsProblem problem) {
 		super(problem);
 	}
 
-	
 	/**
 	 * @brief See {@link ProblemCreationInterface} for definition.
 	 */

@@ -17,11 +17,16 @@ import org.json.simple.JSONObject;
  */
 public class OrderingCreation extends ProblemCreationInterface {
 	
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
+	 */
 	public OrderingCreation(PpalmsProblem problem) {
 		super(problem);
 	}
 	
-	
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
+	 */
 	@Override
 	public JSONObject getProblemJson() {
 		// Will call createPermutations

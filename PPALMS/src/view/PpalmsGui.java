@@ -77,7 +77,7 @@ public class PpalmsGui extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(true);
-		this.setTitle("PPALMS v0.0.1");
+		this.setTitle("PPALMS v0.0.2");
 		
 		// The default view strategy on launch will be CodeInputStrategy
 		this.viewStrategy = new CodeInputStrategy();
@@ -275,11 +275,6 @@ public class PpalmsGui extends JFrame {
 		    }
 			refocusFrame();
 		}
-	}
-	
-	private PpalmsInputHandler getPpalmsProblemType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/**

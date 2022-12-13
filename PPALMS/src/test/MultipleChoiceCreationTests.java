@@ -109,11 +109,6 @@ class MultipleChoiceCreationTests {
 		problem = createValidPpalmsProblem();
 		mcCreation = new MultipleChoiceCreation(problem);
 	}
-
-
-	
-
-
 	
 	/**
 	 * @brief This tests that getProblemJson creates a JSON object with the expected keys and values

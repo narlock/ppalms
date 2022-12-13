@@ -1,11 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
+
+import view.AnnotationInterface;
 
 /**
  * OrderingCreation
@@ -18,11 +19,16 @@ import org.json.simple.JSONObject;
  */
 public class FillInTheBlankCreation extends ProblemCreationInterface {
 	
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
+	 */
 	public FillInTheBlankCreation(PpalmsProblem problem) {
 		super(problem);
 	}
 	
-	
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
+	 */
 	@Override
 	public JSONObject getProblemJson() {
 		List<JSONObject> fillInTheBlankQuestions = new ArrayList<>();
@@ -46,6 +52,13 @@ public class FillInTheBlankCreation extends ProblemCreationInterface {
 		return obj;
 	}
 	
+	/**
+	 * Creates the blank in a multiple choice question
+	 * @param line
+	 * @param startInclusive
+	 * @param endInclusive
+	 * @return JSONobject of the line problem with blank
+	 */
 	private JSONObject makefillInTheBlankQuestion(String line, int startInclusive, int endInclusive) {
 		String left = line.substring(0, startInclusive);
 		String slice = line.substring(startInclusive, endInclusive + 1);

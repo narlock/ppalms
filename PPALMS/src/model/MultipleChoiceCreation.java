@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.json.simple.JSONObject;
 
+import view.AnnotationInterface;
+
 /**
  * MultipleChoiceCreation
  * @brief Concrete implementation of ProblemCreationInterface
@@ -27,7 +29,10 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 	}
 
 	
-	public  JSONObject getProblemJson() {
+	/**
+	 * @brief See {@link ProblemCreationInterface} for definition.
+	 */
+	public JSONObject getProblemJson() {
 		
 		List<JSONObject> multipleChoiceQuestions = new ArrayList<>();
 		System.out.println(problem);
@@ -42,7 +47,13 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 		obj.put("questions", multipleChoiceQuestions);
 		return obj;
 	}
-
+	
+	/**
+	 * @brief generates multiple choice question
+	 * 
+	 * @param line
+	 * @return JSONObject representing a question
+	 */
 	private JSONObject makeMultipleChoiceQuestion(String line) {
 		
 		ArrayList<String> mutations = generateMutations(line, numOptions-1);
@@ -64,6 +75,13 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 		return multipleChoiceQuestion;
 	}
 	
+	/**
+	 * @brief Generates mutations of Problem
+	 * 
+	 * @param line
+	 * @param numMutations
+	 * @return ArrayList<>(mutations) 
+	 */
 	private ArrayList<String> generateMutations(String line, int numMutations){
 
 		String[] tokens = line.split(" ", 0);
@@ -99,6 +117,10 @@ public class MultipleChoiceCreation extends ProblemCreationInterface{
 		return new ArrayList<>(mutations);
 	}
 	
+	/**
+	 * @brief Method to add noise to tokens. 
+	 * @param tokenCount
+	 */
 	private void addSufficientNoise(HashMap<String, Integer> tokenCount) {
 		String noise = "!/#*^";
 		for (int i = 0; i < noise.length(); i++) {

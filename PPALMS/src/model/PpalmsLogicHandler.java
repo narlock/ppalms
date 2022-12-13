@@ -185,10 +185,20 @@ public class PpalmsLogicHandler {
 		return true;
 	}
 	
+	/**
+	 * @brief Setter for problem creation interface implementation.
+	 * 
+	 * @param problemCreation
+	 */
 	public void setProblemCreationInterface(ProblemCreationInterface problemCreation) {
 		this.problemCreation = problemCreation;
 	}
 	
+	/**
+	 * @brief Getter for problem creation interface implementation.
+	 * 
+	 * @return
+	 */
 	public ProblemCreationInterface getProblemCreationInterface() {
 		return problemCreation;
 	}

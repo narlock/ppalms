@@ -122,7 +122,7 @@ public class ChooseLinesAddBlank extends AnnotationInterface {
 					
 				} else {
 					upperBoundComboBox.removeAllItems();
-					for(int i = lowerBoundIndex + 1; i < line.length(); i++) {
+					for(int i = lowerBoundIndex; i < line.length(); i++) {
 						upperBoundComboBox.addItem(line.charAt(i) + " (" + i + ")");
 					}
 				}

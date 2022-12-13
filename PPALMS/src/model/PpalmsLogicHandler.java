@@ -102,6 +102,9 @@ public class PpalmsLogicHandler {
 	 * @param problem
 	 */
 	public void setAnnotations(PpalmsProblem problem) {
+		if(problem.getProblemType() == ProblemType.FillInTheBlank) {
+			return;
+		}
 		Collections.sort(problem.getAnnotations());
 		List<String> chosenCodeLines = new ArrayList<String>();
 		for(int index : problem.getAnnotations()) {
@@ -119,7 +122,6 @@ public class PpalmsLogicHandler {
 	public boolean exportPpalmsProblem(PpalmsProblem problem) {
 		setAnnotations(problem);
 		System.out.println(problem);
-		System.out.println("hi again again");
 		//Logic to instantiate problem creation based on problem type
 		if(problem.getProblemType() == ProblemType.Ordering) {
 			problemCreation = new OrderingCreation(problem);
@@ -127,8 +129,10 @@ public class PpalmsLogicHandler {
 		else if(problem.getProblemType() == ProblemType.MultipleChoice) {
 			problemCreation = new MultipleChoiceCreation(problem);
 		}
+		else if(problem.getProblemType() == ProblemType.FillInTheBlank) {
+			problemCreation = new FillInTheBlankCreation(problem);
+		}
 		System.out.println(problem);
-		System.out.println("hi again again again");
 		// Create the JSON and save file location
 		JSONObject obj = new JSONObject();
 		obj.put("title", problem.getTitle());

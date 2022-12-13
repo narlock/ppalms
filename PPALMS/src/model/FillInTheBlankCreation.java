@@ -32,8 +32,7 @@ public class FillInTheBlankCreation extends ProblemCreationInterface {
 			
 			if (!blankBounds.containsKey(i)) { continue;}
 			String line = lines.get(i);
-			line = line.trim();
-			if (line.isEmpty()) { continue; }
+			if (line.trim().isEmpty()) { continue; }
 			
 			List<Integer> bounds = blankBounds.get(i);
 			int startInclusive = bounds.get(0);
@@ -53,10 +52,10 @@ public class FillInTheBlankCreation extends ProblemCreationInterface {
 		String right = line.substring(endInclusive + 1);
 		String blank = "";
 		for(int i=0; i < slice.length();i++) {
-			blank += "-";
+			blank += "_";
 		}
 		JSONObject obj = new JSONObject();
-		obj.put("answer", left + blank + right);
+		obj.put("prompt", left + blank + right);
 		obj.put("answer", slice);
 		return obj;
 	}

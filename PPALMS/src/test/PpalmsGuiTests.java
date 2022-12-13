@@ -297,7 +297,7 @@ class PpalmsGuiTests {
 		problem.setTitle("Test Title");
 		problem.setDescription("Test Description");
 		problem.setSourceCode("test.py");
-		problem.setSourceCodeLines(List.of(new String("Hello")));
+		problem.setSourceCodeLines(Arrays.asList("Hello"));
 		problem.setAnnotations(Arrays.asList(31, 13, 45));
 		problem.setLmsTarget(LmsTarget.Canvas);
 		problem.setProblemType(ProblemType.Ordering);
@@ -320,7 +320,7 @@ class PpalmsGuiTests {
 		problem.setTitle("Test Title");
 		problem.setDescription("Test Description");
 		problem.setSourceCode("test.py");
-		problem.setSourceCodeLines(List.of(new String("Hello")));
+		problem.setSourceCodeLines(Arrays.asList("Hello"));
 		problem.setAnnotations(Arrays.asList(31, 13, 45));
 		problem.setLmsTarget(LmsTarget.Canvas);
 		problem.setProblemType(ProblemType.MultipleChoice);
@@ -343,7 +343,7 @@ class PpalmsGuiTests {
 		problem.setTitle("Test Title");
 		problem.setDescription("Test Description");
 		problem.setSourceCode("test.py");
-		problem.setSourceCodeLines(List.of(new String("Hello")));
+		problem.setSourceCodeLines(Arrays.asList("Hello"));
 		problem.setAnnotations(Arrays.asList(31, 13, 45));
 		problem.setLmsTarget(LmsTarget.Canvas);
 		problem.setProblemType(ProblemType.FillInTheBlank);

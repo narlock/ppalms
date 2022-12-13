@@ -30,7 +30,7 @@ import model.PpalmsProblem;
 import model.ProblemType;
 
 /**
- * PpalmsLogicHandlerTests
+ * OrderingCreationTests
  * 
  * @brief This class holds all of the unit tests
  * for the OrderingCreation class.
@@ -40,7 +40,7 @@ import model.ProblemType;
  * utilizing the JUnit testing framework
  * in this class.
  * 
- * @author Anthony Narlock
+ * @author Jaden Rodriguez
  *
  */
 class OrderingCreationTests {

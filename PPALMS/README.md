@@ -70,13 +70,13 @@ The remainder of this document will assume the user has granted permissions to t
 ### **Using the PPALMS Application**
 *__Please Note__: This is not the end-to-end test of the PPALMS application but an approach that will assist users in operating the application.*
 
-To begin using the application, the user can click on the "Select File" on the user interface. This will send a signal from the controller to open the file chooser dialog menu. From here, the user can select their source code file to upload. Please note, the input file must be a supported programming file type. As of version 0.0.1 of the PPALMS application, the file extensions `.java`, `.py`, `.c`, `.cpp`, and `.cc` are supported. The following image shows the user selecting a file.
+To begin using the application, the user can click on the "Select File" on the user interface. This will send a signal from the controller to open the file chooser dialog menu. From here, the user can select their source code file to upload. Please note, the input file must be a supported programming file type. As of version 0.0.2 of the PPALMS application, the file extensions `.java`, `.py`, `.c`, `.cpp`, and `.cc` are supported. The following image shows the user selecting a file.
 
 <center>
     <img src="./readmeAssets/javaOpenFile.png" width=50%>
 </center>
 
-Once the file is selected, the view will change to indicate that the user can input their target LMS and problem type. As already stated, version 0.1 only provides the *ordering* option to the user. The following image shows a sample form filled out. After the form is filled out, the user will be able to confirm their selections by clicking the confirm button. This will change the view to allow the user to input specific information for their problem.
+Once the file is selected, the view will change to indicate that the user can input their target LMS and problem type. As already stated, version 0.0.2 only provides the *ordering* option to the user. The following image shows a sample form filled out. After the form is filled out, the user will be able to confirm their selections by clicking the confirm button. This will change the view to allow the user to input specific information for their problem.
 
 <center>
     <img src="./readmeAssets/javaLmsInfo.png" width=50%>
